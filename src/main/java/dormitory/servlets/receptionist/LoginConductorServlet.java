@@ -49,8 +49,8 @@ public class LoginConductorServlet extends HttpServlet {
 
 
                   case DIRECTOR:
-
-                      req.getRequestDispatcher("WEB-INF/directorControl.jsp").forward(req, resp);
+                      session.setAttribute("receptionist", receptionist);
+                      req.getRequestDispatcher("WEB-INF/receptionist/director/directorControl.jsp").forward(req, resp);
                       break;
                   case WAIT_PROCESS:
                       req.getRequestDispatcher("WEB-INF/inWaiting.jsp").forward(req, resp);

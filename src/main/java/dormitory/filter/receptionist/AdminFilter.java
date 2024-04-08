@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-@WebFilter()
+@WebFilter("/*")
 public class AdminFilter implements Filter {
 URLManager urlManager = new URLManager();
     @Override
