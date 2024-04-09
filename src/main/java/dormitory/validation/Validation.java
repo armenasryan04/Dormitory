@@ -83,18 +83,15 @@ public class Validation {
         }
         if (!isNameValid(student.getName())) {
             validation = "Incorrect Name try again!";
-            student.setName("");
             return validation;
         }
         if (!isSurnameValid(student.getSurname())) {
             validation = "Incorrect Surname try again!";
-            student.setSurname("");
             return validation;
         }
 
         if (isValidatePhoneNumber(student.getPhoneNum()) || student.getPhoneNum() == null || student.getPhoneNum().isEmpty()) {
             validation = "Incorrect Phone try again!";
-            student.setPhoneNum("");
             return validation;
         }
         if (!isDateValid(student.getDate())){

@@ -312,6 +312,7 @@
         if (errorContainer && errorContainer.contains(event.target) && !errorMessage.contains(event.target)) {
             errorContainer.style.display = 'none';
             errorMessage.style.display = 'none'
+            location.replace('/login')
 
         }
     };
@@ -323,6 +324,7 @@
             var errorMessage = document.getElementById('errorMessage');
             errorContainer.style.display = 'none';
             errorMessage.style.display = 'none'
+            location.replace('/login')
         }
     }
 

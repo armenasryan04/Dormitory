@@ -20,6 +20,6 @@ public class NameSurnameSaveServlet extends HttpServlet {
         HttpSession session = req.getSession();
         Receptionist receptionist = (Receptionist) session.getAttribute("receptionist");
         receptionistManager.changeNameSurnameById(receptionist.getId(), receptionist.getName(), receptionist.getSurname());
-        resp.sendRedirect("/control");
+        resp.sendRedirect("/loginConductor");
     }
 }

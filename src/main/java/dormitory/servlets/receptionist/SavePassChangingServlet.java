@@ -19,6 +19,6 @@ public class SavePassChangingServlet extends HttpServlet {
         HttpSession session = req.getSession();
         Receptionist receptionist = (Receptionist) session.getAttribute("receptionist");
         receptionistManager.changePasswordById(receptionist.getId(),receptionist.getPassword());
-        resp.sendRedirect("/control");
+        resp.sendRedirect("/loginConductor");
     }
 }

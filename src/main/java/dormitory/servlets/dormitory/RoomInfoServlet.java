@@ -19,13 +19,16 @@ public class RoomInfoServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int id = Integer.parseInt(req.getParameter("id"));
         Student student = studentManager.getById(id);
-        Room room = student.getRoom();
-        Date releaseDay = student.getDate();
-        String timer = student.getDaysUntil(releaseDay);
-        req.setAttribute("timer",timer);
-        req.setAttribute("date",releaseDay);
-        req.setAttribute("room", room);
-        req.getRequestDispatcher("WEB-INF/room/roomInfo.jsp").forward(req,resp);
-
+        if (student.getId() != 0) {
+            Room room = student.getRoom();
+            Date releaseDay = student.getDate();
+            String timer = student.getDaysUntil(releaseDay);
+            req.setAttribute("timer",timer);
+            req.setAttribute("date",releaseDay);
+            req.setAttribute("room", room);
+            req.getRequestDispatcher("WEB-INF/room/roomInfo.jsp").forward(req,resp);
+        }else {
+            resp.sendRedirect("/loginConductor");
+        }
     }
 }

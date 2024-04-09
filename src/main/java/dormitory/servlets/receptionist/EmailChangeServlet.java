@@ -22,6 +22,6 @@ public class EmailChangeServlet extends HttpServlet {
         session.removeAttribute("newEmail");
         session.removeAttribute("email");
         session.removeAttribute("password");
-        resp.sendRedirect("/control");
+        resp.sendRedirect("/loginConductor");
     }
 }

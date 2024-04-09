@@ -17,7 +17,7 @@ URLManager urlManager = new URLManager();
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         HttpServletResponse resp = (HttpServletResponse) servletResponse;
         String url = req.getRequestURI();
-        if ("/".equals(url) || "/login".equals(url) ||"/loginConductor".equals(url) || "/singInUp.jsp".equals(url) || "/studentList".equals(url) || "/roomsInfo".equals(url) ) {
+        if ("/".equals(url) || "/login".equals(url) ||"/loginConductor".equals(url) || "/singInUp.jsp".equals(url) || "/studentList".equals(url) || "/roomsInfo".equals(url)|| "/logout".equals(url) ) {
             filterChain.doFilter(req, resp);
         }else {
             HttpSession session = req.getSession();
@@ -25,7 +25,7 @@ URLManager urlManager = new URLManager();
             if (receptionist != null && urlManager.isAcceptable(url,receptionist.getReceptionistRole())) {
                 filterChain.doFilter(req, resp);
             } else {
-                req.setAttribute("errMsg","you are not aan admin");
+                req.setAttribute("errMsg","you are not an admin");
                 session.invalidate();
                 req.getRequestDispatcher("WEB-INF/login.jsp").forward(req,resp);
             }

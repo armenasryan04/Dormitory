@@ -1,6 +1,7 @@
 package dormitory.manager;
 
 import dormitory.db.DBConnectionProvider;
+import dormitory.models.Receptionist;
 import dormitory.models.ReceptionistRole;
 import dormitory.models.Student;
 
@@ -20,12 +21,17 @@ public class URLManager {
             statement.setString(2,receptionistRole.toString());
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
+                System.out.println(getFromResultSet(resultSet));
                 return true;
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return false;
+    }
+    private String getFromResultSet(ResultSet resultSet) throws SQLException {
+    String url = resultSet.getString("url");
+        return url;
     }
 }
 
