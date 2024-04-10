@@ -4,14 +4,11 @@ import dormitory.manager.RoomManager;
 import dormitory.manager.StudentManager;
 import dormitory.models.Student;
 
-import javax.mail.Session;
-import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Date;
-import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -37,9 +34,9 @@ public class Validation {
         if (isValidatePhoneNumber(student.getPhoneNum()) || student.getPhoneNum() == null || student.getPhoneNum().isEmpty()) {
             student.setPhoneNum("");
         }
-        if (!isDateValid(student.getDate())){
+        if (!isDateValid(student.getEndDate())){
             Date date = new Date();
-            student.setDate(date);
+            student.setEndDate(date);
         }
         return student;
     }
@@ -94,10 +91,10 @@ public class Validation {
             validation = "Incorrect Phone try again!";
             return validation;
         }
-        if (!isDateValid(student.getDate())){
+        if (!isDateValid(student.getEndDate())){
             validation = "incorrect Date try again!";
             Date date = new Date();
-            student.setDate(date);
+            student.setEndDate(date);
             return validation;
         }
         return validation;
@@ -188,7 +185,7 @@ public class Validation {
     }
     public static boolean isEmailFree(Student student ,String email,StudentManager studentManager){
         Student getDataFromDB = studentManager.getByEmail(email);
-        if (getDataFromDB.getId() != student.getId()){
+        if (getDataFromDB.getId() != 0 && getDataFromDB.getId() != student.getId()){
             return false;
         }else {
             return true;

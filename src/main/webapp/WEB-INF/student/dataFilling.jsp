@@ -14,7 +14,7 @@
         surname = student.getSurname();
         phone = student.getPhoneNum();
         email = student.getEmail();
-        date = student.getDate().toString();
+        date = student.getEndDate().toString();
         if (student.getId() == 0) {
             id = "";
         } else {

@@ -42,7 +42,7 @@ public class AddValidationFilter implements Filter {
                         .id(Integer.parseInt(req.getParameter("id").trim()))
                         .phoneNum(req.getParameter("phone").trim())
                         .email(req.getParameter("email").trim())
-                        .date(sqlDate)
+                        .endDate(sqlDate)
                         .room(room)
                         .verifyCode(String.valueOf(randomNumber))
                         .build();

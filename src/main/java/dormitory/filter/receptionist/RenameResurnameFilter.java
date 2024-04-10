@@ -27,7 +27,7 @@ public class RenameResurnameFilter implements Filter {
                 receptionist.setName(name);
             } else {
                 req.setAttribute("errMsg", "Invalid Name :-(");
-                req.getRequestDispatcher("WEB-INF/receptionist/admin/changeNameSurname.jsp").forward(req, resp);
+                req.getRequestDispatcher("WEB-INF/receptionist/global/changeNameSurname.jsp").forward(req, resp);
             }
         }
         if (!req.getParameter("surname").trim().isEmpty() && req.getParameter("surname") != null) {
@@ -36,7 +36,7 @@ public class RenameResurnameFilter implements Filter {
                 receptionist.setSurname(surname);
             } else {
                 req.setAttribute("errMsg", "Invalid Surname :-(");
-                req.getRequestDispatcher("WEB-INF/receptionist/admin/changeNameSurname.jsp").forward(req, resp);
+                req.getRequestDispatcher("WEB-INF/receptionist/global/changeNameSurname.jsp").forward(req, resp);
             }
         }
         session.setAttribute("receptionist", receptionist);

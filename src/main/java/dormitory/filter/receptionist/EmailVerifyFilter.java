@@ -17,7 +17,7 @@ public class EmailVerifyFilter implements Filter {
            filterChain.doFilter(req,resp);
         }else {
             req.setAttribute("errMsg","not variable code try again!");
-            req.getRequestDispatcher("WEB-INF/receptionist/admin/verifyEmail.jsp").forward(req, resp);
+            req.getRequestDispatcher("WEB-INF/receptionist/global/verifyEmail.jsp").forward(req, resp);
         }
     }
 }

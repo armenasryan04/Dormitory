@@ -44,17 +44,17 @@ public class EmailChangeValidationFilter implements Filter {
                     session.removeAttribute("password");
                     session.removeAttribute("email");
                     req.setAttribute("errMsg", "invalid Email or Password");
-                    req.getRequestDispatcher("WEB-INF/receptionist/admin/changeEmail.jsp").forward(req, resp);
+                    req.getRequestDispatcher("WEB-INF/receptionist/global/changeEmail.jsp").forward(req, resp);
                 }
             } else {
                 session.removeAttribute("newEmail");
                 req.setAttribute("errMsg", "We already have staff with this email!");
-                req.getRequestDispatcher("WEB-INF/receptionist/admin/changeEmail.jsp").forward(req, resp);
+                req.getRequestDispatcher("WEB-INF/receptionist/global/changeEmail.jsp").forward(req, resp);
             }
         } else {
             session.removeAttribute("newEmail");
             req.setAttribute("errMsg", "invalid Email :-(");
-            req.getRequestDispatcher("WEB-INF/receptionist/admin/changeEmail.jsp").forward(req, resp);
+            req.getRequestDispatcher("WEB-INF/receptionist/global/changeEmail.jsp").forward(req, resp);
         }
     }
 }

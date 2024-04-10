@@ -27,7 +27,7 @@
     <div class="overlay">
         <a style="position: absolute;top:5px " class="gradient-button" href="/logout" ><i class='bx bx-log-out'></i></a>
         <ul>
-            <li><a href="/control"><i class='bx bxs-home'></i></a></li>
+            <li><a href="/loginConductor"><i class='bx bxs-home'></i></a></li>
             <li><a href="/changeEmailData">Back</a></li>
         </ul>
     </div>

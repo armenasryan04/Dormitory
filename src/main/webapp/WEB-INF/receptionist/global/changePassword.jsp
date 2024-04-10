@@ -4,19 +4,6 @@
     <title>List of Rooms</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <%
-        if (session.getAttribute("newEmail") == null) {
-            session.setAttribute("newEmail", "");
-        }
-    %> <%
-    if (session.getAttribute("password") == null) {
-        session.setAttribute("password", "");
-    }
-%> <%
-    if (session.getAttribute("email") == null) {
-        session.setAttribute("email", "");
-    }
-%>
 </head>
 <body>
 <% if (request.getAttribute("errMsg") != null) { %>
@@ -40,7 +27,7 @@
     <div class="overlay">
         <a style="position: absolute;top:5px " class="gradient-button" href="/logout"><i class='bx bx-log-out'></i></a>
         <ul>
-            <li><a href="/control"><i class='bx bxs-home'></i></a></li>
+            <li><a href="/loginConductor"><i class='bx bxs-home'></i></a></li>
             <li><a href="/refactorMenu">BACK</a></li>
         </ul>
     </div>
@@ -48,20 +35,20 @@
 </div>
 
 <div class="wrapper-data">
-    <div class="title">EMAIL</div>
+    <div class="title">Change Password</div>
 
-    <form action="/emailChangingVerify" method="post">
+    <form action="/savePassChanging" method="post">
         <div class="field">
-            <input type="email" name="email" value="<%=session.getAttribute("email")%>" required>
-            <label class="input-box">Email</label>
-        </div>
-        <div class="field">
-            <input type="password" name="password" value="<%=session.getAttribute("password")%>" required>
+            <input type="password" name="password" required>
             <label class="input-box">Password</label>
         </div>
         <div class="field">
-            <input type="email" name="newEmail" value="<%=session.getAttribute("newEmail")%>" required>
-            <label class="input-box">New Email</label>
+            <input type="password" name="newPassword" required>
+            <label class="input-box">New Password</label>
+        </div>
+        <div class="field">
+            <input type="password" name="confirmPassword" required>
+            <label class="input-box">Confirm Password</label>
         </div>
         <div class="field">
             <br/> <input type="submit" value="Set">
@@ -508,7 +495,7 @@
         if (errorContainer && errorContainer.contains(event.target) && !errorMessage.contains(event.target)) {
             errorContainer.style.display = 'none';
             errorMessage.style.display = 'none'
-            window.location.replace('/changeEmailData');
+            window.location.replace('/changePassword');
         }
     };
 
@@ -519,7 +506,7 @@
             var errorMessage = document.getElementById('errorMessage');
             errorContainer.style.display = 'none';
             errorMessage.style.display = 'none'
-            window.location.replace('/changeEmailData');
+            window.location.replace('/changePassword');
         }
     }
 

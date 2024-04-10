@@ -27,7 +27,7 @@
     <div class="overlay">
         <a style="position: absolute;top:5px " class="gradient-button" href="/logout"><i class='bx bx-log-out'></i></a>
         <ul>
-            <li><a href="/control"><i class='bx bxs-home'></i></a></li>
+            <li><a href="/loginConductor"><i class='bx bxs-home'></i></a></li>
             <li><a href="/refactorMenu">BACK</a></li>
         </ul>
     </div>
@@ -35,24 +35,21 @@
 </div>
 
 <div class="wrapper-data">
-    <div class="title">Change Password</div>
+    <div class="title">RENAME</div>
 
-    <form action="/savePassChanging" method="post">
+    <form action="/saveNameSurname" method="post">
         <div class="field">
-            <input type="password" name="password" required>
-            <label class="input-box">Password</label>
+            <input type="text"  name="name"  required>
+            <label class="input-box">Name</label>
         </div>
         <div class="field">
-            <input type="password" name="newPassword" required>
-            <label class="input-box">New Password</label>
-        </div>
-        <div class="field">
-            <input type="password" name="confirmPassword" required>
-            <label class="input-box">Confirm Password</label>
+            <input type="text"  name="surname" required>
+            <label class="input-box" style=" float: right;">Surname</label>
         </div>
         <div class="field">
             <br/> <input type="submit" value="Set">
         </div>
+
     </form>
 </div>
 </body>
@@ -265,9 +262,8 @@
     .wrapper .overlay ul li {
         margin: 10px 0;
     }
-
-    .wrapper .overlay ul li:hover {
-        text-shadow: #f519f5 1px 0 10px;
+    .wrapper .overlay ul li:hover{
+        text-shadow:#f519f5 1px 0 10px;
     }
 
     .wrapper .overlay ul li a {
@@ -446,7 +442,6 @@
     form .signup-link a:hover {
         text-decoration: underline;
     }
-
     .error-container {
         display: none;
         position: fixed;
@@ -457,9 +452,8 @@
         backdrop-filter: blur(5px);
         justify-content: center;
         align-items: center;
-        z-index: 200000000000;
+        z-index:200000000000;
     }
-
     .error-message {
         z-index: 200000000;
         color: white;
@@ -471,8 +465,7 @@
 
     }
 
-</style>
-<script>
+</style>   <script>
     $(document).ready(function () {
         $('.menu').click(function () {
             $('.overlay').toggleClass('anim');
@@ -492,29 +485,27 @@
     function handleButtonClick() {
         var errorContainer = document.getElementById('errorContainer');
         var errorMessage = document.getElementById('errorMessage');
-        if (errorContainer && errorContainer.contains(event.target) && !errorMessage.contains(event.target)) {
+        if (errorContainer && errorContainer.contains(event.target) && !errorMessage.contains(event.target) ) {
             errorContainer.style.display = 'none';
             errorMessage.style.display = 'none'
-            window.location.replace('/changePassword');
+            window.history.back();
         }
     };
-
     function handleEnterKeyPress() {
-        if (event.key === 'Enter' || event.keyCode === 32) {
+        if (event.key === 'Enter' || event.keyCode === 32 ) {
 
             var errorContainer = document.getElementById('errorContainer');
             var errorMessage = document.getElementById('errorMessage');
             errorContainer.style.display = 'none';
             errorMessage.style.display = 'none'
-            window.location.replace('/changePassword');
+            window.history.back();
         }
     }
-
     <% if (request.getAttribute("errMsg") != null) { %>
     document.getElementById('errorMessage').style.display = 'flex';
     document.getElementById('errorContainer').style.display = 'flex';
     <% } %>
-    document.body.addEventListener('keypress', handleEnterKeyPress)
+    document.body.addEventListener('keypress',handleEnterKeyPress)
     document.body.addEventListener('click', handleButtonClick);
 </script>
 </html>

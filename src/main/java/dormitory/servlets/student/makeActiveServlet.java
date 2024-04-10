@@ -10,9 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.sql.Date;
 
 @WebServlet("/makeActive")
 public class makeActiveServlet extends HttpServlet {
@@ -23,8 +21,9 @@ public class makeActiveServlet extends HttpServlet {
         int id = student.getId();
         int roomId = student.getRoom().getId();
         Receptionist receptionist = (Receptionist) req.getSession().getAttribute("receptionist");
-        Date date = student.getDate();
-        studentManager.statusToActive(id, roomId,student.getEmail(),(java.sql.Date) date,receptionist);
+        Date endDate = (Date) student.getEndDate();
+        Date registerDate = (Date) student.getRegisterDate();
+        studentManager.statusToActive(id, roomId,student.getEmail(),endDate,registerDate,receptionist);
         resp.sendRedirect("/control");
     }
 }

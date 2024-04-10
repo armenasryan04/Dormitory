@@ -1,9 +1,7 @@
 package dormitory.filter.student;
 
 import dormitory.emailVerifycation.EmailSender;
-import dormitory.manager.RoomManager;
 import dormitory.manager.StudentManager;
-import dormitory.models.Room;
 import dormitory.models.Student;
 import dormitory.validation.Validation;
 
@@ -14,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Random;
 
 @WebFilter(urlPatterns = {"/emailReVerify"})
@@ -23,35 +22,42 @@ public class ActivateValidationFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         HttpServletResponse resp = (HttpServletResponse) servletResponse;
         StudentManager studentManager = new StudentManager();
-        try{
+        try {
             Student student = (Student) req.getSession().getAttribute("student");
             String date = req.getParameter("date");
             String email = req.getParameter("email");
-            if (email != null && !email.isEmpty() || !email.equals(student.getEmail())){
-                if (Validation.isEmailAddressValid(student.getEmail()) && Validation.isEmailFree(student,email,studentManager)){
+            if (email != null && !email.isEmpty() || !email.equals(student.getEmail())) {
+                if (Validation.isEmailAddressValid(student.getEmail()) && Validation.isEmailFree(student, email, studentManager)) {
                     student.setEmail(email);
-                }else {
-                    req.setAttribute("errMsg","invalid email :-(");
+                } else {
+                    req.setAttribute("errMsg", "invalid email :-(");
                     req.getRequestDispatcher("WEB-INF/student/setDateAndEmail.jsp").forward(req, resp);
                 }
             }
-            if (!date.isEmpty()){
+            if (!date.isEmpty()) {
+                String today;
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                java.util.Date utilDate;
-                java.sql.Date sqlDate;
+                today = dateFormat.format(new Date());
+                java.util.Date endDate;
+                java.util.Date registerDate;
+                java.sql.Date sqlRegisterDate;
+                java.sql.Date sqlEndDate;
                 try {
-                    utilDate = dateFormat.parse(date);
-                    sqlDate = new java.sql.Date(utilDate.getTime());
+                    endDate = dateFormat.parse(date);
+                    sqlEndDate = new java.sql.Date(endDate.getTime());
+                    registerDate = dateFormat.parse(today);
+                    sqlRegisterDate = new java.sql.Date(registerDate.getTime());
+                    student.setEndDate(sqlEndDate);
+                    student.setRegisterDate(sqlRegisterDate);
                     Random random = new Random();
                     int randomNumber = random.nextInt(900000) + 100000;
-                    student.setDate(sqlDate);
                     student.setVerifyCode(String.valueOf(randomNumber));
                     EmailSender emailSender = new EmailSender();
-                    if (Validation.isDateValid(student.getDate()) && student.getEmail() != null && Validation.isEmailAddressValid(student.getEmail()) && emailSender.sendMail(student.getEmail(), randomNumber)) {
+                    if (Validation.isDateValid(student.getEndDate()) && student.getEmail() != null && Validation.isEmailAddressValid(student.getEmail()) && emailSender.sendMail(student.getEmail(), randomNumber)) {
                         req.setAttribute("student", student);
                         filterChain.doFilter(req, resp);
                     } else {
-                        req.setAttribute("errMsg", "invalid date or Email");
+                        req.setAttribute("errMsg", "invalid endDate or Email");
                         req.getRequestDispatcher("WEB-INF/student/setDateAndEmail.jsp").forward(req, resp);
                     }
                 } catch (ParseException e) {
@@ -59,11 +65,11 @@ public class ActivateValidationFilter implements Filter {
                     req.setAttribute("errMsg", "something suspicious was noticed :-(");
 
                 }
-            }else {
-                req.setAttribute("errMsg","Please choose date!");
+            } else {
+                req.setAttribute("errMsg", "Please choose endDate!");
                 req.getRequestDispatcher("WEB-INF/student/setDateAndEmail.jsp").forward(req, resp);
             }
-        }catch (NullPointerException e){
+        } catch (NullPointerException e) {
             resp.sendRedirect("/control?status=archive");
         }
 

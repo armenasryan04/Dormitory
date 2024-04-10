@@ -17,12 +17,13 @@ public class Student {
     private String surname;
     private String email;
     private String phoneNum;
-    private Date date;
+    private Date endDate;
+    private Date registerDate;
     private Room room;
     private Receptionist receptionist;
     private StudentStatus studentStatus;
     private String verifyCode;
-    private int tryQuantity;
+
 
     public String getDaysUntil(Date endDate) {
         long millisecondsPerDay = 1000 * 60 * 60 * 24;

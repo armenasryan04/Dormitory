@@ -11,6 +11,6 @@ import java.io.IOException;
 public class NameSurnameRefactorServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("WEB-INF/receptionist/admin/changeNameSurname.jsp").forward(req,resp);
+        req.getRequestDispatcher("WEB-INF/receptionist/global/changeNameSurname.jsp").forward(req,resp);
     }
 }

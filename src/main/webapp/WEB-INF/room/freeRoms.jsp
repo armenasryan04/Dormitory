@@ -74,7 +74,7 @@
         <a style="position: absolute;top:5px " class="gradient-button" href="/logout"><i class='bx bx-log-out'></i></a>
         <ul>
             <li><a href="/control"><i class='bx bxs-home'></i></a></li>
-            <li><a href="#" id = 'backLink'>BACK</a></li>
+            <li><a href="/control" >BACK</a></li>
         </ul>
     </div>
     <div class="blurry-background"></div>
@@ -554,11 +554,6 @@
                 $('.blurry-background').removeClass('blurry');
             }
         });
-    });
-    var backLink = document.getElementById("backLink");
-    backLink.addEventListener("click", function (event) {
-        event.preventDefault();
-        window.history.back();
     });
     function handleButtonClick() {
         var errorContainer = document.getElementById('errorContainer');

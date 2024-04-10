@@ -4,6 +4,19 @@
     <title>List of Rooms</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <%
+        if (session.getAttribute("newEmail") == null) {
+            session.setAttribute("newEmail", "");
+        }
+    %> <%
+    if (session.getAttribute("password") == null) {
+        session.setAttribute("password", "");
+    }
+%> <%
+    if (session.getAttribute("email") == null) {
+        session.setAttribute("email", "");
+    }
+%>
 </head>
 <body>
 <% if (request.getAttribute("errMsg") != null) { %>
@@ -27,7 +40,7 @@
     <div class="overlay">
         <a style="position: absolute;top:5px " class="gradient-button" href="/logout"><i class='bx bx-log-out'></i></a>
         <ul>
-            <li><a href="/control"><i class='bx bxs-home'></i></a></li>
+            <li><a href="/loginConductor"><i class='bx bxs-home'></i></a></li>
             <li><a href="/refactorMenu">BACK</a></li>
         </ul>
     </div>
@@ -35,21 +48,24 @@
 </div>
 
 <div class="wrapper-data">
-    <div class="title">RENAME</div>
+    <div class="title">EMAIL</div>
 
-    <form action="/saveNameSurname" method="post">
+    <form action="/emailChangingVerify" method="post">
         <div class="field">
-            <input type="text"  name="name"  required>
-            <label class="input-box">Name</label>
+            <input type="email" name="email" value="<%=session.getAttribute("email")%>" required>
+            <label class="input-box">Email</label>
         </div>
         <div class="field">
-            <input type="text"  name="surname" required>
-            <label class="input-box" style=" float: right;">Surname</label>
+            <input type="password" name="password" value="<%=session.getAttribute("password")%>" required>
+            <label class="input-box">Password</label>
+        </div>
+        <div class="field">
+            <input type="email" name="newEmail" value="<%=session.getAttribute("newEmail")%>" required>
+            <label class="input-box">New Email</label>
         </div>
         <div class="field">
             <br/> <input type="submit" value="Set">
         </div>
-
     </form>
 </div>
 </body>
@@ -262,8 +278,9 @@
     .wrapper .overlay ul li {
         margin: 10px 0;
     }
-    .wrapper .overlay ul li:hover{
-        text-shadow:#f519f5 1px 0 10px;
+
+    .wrapper .overlay ul li:hover {
+        text-shadow: #f519f5 1px 0 10px;
     }
 
     .wrapper .overlay ul li a {
@@ -442,6 +459,7 @@
     form .signup-link a:hover {
         text-decoration: underline;
     }
+
     .error-container {
         display: none;
         position: fixed;
@@ -452,8 +470,9 @@
         backdrop-filter: blur(5px);
         justify-content: center;
         align-items: center;
-        z-index:200000000000;
+        z-index: 200000000000;
     }
+
     .error-message {
         z-index: 200000000;
         color: white;
@@ -465,7 +484,8 @@
 
     }
 
-</style>   <script>
+</style>
+<script>
     $(document).ready(function () {
         $('.menu').click(function () {
             $('.overlay').toggleClass('anim');
@@ -485,27 +505,29 @@
     function handleButtonClick() {
         var errorContainer = document.getElementById('errorContainer');
         var errorMessage = document.getElementById('errorMessage');
-        if (errorContainer && errorContainer.contains(event.target) && !errorMessage.contains(event.target) ) {
+        if (errorContainer && errorContainer.contains(event.target) && !errorMessage.contains(event.target)) {
             errorContainer.style.display = 'none';
             errorMessage.style.display = 'none'
-            window.history.back();
+            window.location.replace('/changeEmailData');
         }
     };
+
     function handleEnterKeyPress() {
-        if (event.key === 'Enter' || event.keyCode === 32 ) {
+        if (event.key === 'Enter' || event.keyCode === 32) {
 
             var errorContainer = document.getElementById('errorContainer');
             var errorMessage = document.getElementById('errorMessage');
             errorContainer.style.display = 'none';
             errorMessage.style.display = 'none'
-            window.history.back();
+            window.location.replace('/changeEmailData');
         }
     }
+
     <% if (request.getAttribute("errMsg") != null) { %>
     document.getElementById('errorMessage').style.display = 'flex';
     document.getElementById('errorContainer').style.display = 'flex';
     <% } %>
-    document.body.addEventListener('keypress',handleEnterKeyPress)
+    document.body.addEventListener('keypress', handleEnterKeyPress)
     document.body.addEventListener('click', handleButtonClick);
 </script>
 </html>
