@@ -175,7 +175,7 @@ public class StudentManager {
             preparedStatement.setString(2, student.getSurname());
             preparedStatement.setString(3, student.getEmail());
             preparedStatement.setString(4, student.getPhoneNum());
-            preparedStatement.setDate(5, (Date) student.getEndDate());
+            preparedStatement.setDate(5, (Date) student.getDeadline());
             preparedStatement.setInt(6, student.getRoom().getId());
             preparedStatement.setInt(7, student.getReceptionist().getId());
             preparedStatement.setInt(8, student.getId());
@@ -205,7 +205,7 @@ public class StudentManager {
         try (PreparedStatement updateStatement = connection.prepareStatement(updateSql)) {
             List<Student> students = getAllActive();
             for (Student student : students) {
-                if ("0d 0h".equals(student.getDaysUntil(student.getEndDate()))) {
+                if ("0d 0h".equals(student.getDaysUntil())) {
                     updateStatement.setInt(1, student.getId());
                     updateStatement.executeUpdate();
                 }
@@ -222,7 +222,7 @@ public class StudentManager {
                 .name(resultSet.getString("name"))
                 .surname(resultSet.getString("surname"))
                 .phoneNum(resultSet.getString("phone_num"))
-                .endDate(resultSet.getDate("date"))
+                .deadline(resultSet.getDate("date"))
                 .email(resultSet.getString("email"))
                 .room(room)
                 .studentStatus(StudentStatus.valueOf(resultSet.getString("status")))

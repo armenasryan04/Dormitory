@@ -24,7 +24,7 @@ public class ActivateValidationFilter implements Filter {
         StudentManager studentManager = new StudentManager();
         try {
             Student student = (Student) req.getSession().getAttribute("student");
-            String date = req.getParameter("date");
+            String date = req.getParameter("deadline");
             String email = req.getParameter("email");
             if (email != null && !email.isEmpty() || !email.equals(student.getEmail())) {
                 if (Validation.isEmailAddressValid(student.getEmail()) && Validation.isEmailFree(student, email, studentManager)) {
@@ -38,35 +38,34 @@ public class ActivateValidationFilter implements Filter {
                 String today;
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                 today = dateFormat.format(new Date());
-                java.util.Date endDate;
+                java.util.Date registerDeadline;
                 java.util.Date registerDate;
                 java.sql.Date sqlRegisterDate;
-                java.sql.Date sqlEndDate;
+                java.sql.Date sqlRegisterDeadline;
                 try {
-                    endDate = dateFormat.parse(date);
-                    sqlEndDate = new java.sql.Date(endDate.getTime());
+                    registerDeadline = dateFormat.parse(date);
+                    sqlRegisterDeadline = new java.sql.Date(registerDeadline.getTime());
                     registerDate = dateFormat.parse(today);
                     sqlRegisterDate = new java.sql.Date(registerDate.getTime());
-                    student.setEndDate(sqlEndDate);
+                    student.setDeadline(sqlRegisterDeadline);
                     student.setRegisterDate(sqlRegisterDate);
                     Random random = new Random();
                     int randomNumber = random.nextInt(900000) + 100000;
                     student.setVerifyCode(String.valueOf(randomNumber));
                     EmailSender emailSender = new EmailSender();
-                    if (Validation.isDateValid(student.getEndDate()) && student.getEmail() != null && Validation.isEmailAddressValid(student.getEmail()) && emailSender.sendMail(student.getEmail(), randomNumber)) {
+                    if (Validation.isDateValid(student.getDeadline()) && student.getEmail() != null && Validation.isEmailAddressValid(student.getEmail()) && emailSender.sendMail(student.getEmail(), randomNumber)) {
                         req.setAttribute("student", student);
                         filterChain.doFilter(req, resp);
                     } else {
-                        req.setAttribute("errMsg", "invalid endDate or Email");
+                        req.setAttribute("errMsg", "invalid register deadline or Email");
                         req.getRequestDispatcher("WEB-INF/student/setDateAndEmail.jsp").forward(req, resp);
                     }
                 } catch (ParseException e) {
                     req.getSession().invalidate();
                     req.setAttribute("errMsg", "something suspicious was noticed :-(");
-
                 }
             } else {
-                req.setAttribute("errMsg", "Please choose endDate!");
+                req.setAttribute("errMsg", "Please choose register deadline!");
                 req.getRequestDispatcher("WEB-INF/student/setDateAndEmail.jsp").forward(req, resp);
             }
         } catch (NullPointerException e) {

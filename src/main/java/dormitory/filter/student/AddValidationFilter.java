@@ -27,7 +27,7 @@ public class AddValidationFilter implements Filter {
         try {
             req.setCharacterEncoding("UTF-8");
             Room room = (Room) req.getSession().getAttribute("room");
-            String date = req.getParameter("date");
+            String date = req.getParameter("deadline");
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             java.util.Date utilDate;
             java.sql.Date sqlDate;
@@ -42,7 +42,7 @@ public class AddValidationFilter implements Filter {
                         .id(Integer.parseInt(req.getParameter("id").trim()))
                         .phoneNum(req.getParameter("phone").trim())
                         .email(req.getParameter("email").trim())
-                        .endDate(sqlDate)
+                        .deadline(sqlDate)
                         .room(room)
                         .verifyCode(String.valueOf(randomNumber))
                         .build();

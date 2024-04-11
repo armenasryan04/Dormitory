@@ -14,7 +14,7 @@
         surname = student.getSurname();
         phone = student.getPhoneNum();
         email = student.getEmail();
-        date = student.getEndDate().toString();
+        date = student.getDeadline().toString();
         if (student.getId() == 0) {
             id = "";
         } else {
@@ -82,7 +82,7 @@
         </div>
 
         <div class="field">
-            <input type="date" id="min" name="date" value="<%=date%>">
+            <input type="date" id="min" name="deadline" value="<%=date%>">
             <label>Choose Date</label>
         </div>
 

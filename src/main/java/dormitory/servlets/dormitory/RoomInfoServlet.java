@@ -21,8 +21,8 @@ public class RoomInfoServlet extends HttpServlet {
         Student student = studentManager.getById(id);
         if (student.getId() != 0) {
             Room room = student.getRoom();
-            Date releaseDay = student.getEndDate();
-            String timer = student.getDaysUntil(releaseDay);
+            Date releaseDay = student.getDeadline();
+            String timer = student.getDaysUntil();
             req.setAttribute("timer",timer);
             req.setAttribute("date",releaseDay);
             req.setAttribute("room", room);

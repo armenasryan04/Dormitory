@@ -21,7 +21,7 @@ public class makeActiveServlet extends HttpServlet {
         int id = student.getId();
         int roomId = student.getRoom().getId();
         Receptionist receptionist = (Receptionist) req.getSession().getAttribute("receptionist");
-        Date endDate = (Date) student.getEndDate();
+        Date endDate = (Date) student.getDeadline();
         Date registerDate = (Date) student.getRegisterDate();
         studentManager.statusToActive(id, roomId,student.getEmail(),endDate,registerDate,receptionist);
         resp.sendRedirect("/control");

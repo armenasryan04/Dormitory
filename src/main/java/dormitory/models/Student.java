@@ -17,7 +17,7 @@ public class Student {
     private String surname;
     private String email;
     private String phoneNum;
-    private Date endDate;
+    private Date deadline;
     private Date registerDate;
     private Room room;
     private Receptionist receptionist;
@@ -25,11 +25,12 @@ public class Student {
     private String verifyCode;
 
 
-    public String getDaysUntil(Date endDate) {
+    public String getDaysUntil() {
+        Date deadline = this.deadline;
         long millisecondsPerDay = 1000 * 60 * 60 * 24;
         long millisecondsPerHour = 1000 * 60 * 60;
         long currentTime = System.currentTimeMillis();
-        long endDateTime = endDate.getTime() + millisecondsPerHour;
+        long endDateTime = deadline.getTime() + millisecondsPerHour;
         long timeDiff = endDateTime - currentTime;
         long days = timeDiff / millisecondsPerDay;
         long hours = (timeDiff % millisecondsPerDay) / millisecondsPerHour;

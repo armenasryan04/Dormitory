@@ -34,16 +34,16 @@ public class Validation {
         if (isValidatePhoneNumber(student.getPhoneNum()) || student.getPhoneNum() == null || student.getPhoneNum().isEmpty()) {
             student.setPhoneNum("");
         }
-        if (!isDateValid(student.getEndDate())){
+        if (!isDateValid(student.getDeadline())){
             Date date = new Date();
-            student.setEndDate(date);
+            student.setDeadline(date);
         }
         return student;
     }
 
     public static String studentValidation(Student student,RoomManager roomManager,StudentManager studentManager) {
 
-        String validation = null;
+        String validation;
 
         if (!isEmailAddressValid(student.getEmail()) || student.getEmail() == null || student.getEmail().isEmpty()) {
             validation = "Incorrect Email try again!";
@@ -91,13 +91,13 @@ public class Validation {
             validation = "Incorrect Phone try again!";
             return validation;
         }
-        if (!isDateValid(student.getEndDate())){
-            validation = "incorrect Date try again!";
+        if (!isDateValid(student.getDeadline())){
+            validation = "incorrect Register deadline try again!";
             Date date = new Date();
-            student.setEndDate(date);
+            student.setDeadline(date);
             return validation;
         }
-        return validation;
+        return null;
     }
 
      public static boolean isValidId(int id) {

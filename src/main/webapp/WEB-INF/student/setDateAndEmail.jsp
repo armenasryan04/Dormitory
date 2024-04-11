@@ -34,7 +34,7 @@
     <div class="title">SET DATE</div>
     <form action="/emailReVerify" method="post">
         <div class="field">
-            <input type="date" id="min" name="date">
+            <input type="date" id="min" name="deadline">
             <label>Choose Date</label>
         </div>
         <div class="field">

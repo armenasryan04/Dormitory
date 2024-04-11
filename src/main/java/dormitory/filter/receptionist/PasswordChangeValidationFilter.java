@@ -26,7 +26,7 @@ public class PasswordChangeValidationFilter implements Filter {
             String newPassword = req.getParameter("newPassword").trim();
             String confirmPassword = req.getParameter("confirmPassword").trim();
             if (password != null && password.equals(receptionist.getPassword())) {
-                if (newPassword != null && confirmPassword.equals(newPassword)) {
+                if (newPassword != null && Validation.isValidPassword(newPassword) && confirmPassword.equals(newPassword)) {
                     receptionist.setPassword(newPassword);
                     filterChain.doFilter(req, resp);
                 } else {

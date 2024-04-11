@@ -54,9 +54,9 @@
             <td><%= student.getSurname() %>
             </td>
 
-            <td><%=student.getEndDate()%>
+            <td><%=student.getDeadline()%>
             </td>
-            <td ><%= student.getDaysUntil(student.getEndDate()) %>
+            <td ><%= student.getDaysUntil() %>
             </td>
             <td><a href="/roomsInfo?id=<%=student.getId()%>" class="gradient-button">Room</a>
             </td>

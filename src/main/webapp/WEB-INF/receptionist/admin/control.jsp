@@ -69,15 +69,15 @@
                 <td>
                     <%=student.getEmail()%>
                 </td>
-                <%if (student.getDaysUntil(student.getEndDate()).equals(0 + "d " + 0 + "h")) {%>
-                <td style="color: #650404"><%= student.getEndDate() %>
+                <%if (student.getDaysUntil().equals(0 + "d " + 0 + "h")) {%>
+                <td style="color: #650404"><%= student.getDeadline() %>
                 </td>
-                <td style="padding: 5px; color: #5d0202"><%= student.getDaysUntil(student.getEndDate()) %>
+                <td style="padding: 5px; color: #5d0202"><%= student.getDaysUntil() %>
                         <%}else {%>
 
-                <td><%=student.getEndDate()%>
+                <td><%=student.getDeadline()%>
                 </td>
-                <td style="padding: 5px;"><%= student.getDaysUntil(student.getEndDate()) %>
+                <td style="padding: 5px;"><%= student.getDaysUntil() %>
                 </td>
                 <%}%>
                 <td style="padding-left: 2px "><a href="/roomsInfo?id=<%=student.getId()%>"
