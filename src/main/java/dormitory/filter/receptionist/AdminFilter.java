@@ -22,12 +22,16 @@ URLManager urlManager = new URLManager();
         }else {
             HttpSession session = req.getSession();
             Receptionist receptionist = (Receptionist) session.getAttribute("receptionist");
-            if (receptionist != null && urlManager.isAcceptable(url,receptionist.getReceptionistRole())) {
-                filterChain.doFilter(req, resp);
-            } else {
-                req.setAttribute("errMsg","you are not an admin");
-                session.invalidate();
-                req.getRequestDispatcher("WEB-INF/login.jsp").forward(req,resp);
+            if (receptionist != null ) {
+                if ( urlManager.isAcceptable(url,receptionist.getReceptionistRole())){
+                    filterChain.doFilter(req, resp);
+                } else {
+                    req.setAttribute("errMsg","you are not an admin");
+                    session.invalidate();
+                    req.getRequestDispatcher("WEB-INF/login.jsp").forward(req,resp);
+                }
+            }else {
+                resp.sendRedirect("/login");
             }
         }
     }

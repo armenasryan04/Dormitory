@@ -4,6 +4,7 @@
     <option name="state">
       <map>
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/admin/changeNameSurname.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/admin" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/admin/refactor.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/admin" />
       </map>
     </option>
   </component>
