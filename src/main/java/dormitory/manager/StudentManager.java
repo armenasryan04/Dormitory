@@ -169,7 +169,7 @@ public class StudentManager {
 
 
     public Student addToDB(Student student) {
-        String sql = "insert  into student(name,surname,email,phone_num,date,room_id,receptionist_id,id) values (?,?,?,?,?,?,?,?)";
+        String sql = "insert  into student(name,surname,email,phone_num,register_deadline,room_id,receptionist_id,id) values (?,?,?,?,?,?,?,?)";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, student.getName());
             preparedStatement.setString(2, student.getSurname());
@@ -186,14 +186,15 @@ public class StudentManager {
         return student;
     }
 
-    public void statusToActive(int id, int roomId, String email, Date date, Date registerDate, Receptionist receptionist) {
-        String updateSql = "UPDATE student SET status = 'ACTIVE' , room_id = ?, date = ? , receptionist_id = ?, email = ?  WHERE id = ?";
+    public void statusToActive(int id, int roomId, String email, Date registerDeadline, Date registerDate, Receptionist receptionist) {
+        String updateSql = "UPDATE student SET status = 'ACTIVE' , room_id = ?, register_deadline = ? ,register_date = ?, receptionist_id = ?, email = ?  WHERE id = ?";
         try (PreparedStatement updateStatement = connection.prepareStatement(updateSql)) {
             updateStatement.setInt(1, roomId);
-            updateStatement.setDate(2, date);
-            updateStatement.setInt(3, receptionist.getId());
-            updateStatement.setString(4, email);
-            updateStatement.setInt(5, id);
+            updateStatement.setDate(2, registerDeadline);
+            updateStatement.setDate(3, registerDate);
+            updateStatement.setInt(4, receptionist.getId());
+            updateStatement.setString(5, email);
+            updateStatement.setInt(6, id);
             updateStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -222,7 +223,8 @@ public class StudentManager {
                 .name(resultSet.getString("name"))
                 .surname(resultSet.getString("surname"))
                 .phoneNum(resultSet.getString("phone_num"))
-                .deadline(resultSet.getDate("date"))
+                .deadline(resultSet.getDate("register_deadline"))
+                .registerDate(resultSet.getDate("register_date"))
                 .email(resultSet.getString("email"))
                 .room(room)
                 .studentStatus(StudentStatus.valueOf(resultSet.getString("status")))

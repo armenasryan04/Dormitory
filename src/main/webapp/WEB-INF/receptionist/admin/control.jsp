@@ -41,10 +41,10 @@
                 <th>NAME</th>
                 <th>SURNAME</th>
                 <th>PHONE</th>
-                <th>E-Mail</th>
-                <th>END DATE</th>
-                <th style="padding-left: 10px">REMAINING DAYS</th>
-                <th>ROOM INFO</th>
+                <th>E-MAIL</th>
+                <th>BIRTHDAY</th>
+                <th style="padding-left: 10px">REGISTER DATE INFORMATION</th>
+                <th>ROOM INFORMATION</th>
                 <%if (request.getAttribute("inArchive") != null) { %>
                 <th>Activate</th>
                 <%
@@ -69,17 +69,10 @@
                 <td>
                     <%=student.getEmail()%>
                 </td>
-                <%if (student.getDaysUntil().equals(0 + "d " + 0 + "h")) {%>
-                <td style="color: #650404"><%= student.getDeadline() %>
-                </td>
-                <td style="padding: 5px; color: #5d0202"><%= student.getDaysUntil() %>
-                        <%}else {%>
-
-                <td><%=student.getDeadline()%>
-                </td>
-                <td style="padding: 5px;"><%= student.getDaysUntil() %>
-                </td>
-                <%}%>
+               <td>
+                   <%=student.getBirthday()%>
+               </td>
+                <td><a href="/dateInfo?id=<%=student.getId()%>" class="gradient-button"><i style="font-size:20px" class='bx bxs-calendar'></i></a></td>
                 <td style="padding-left: 2px "><a href="/roomsInfo?id=<%=student.getId()%>"
                                                   class="gradient-button">Room</a>
                 </td>
@@ -209,6 +202,7 @@
         border: 30px;
         font-size: 16px;
         white-space: nowrap;
+        text-align: center;
         padding: 2px 10px;
         background: linear-gradient(135deg, #fdd100, #428af6);
     }

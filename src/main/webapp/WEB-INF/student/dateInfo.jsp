@@ -1,6 +1,7 @@
 
 <%@ page import="java.util.Date" %>
-<%@ page import="dormitory.models.Room" %><%--
+<%@ page import="dormitory.models.Room" %>
+<%@ page import="dormitory.models.Student" %><%--
   Created by IntelliJ IDEA.
   User: User
   Date: 24.02.2024
@@ -12,9 +13,7 @@
 <head>
     <title>Room Info</title>
 </head>
-<% Room room = (Room) request.getAttribute("room"); %>
-<%Date releaseDate = (Date) request.getAttribute("date");
-String isFree = (String) request.getAttribute("timer");%>
+<% Student student = (Student) request.getAttribute("student"); %>
 <body>
 
 <div class="wave"></div>
@@ -22,28 +21,28 @@ String isFree = (String) request.getAttribute("timer");%>
 <div class="wave"></div>
 <a href="#" class="gradient-button" id="backLink">BACK</a>
 <div class="container">
-    <h1>About Room</h1>
+    <h1><%=student.getName()%> <%=student.getSurname()%></h1>
     <br/>
     <table class="table">
         <thead>
         <tr>
-            <th>FLOOR</th>
-            <th>ROOM NUMBER</th>
-            <th>RELEASE DATE</th>
+            <th>REGISTRATION DATE</th>
+            <th>REGISTRATION DEADLINE</th>
+            <th>UNTIL THE END OF REGISTRATION </th>
         </tr>
         </thead>
         <tbody>
-        <% if (room != null && releaseDate != null){%>
+        <% if (student!= null){%>
         <tr>
-            <td><%= room.getFloor() %>
+            <td><%= student.getRegisterDate() %>
             </td>
-            <td><%= room.getRoomNum() %>
+            <td><%= student.getDeadline() %>
             </td>
-            <% if (isFree == 0 + "d " + 0 + "h" ){%>
-            <td style="color: #830505"><%= releaseDate %>
+            <% if (student.getDaysUntil() == 0 + "d " + 0 + "h" ){%>
+            <td style="color: #830505"><%= student.getDaysUntil() %>
             </td>
             <%}else {%>
-            <td><%= releaseDate %>
+            <td><%= student.getDaysUntil() %>
             </td>
             <%}%>
         </tr>

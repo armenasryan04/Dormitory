@@ -26,9 +26,7 @@ URLManager urlManager = new URLManager();
                 if ( urlManager.isAcceptable(url,receptionist.getReceptionistRole())){
                     filterChain.doFilter(req, resp);
                 } else {
-                    req.setAttribute("errMsg","you are not an admin");
-                    session.invalidate();
-                    req.getRequestDispatcher("WEB-INF/login.jsp").forward(req,resp);
+                   resp.sendRedirect("/loginConductor");
                 }
             }else {
                 resp.sendRedirect("/login");

@@ -21,7 +21,6 @@ public class URLManager {
             statement.setString(2,receptionistRole.toString());
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                System.out.println(getFromResultSet(resultSet));
                 return true;
             }
         } catch (SQLException e) {
