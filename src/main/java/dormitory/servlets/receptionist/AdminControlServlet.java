@@ -1,5 +1,6 @@
 package dormitory.servlets.receptionist;
 
+import dormitory.manager.PermissionManager;
 import dormitory.manager.StudentManager;
 import dormitory.models.Student;
 import dormitory.validation.RemoveFormSessionAttributes;
@@ -20,6 +21,8 @@ public class AdminControlServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         RemoveFormSessionAttributes.remove(req);
+        PermissionManager permissionManager = new PermissionManager();
+        permissionManager.changer();
         String search = req.getParameter("search");
         String archive = req.getParameter("status");
         studentManager.checkStatusToChange();

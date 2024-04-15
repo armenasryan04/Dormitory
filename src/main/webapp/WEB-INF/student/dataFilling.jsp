@@ -8,13 +8,16 @@
     String phone;
     String email;
     String id;
-    String date;
+    String birthday;
+    String deadline;
+
     if (student != null) {
         name = student.getName();
         surname = student.getSurname();
         phone = student.getPhoneNum();
         email = student.getEmail();
-        date = student.getDeadline().toString();
+        birthday = student.getBirthday().toString();
+        deadline = student.getDeadline().toString();
         if (student.getId() == 0) {
             id = "";
         } else {
@@ -26,7 +29,8 @@
         phone = "";
         email = "";
         id = "";
-        date = "";
+        birthday = "";
+        deadline = "";
     }
 %>
 <head>
@@ -82,8 +86,12 @@
         </div>
 
         <div class="field">
-            <input type="date" id="min" name="deadline" value="<%=date%>">
-            <label>Choose Date</label>
+            <input type="date" name="birthday" value="<%=birthday%>">
+            <label>BIRTHDAY</label>
+        </div>
+        <div class="field">
+            <input type="date" id="min" name="deadline" value="<%=deadline%>">
+            <label>Choose Register Deadline</label>
         </div>
 
         <div class="field">

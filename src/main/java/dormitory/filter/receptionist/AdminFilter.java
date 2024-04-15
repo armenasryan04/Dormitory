@@ -17,7 +17,7 @@ URLManager urlManager = new URLManager();
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         HttpServletResponse resp = (HttpServletResponse) servletResponse;
         String url = req.getRequestURI();
-        if ("/".equals(url) || "/login".equals(url) ||"/loginConductor".equals(url) || "/singInUp.jsp".equals(url) || "/studentList".equals(url) || "/roomsInfo".equals(url)|| "/logout".equals(url) ) {
+        if ("/".equals(url) || "/login".equals(url) ||"/loginConductor".equals(url) || "/registration.jsp".equals(url) || "/studentList".equals(url) || "/roomsInfo".equals(url)|| "/logout".equals(url) ) {
             filterChain.doFilter(req, resp);
         }else {
             HttpSession session = req.getSession();

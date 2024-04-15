@@ -1,87 +1,66 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
+<%@ page import="dormitory.models.Student" %>
 <html>
 <head>
     <title>List of Rooms</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
 
 <div class="wave"></div>
 <div class="wave"></div>
 <div class="wave"></div>
-
-<script>
-    $(document).ready(function () {
-        $('.menu').click(function () {
-            $('.overlay').toggleClass('anim');
-            $(this).toggleClass('open');
-            $('.blurry-background').toggleClass('blurry');
-        });
-        $(document).click(function (event) {
-            if (!$(event.target).closest('.overlay').length && !$(event.target).closest('.menu').length) {
-                $('.overlay').removeClass('anim');
-                $('.menu').removeClass('open');
-                $('.blurry-background').removeClass('blurry');
-            }
-        });
-    });
-</script>
-
 <br/>
-<div class="wrapper">
-    <span class="menu"></span>
-
-    <div class="overlay">
-        <a style="position: absolute;top:5px " class="gradient-button" href="/logout" >lOG OUT</a>
-        <ul>
-            <li><a href="/login">Back</a></li>
-        </ul>
-    </div>
-    <div class="blurry-background"></div>
-</div>
-
 <div class="wrapper-data">
     <div class="title">Add Student</div>
 
-    <form action="/receptionistRegistration" method="post">
+    <form action="/emailVerify" method="post">
         <div class="field">
             <input type="text" required name="name">
             <label class="input-box">Name</label>
         </div>
-        <div class="field" >
+        <div class="field">
             <input type="text" required name="surname">
             <label class="input-box" style=" float: right;">Surname</label>
-        </div>
-
-
-        <div class="field">
-            <input type="text" required name="email">
-            <label class="input-box">Email</label>
         </div>
 
         <div class="field">
             <input type="text" required name="phone">
             <label class="input-box">Phone Number</label>
         </div>
-
+        <div class="field">
+            <input type="email" required name="email">
+            <label class="input-box">G-Mail</label>
+        </div>
         <div class="field">
             <input type="text" required name="id">
-            <label class="input-box">Inspection Booklet</label>
+            <label class="input-box">Inspection Booklet Num</label>
         </div>
 
         <div class="field">
-            <input type="date" name="date">
-            <label>Choose Date</label>
+            <input type="date" name="birthday">
+            <label>BIRTHDAY</label>
+        </div>
+        <div class="field">
+            <input type="date" id="min" name="deadline">
+            <label>Choose Register Deadline</label>
         </div>
 
-
-
-
-        <div class="field" >
-            <br/>   <input type="submit" value="add">
+        <div class="field">
+            <br/> <input type="submit" value="add">
         </div>
 
     </form>
+        <% if (request.getAttribute("errMsg") != null) { %>
+    <div id="errorContainer" class="error-container">
+        <div id="errorMessage" class="error-message">
+            <p><%= request.getAttribute("errMsg") %>
+            </p>
+        </div>
+        <% } %>
+    </div>
+
 </body>
 <style type="text/css">
 
@@ -132,6 +111,7 @@
             transform: translateX(0%);
         }
     }
+
     body {
         font-family: -apple-system, BlinkMacSystemFont, sans-serif;
         overflow: auto;
@@ -172,7 +152,6 @@
         background-image: linear-gradient(to right, #428af6 0%, #fdd100 51%, rgb(80, 0, 241) 100%);
         background-size: 200% auto;
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.31);
-
         transition: text-shadow 0.5s ease;
         transition: .5s;
     }
@@ -183,185 +162,13 @@
         box-shadow: 0 0 10px #f519f5;
     }
 
-    * {
-        box-sizing: border-box;
-    }
-
-    body {
-        margin: 0;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        background-color: #6259e7;
-        font-family: 'Lato', sans-serif;
-    }
-
-
-    * {
-        padding: 0;
-        margin: 0;
-    }
-
-    .wrapper {
-        width: 100%;
-        height: 100vh;
-        position: absolute;
-        overflow: hidden;
-    }
-
-    .wrapper span {
-        z-index: 999955887;
-        position: absolute;
-        top: 20px;
-        left: 20px;
-        width: 35px;
-        height: 4px;
-        background: rgba(5, 45, 147, 0.84);
-        padding-bottom: 2px;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-
-    .wrapper span:before,
-    .wrapper span:after {
-        display: block;
-        position: absolute;
-        content: '';
-        left: 0;
-        height: 2px;
-        width: 35px;
-        background: rgba(3, 41, 166, 0.89);
-        padding-bottom: 4px;
-        border-radius: 5px;
-    }
-
-    .wrapper span:before {
-        top: -8px;
-    }
-
-    .wrapper span:after {
-        bottom: -8px;
-    }
-
-    .wrapper .overlay {
-        position: absolute;
-        bottom: -100%;
-        height: 100%;
-        background: linear-gradient(rgba(0, 241, 76, 0.82), rgba(73, 7, 187, 0.84));
-        left: 0;
-        width: 100%;
-        transition: all 0.5s ease;
-    }
-
-    .blurry-background {
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 100%;
-        height: 100%;
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        z-index: 99;
-        opacity: 0;
-        transition: opacity 0.5s ease;
-    }
-    .blurry {
-        z-index: 100;
-        opacity: 1;
-    }
-
-    .wrapper .overlay.anim {
-        left: 0;
-        bottom: 0;
-        animation: menu-anim 1.5s 1 ease-out forwards;
-        width: 25%;
-        right: 75%;
-        z-index: 9955;
-        transition: all 0.5s ease;
-
-    }
-
-    .wrapper .overlay ul {
-        width: 100%;
-        text-align: center;
-        margin-top: 100px;
-        padding-left: 0;
-        margin-left: -10px;
-        font-size: 1em;
-        font-weight: 800;
-    }
-
-    .wrapper .overlay ul li {
-        margin: 10px 0;
-    }
-
-    .wrapper .overlay ul li a {
-        text-decoration: none;
-        color: #000000;
-        position: relative;
-        display: inline-block;
-        padding: 20px 0;
-        overflow: hidden;
-    }
-
-    .wrapper .overlay ul li a:after {
-        display: block;
-        border-radius: 2px;
-        content: '';
-        left: 0;
-        bottom: -10px;
-        height: 5px;
-        background: #4e00ce;
-        transform: translateX(-101%);
-    }
-
-    .wrapper .overlay ul li a:hover:after {
-        animation: border-anim 0.5s 1 ease normal;
-        transform: translateX(0);
-    }
-
-    @keyframes menu-anim {
-        0% {
-            left: -99.5%;
-            bottom: -99%;
-            width: 100%;
-        }
-
-        50% {
-            left: -99.5%;
-            bottom: 0;
-            width: 100%;
-        }
-
-        100% {
-            bottom: 0;
-            left: 0;
-            width: 25%;
-        }
-    }
-
-    @-webkit-keyframes border-anim {
-        0% {
-            transform: translateX(-100%);
-        }
-
-        100% {
-            transform: translateX(0);
-        }
-    }
-    ::selection {
-        background: #4158d0;
-        color: #ffffff;
-    }
 
     .wrapper-data {
         width: 380px;
-        background:  linear-gradient(135deg, rgba(165, 54, 239, 0.44), #00878c);
+        background: linear-gradient(135deg, rgba(165, 54, 239, 0.44), #00878c);
         border-radius: 15px;
         box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.1);
-        z-index: 100;
+        z-index: 99;
     }
 
     .wrapper-data .title {
@@ -372,7 +179,8 @@
         color: #fff;
         user-select: none;
         border-radius: 15px 15px 0 0;
-        background:linear-gradient(135deg, #a436ed, #36b7ef); );
+        background: linear-gradient(135deg, #a436ed, #36b7ef);
+    );
     }
 
     .wrapper-data form {
@@ -420,7 +228,7 @@
         top: 0%;
         font-size: 14px;
         color: rgba(30, 2, 166, 0.4);
-        background:linear-gradient(135deg, #a436ed, #36b7ef);
+        background: linear-gradient(135deg, #a436ed, #36b7ef);
         border-radius: 7px;
         transform: translateY(-50%);
     }
@@ -437,6 +245,7 @@
         user-select: none;
         padding-left: 5px;
     }
+
     form .field input[type="submit"] {
         color: #4907bb;
         border: none;
@@ -446,10 +255,11 @@
         font-weight: 500;
         cursor: pointer;
         background-image: linear-gradient(to right, #6ee547, #4158d0);
-        background-size:200% auto;
+        background-size: 200% auto;
         transition: all 0.5s ease;
     }
-    form .field input[type =  "submit"]:hover{
+
+    form .field input[type =  "submit"]:hover {
         background-position: right center;
         color: #6ee547;
     }
@@ -464,10 +274,62 @@
         color: rgba(172, 208, 65, 0.76);
         text-decoration: none;
     }
+
     form .pass-link a:hover,
     form .signup-link a:hover {
         text-decoration: underline;
     }
 
+    .error-container {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        backdrop-filter: blur(3px);
+        justify-content: center;
+        align-items: center;
+    }
+
+    .error-message {
+        color: white;
+        height: auto;
+        width: auto;
+        background-color: rgb(114, 3, 3);
+        padding: 20px;
+        border-radius: 7px;
+    }
 </style>
+<script>
+
+    function handleButtonClick() {
+        var errorContainer = document.getElementById('errorContainer');
+        var errorMessage = document.getElementById('errorMessage');
+        if (errorContainer && errorContainer.contains(event.target) && !errorMessage.contains(event.target)) {
+            errorContainer.style.display = 'none';
+            errorMessage.style.display = 'none'
+            window.location.replace('/studentDataFilling');
+        }
+    };
+
+    function handleEnterKeyPress() {
+        if (event.key === 'Enter' || event.keyCode === 32) {
+
+            var errorContainer = document.getElementById('errorContainer');
+            var errorMessage = document.getElementById('errorMessage');
+            errorContainer.style.display = 'none';
+            errorMessage.style.display = 'none'
+            window.location.replace('/studentDataFilling');
+        }
+    }
+
+    <% if (request.getAttribute("errMsg") != null) { %>
+    document.getElementById('errorMessage').style.display = 'flex';
+    document.getElementById('errorContainer').style.display = 'flex';
+    <% } %>
+    document.body.addEventListener('keypress', handleEnterKeyPress)
+    document.body.addEventListener('click', handleButtonClick);
+</script>
+
 </html>

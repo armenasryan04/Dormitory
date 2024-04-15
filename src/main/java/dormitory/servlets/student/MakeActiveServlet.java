@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.sql.Date;
 
 @WebServlet("/makeActive")
-public class makeActiveServlet extends HttpServlet {
+public class MakeActiveServlet extends HttpServlet {
     StudentManager studentManager = new StudentManager();
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

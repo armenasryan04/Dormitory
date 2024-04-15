@@ -2,7 +2,7 @@ package dormitory.manager;
 
 
 
-import dormitory.db.DBConnectionProvider;
+import dormitory.db.provider.DBConnectionProvider;
 import dormitory.models.Room;
 
 import java.sql.*;

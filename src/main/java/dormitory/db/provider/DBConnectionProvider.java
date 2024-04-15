@@ -1,4 +1,6 @@
-package dormitory.db;
+package dormitory.db.provider;
+
+import dormitory.db.config.DBConfig;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -6,10 +8,11 @@ import java.sql.SQLException;
 
 public class DBConnectionProvider {
     private static final DBConnectionProvider INSTANCE = new DBConnectionProvider();
+    private static final DBConfig dbConfig = new DBConfig();
     private Connection connection;
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/dormitory_student?useUnicode=true";
-    private static final String USERNAME = "root";
-    private static final String PASSWORD = "root";
+    private static final String DB_URL = dbConfig.getDbUrl();
+    private static final String USERNAME =dbConfig.getUsername();
+    private static final String PASSWORD = dbConfig.getPassword();
 
     private DBConnectionProvider() {
         try {

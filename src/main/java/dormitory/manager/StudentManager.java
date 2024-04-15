@@ -1,7 +1,7 @@
 package dormitory.manager;
 
 
-import dormitory.db.DBConnectionProvider;
+import dormitory.db.provider.DBConnectionProvider;
 import dormitory.models.Room;
 import dormitory.models.Receptionist;
 import dormitory.models.Student;
@@ -14,6 +14,7 @@ import java.util.List;
 public class StudentManager {
     private Connection connection = DBConnectionProvider.getInstance().getConnection();
     RoomManager roomManager = new RoomManager();
+    ReceptionistManager receptionistManager = new ReceptionistManager();
 
     public List<Student> getAllActive() {
 
@@ -110,6 +111,7 @@ public class StudentManager {
         }
         return student;
     }
+
     public Student getByEmail(String email) {
         Student student = new Student();
         String sql = "SELECT * FROM student WHERE email = ?";
@@ -169,16 +171,18 @@ public class StudentManager {
 
 
     public Student addToDB(Student student) {
-        String sql = "insert  into student(name,surname,email,phone_num,register_deadline,room_id,receptionist_id,id) values (?,?,?,?,?,?,?,?)";
+        String sql = "insert  into student(name,surname,email,phone_num,birthday,register_date,register_deadline,room_id,receptionist_id,id) values (?,?,?,?,?,?,?,?,?,?)";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, student.getName());
             preparedStatement.setString(2, student.getSurname());
             preparedStatement.setString(3, student.getEmail());
             preparedStatement.setString(4, student.getPhoneNum());
-            preparedStatement.setDate(5, (Date) student.getDeadline());
-            preparedStatement.setInt(6, student.getRoom().getId());
-            preparedStatement.setInt(7, student.getReceptionist().getId());
-            preparedStatement.setInt(8, student.getId());
+            preparedStatement.setDate(5, (Date) student.getBirthday());
+            preparedStatement.setDate(6, (Date) student.getRegisterDate());
+            preparedStatement.setDate(7, (Date) student.getDeadline());
+            preparedStatement.setInt(8, student.getRoom().getId());
+            preparedStatement.setInt(9, student.getReceptionist().getId());
+            preparedStatement.setInt(10, student.getId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -218,15 +222,18 @@ public class StudentManager {
 
     private Student getFromResultSet(ResultSet resultSet) throws SQLException {
         Room room = roomManager.getById(resultSet.getInt("room_id"));
+        Receptionist receptionist = receptionistManager.getById(resultSet.getInt("receptionist_id"));
         Student student = Student.builder()
                 .id(resultSet.getInt("id"))
                 .name(resultSet.getString("name"))
                 .surname(resultSet.getString("surname"))
                 .phoneNum(resultSet.getString("phone_num"))
-                .deadline(resultSet.getDate("register_deadline"))
+                .birthday(resultSet.getDate("birthday"))
                 .registerDate(resultSet.getDate("register_date"))
+                .deadline(resultSet.getDate("register_deadline"))
                 .email(resultSet.getString("email"))
                 .room(room)
+                .receptionist(receptionist)
                 .studentStatus(StudentStatus.valueOf(resultSet.getString("status")))
                 .build();
         return student;

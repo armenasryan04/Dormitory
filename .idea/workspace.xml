@@ -10,16 +10,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c610ceff-b1f4-43b1-969f-8a8498bcd15f" name="Changes" comment="ok">
-      <change afterPath="$PROJECT_DIR$/src/main/java/dormitory/servlets/student/DatesInfoServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/student/dateInfo.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dormitory/db/config/DBConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/82a919a0-798c-4f2b-9027-e1cfc0fabeec.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/82a919a0-798c-4f2b-9027-e1cfc0fabeec.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dormitory/db/DBConnectionProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dormitory/db/provider/DBConnectionProvider.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dormitory/filter/receptionist/AdminFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dormitory/filter/receptionist/AdminFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dormitory/filter/receptionist/LoginFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dormitory/filter/receptionist/LoginFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dormitory/filter/student/AddValidationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dormitory/filter/student/AddValidationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dormitory/manager/PermissionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dormitory/manager/PermissionManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dormitory/manager/ReceptionistManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dormitory/manager/ReceptionistManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dormitory/manager/RoomManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dormitory/manager/RoomManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dormitory/manager/StudentManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dormitory/manager/StudentManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dormitory/models/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dormitory/models/Student.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dormitory/manager/URLManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dormitory/manager/URLManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dormitory/servlets/receptionist/AdminControlServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dormitory/servlets/receptionist/AdminControlServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dormitory/servlets/student/makeActiveServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dormitory/servlets/student/MakeActiveServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/admin/control.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/admin/control.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/room/freeRoms.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/room/freeRoms.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/room/roomInfo.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/room/roomInfo.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/student/dataFilling.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/student/dataFilling.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/singInUp.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/registration.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +102,7 @@
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/User/IdeaProjects/dormitory/src/main/webapp/WEB-INF/student",
+    "last_opened_file_path": "C:/Users/User/IdeaProjects/dormitory/src/main/webapp",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -112,6 +122,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\User\IdeaProjects\dormitory\src\main\webapp" />
       <recent name="C:\Users\User\IdeaProjects\dormitory\src\main\webapp\WEB-INF\student" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -241,7 +252,8 @@
       <workItem from="1713002406825" duration="595000" />
       <workItem from="1713008974117" duration="1684000" />
       <workItem from="1713011916431" duration="1056000" />
-      <workItem from="1713112103904" duration="5276000" />
+      <workItem from="1713112103904" duration="5564000" />
+      <workItem from="1713176198481" duration="15545000" />
     </task>
     <task id="LOCAL-00001" summary="ok">
       <option name="closed" value="true" />
@@ -307,7 +319,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712848932964</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="ok">
+      <option name="closed" value="true" />
+      <created>1713117642586</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1713117642586</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -317,5 +337,20 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="ok" />
     <option name="LAST_COMMIT_MESSAGE" value="ok" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/dormitory/manager/PermissionManager.java</url>
+          <line>12</line>
+          <properties class="dormitory.manager.PermissionManager" method="getPermission">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

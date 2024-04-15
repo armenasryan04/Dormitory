@@ -192,7 +192,7 @@
         padding: 3px 16px;
         background: #ffd300;
         border: 6px none;
-        text-align: left;
+        text-align: center;
         font-size: 15px;
         border-top: 3px solid #ffd300;
         border-bottom: 3px solid #ffd300;
