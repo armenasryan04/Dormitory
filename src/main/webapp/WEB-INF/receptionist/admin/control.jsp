@@ -72,9 +72,8 @@
                <td>
                    <%=student.getBirthday()%>
                </td>
-                <td><a href="/dateInfo?id=<%=student.getId()%>" class="gradient-button"><i style="font-size:20px" class='bx bxs-calendar'></i></a></td>
-                <td style="padding-left: 2px "><a href="/roomsInfo?id=<%=student.getId()%>"
-                                                  class="gradient-button">Room</a>
+                <td><a href="/dateInfo?id=<%=student.getId()%>" class="gradient-button"><i class='bx bxs-calendar'>DATE</i></a></td>
+                <td> <a class="gradient-button" href="/roomsInfo?id=<%=student.getId()%>"><i class='bx bxs-building-house'>ROOM</i></a>
                 </td>
                 <%if (request.getAttribute("inArchive") != null) {%>
                 <td style="padding-left: 2px "><a href="/freeRooms?id=<%=student.getId()%>" class="gradient-button"><i
@@ -120,7 +119,6 @@
 </body>
 <style type="text/css">
     .container {
-        max-width: 1200px;
         width: auto;
         max-height: 80%;
         background: linear-gradient(135deg, #0cffe5, #36b7ef);
@@ -133,7 +131,7 @@
     }
 
     .forming {
-        max-width: 1200px;
+        max-width: 1250px;
         width: auto;
         background: transparent;
         backdrop-filter: blur(10);

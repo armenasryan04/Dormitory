@@ -27,7 +27,8 @@ public class LoginConductorServlet extends HttpServlet {
                     resp.sendRedirect("/control");
                     break;
                 case DIRECTOR:
-                    req.getRequestDispatcher("WEB-INF/receptionist/director/directorControl.jsp").forward(req, resp);
+                    session.setAttribute("receptionist", receptionist);
+                    resp.sendRedirect("/directorControl");
                     break;
                 case WAIT_PROCESS:
                     req.getRequestDispatcher("WEB-INF/inWaiting.jsp").forward(req, resp);
@@ -48,7 +49,7 @@ public class LoginConductorServlet extends HttpServlet {
 
                         case DIRECTOR:
                             session.setAttribute("receptionist", receptionist);
-                            req.getRequestDispatcher("WEB-INF/receptionist/director/directorControl.jsp").forward(req, resp);
+                            resp.sendRedirect("/directorControl");
                             break;
                         case WAIT_PROCESS:
                             req.getRequestDispatcher("WEB-INF/inWaiting.jsp").forward(req, resp);

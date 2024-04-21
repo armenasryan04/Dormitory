@@ -225,6 +225,7 @@ public class StudentManager {
         Receptionist receptionist = receptionistManager.getById(resultSet.getInt("receptionist_id"));
         Student student = Student.builder()
                 .id(resultSet.getInt("id"))
+                .punishment(resultSet.getInt("punishment_num"))
                 .name(resultSet.getString("name"))
                 .surname(resultSet.getString("surname"))
                 .phoneNum(resultSet.getString("phone_num"))
@@ -232,9 +233,9 @@ public class StudentManager {
                 .registerDate(resultSet.getDate("register_date"))
                 .deadline(resultSet.getDate("register_deadline"))
                 .email(resultSet.getString("email"))
+                .studentStatus(StudentStatus.valueOf(resultSet.getString("status")))
                 .room(room)
                 .receptionist(receptionist)
-                .studentStatus(StudentStatus.valueOf(resultSet.getString("status")))
                 .build();
         return student;
     }

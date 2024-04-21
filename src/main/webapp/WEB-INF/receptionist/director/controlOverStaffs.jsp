@@ -1,110 +1,232 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.util.List" %>
-<%@ page import="dormitory.models.Room" %>
-<%@ page import="dormitory.models.Room" %>
+<%@ page import="dormitory.models.Student" %>
+<%@ page import="dormitory.models.Receptionist" %>
 <html>
 <head>
     <title>List of Rooms</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
-<% List<Room> rooms = (List<Room>) request.getAttribute("room"); %>
+<% List<Student> students = (List<Student>) request.getAttribute("students"); %>
+<%boolean isAllowed = (Boolean) request.getAttribute("isAllowed");%>
 <body>
 
 <div class="wave"></div>
 <div class="wave"></div>
 <div class="wave"></div>
+<div class="forming">
+    <div class="title">STUDENTS LIST <p style="font-size: 15px; font-weight: 0">STUDENT'S TOTAL
+        NUMBER <%=request.getAttribute("numberOfStudents")%>
+    </p></div>
+    <div class="container">
 
-<div class="container">
-    <h1>CHOOSE ROOM</h1>
-    <form id="searchForm" action="/freeRooms" method="post">
-        <div class="search-box">
-            <div class="input-search-background">
-                <input type="hidden" name="id" value="<%=request.getAttribute("id")%>">
-                <div class="btn-search">
-                    <input type="text" name="search" class="input-search animate" placeholder="🔍 floor-room..."
-                           id="searchInput" value="${not empty param.search ? param.search : ''}">
+        <form id="searchForm" action="/control" method="get">
+            <div class="search-box">
+                <div class="input-search-background">
+                    <input type="hidden" name="status" value="<%=request.getAttribute("inArchive")%>">
+                    <div class="btn-search">
+                        <input type="text" name="search" class="input-search animate" placeholder="🔍 search..."
+                               id="searchInput" value="${not empty param.search ? param.search : ''}">
+                    </div>
+
                 </div>
             </div>
-        </div>
-    </form>
+        </form>
+        <br/>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Inspection Booklet Number</th>
+                <th>NAME</th>
+                <th>SURNAME</th>
+                <th>PHONE</th>
+                <th>E-Mail</th>
+                <th>END DATE</th>
+                <th style="padding-left: 10px">REMAINING DAYS</th>
+                <th>ROOM INFO</th>
+                <%if (request.getAttribute("inArchive") != null) { %>
+                <th>Activate</th>
+                <%
+                    }
+                    ;
+                %>
+            </tr>
+            </thead>
+            <tbody>
+            <% if (students != null && !students.isEmpty()) { %>
+            <% for (Student student : students) { %>
+            <tr>
+                <td>
+                    <%=student.getId()%>
+                </td>
+                <td><%= student.getName() %>
+                </td>
+                <td><%= student.getSurname() %>
+                </td>
+                <td><%=student.getPhoneNum()%>
+                </td>
+                <td>
+                    <%=student.getEmail()%>
+                </td>
+                <%if (student.getDaysUntil().equals(0 + "d " + 0 + "h")) {%>
+                <td style="color: #650404"><%= student.getDeadline() %>
+                </td>
+                <td style="padding: 5px; color: #5d0202"><%= student.getDaysUntil() %>
+                        <%}else {%>
 
+                <td><%=student.getDeadline()%>
+                </td>
+                <td style="padding: 5px;"><%= student.getDaysUntil() %>
+                </td>
+                <%}%>
+                <td style="padding-left: 2px "><a href="/roomsInfo?id=<%=student.getId()%>"
+                                                  class="gradient-button">Room</a>
+                </td>
+                <%if (request.getAttribute("inArchive") != null) {%>
+                <td style="padding-left: 2px "><a href="/freeRooms?id=<%=student.getId()%>" class="gradient-button"><i
+                        style="font-size: 20px" class='bx bx-refresh'></i></a>
+                </td>
+                <%};%>
 
-    <br/>
-    <table class="table">
-        <thead>
-        <tr>
-            <th>FLOOR</th>
-            <th>ROOM NUM</th>
-            <%if (request.getAttribute("id") == null) {%>
-            <th>ADD</th>
-            <%} else {%>
-            <th>CHOOSE</th>
-            <%}%>
-        </tr>
-        </thead>
-        <tbody>
-        <% if (rooms != null && !rooms.isEmpty()) { %>
-        <% for (Room room : rooms) { %>
-        <tr>
-            <td><%= room.getFloor() %>
-            </td>
-            <td><%= room.getRoomNum()%>
-            </td>
-            <%if (request.getAttribute("id") == null) {%>
-            <td style="padding-left: 2px "><a href="/studentDataFilling?roomId=<%=room.getId()%>"
-                                              class="gradient-button"><i class='bx bx-plus' >ADD</i></a>
-            </td>
-            <%} else {%>
-            <td style="padding-left: 2px "><a
-                    href="/studentDateChange?roomId=<%=room.getId()%>&id=<%=request.getAttribute("id")%>"
-                    class="gradient-button"><i class='bx bx-check'>CHOOSE</i></a>
-            </td>
-            <%}%>
-
-        </tr>
-        <% } %>
-        <% } %>
-        </tbody>
-    </table>
+            </tr>
+            <% } %>
+            <% } %>
+            </tbody>
+        </table>
+    </div>
 </div>
 <div class="wrapper">
+
     <span class="menu"><i style="font-size:44px; " class='bx bx-menu'></i></span>
+
     <div class="overlay">
         <a style="position: absolute;top:5px " class="gradient-button" href="/logout"><i class='bx bx-log-out'></i></a>
         <ul>
-            <li><a href="/control"><i class='bx bxs-home'></i></a></li>
-            <li><a href="/control" >BACK</a></li>
+            <li><a href="#" id = 'backLink'>Back</a></li>
+            <li><a href="/listOfStaffs">List Of Staffs</a></li>
+            <li><a href="/listOfStaffs?status=archive">Staffs Archive</a></li>
+            <li><a href="/ListOfRegistrants">Registrants</a></li>
+            <label class="switch" >
+                <input type="checkbox" >
+                <a class="slider" id = 'allow'></a>
+            </label>
         </ul>
     </div>
     <div class="blurry-background"></div>
 </div>
-<div id="searchFormErrorContainer" class="error-container">
-    <div id="searchFormErrorMessage" class="error-message">
-        <p>Incorrect Search <br/>Floor-Room Num</p>
-    </div>
-</div>
-<% if (request.getAttribute("errMsg") != null) { %>
-<div id="errorContainer" class="error-container">
-    <div id="errorMessage" class="error-message">
-        <p><%=request.getAttribute("errMsg") %>
-        </p>
-    </div>
-</div>
-<% } %>
 </body>
 <style type="text/css">
+    .switch {
+        --secondary-container: #3a4b39;
+        --primary: #84da89;
+        font-size: 17px;
+        position: relative;
+        display: inline-block;
+        width: 3.7em;
+        height: 1.8em;
+    }
+
+    .switch input {
+        display: none;
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        <%if (!isAllowed){%>
+        background-color: #313033;
+        <%} else {%>
+        background-color: var(--primary);
+       <%}%>
+        transition: .2s;
+        border-radius: 30px;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 1.4em;
+        width: 1.4em;
+        border-radius: 20px;
+    <%if (!isAllowed){%>
+        background-color: #aeaaae;
+        left: 0.2em;
+    <%} else {%>
+        right: 0.2em;
+        background-color: var(--secondary-container);
+    <%}%>
+        bottom: 0.2em;
+        transition: .4s;
+    }
+
+    input:checked + .slider::before {
+    <%if (!isAllowed){%>
+        background-color: var(--secondary-container);
+    <%} else {%>
+        background-color: var(--primary);
+    <%}%>
+    }
+
+    input:checked + .slider {
+    <%if (!isAllowed){%>
+        background-color: var(--primary);
+    <%} else {%>
+        background-color: var(--secondary-container);
+    <%}%>
+    }
+
+    input:focus + .slider {
+        box-shadow: 0 0 1px var(--secondary-container);
+    }
+
+    input:checked + .slider:before {
+    <%if (!isAllowed){%>
+        transform: translateX(1.9em);
+    <%} else {%>
+        transform: translateX(-1.9em);
+    <%}%>
+    }
     .container {
-        max-width: 800px;
-        width: 100%;
-        max-height: 90%;
-        background: linear-gradient(1355deg, rgba(66, 246, 231, 0.87), #69d7ff);
-        padding: 25px 30px;
-        border-radius: 5px;
+        max-width: 1200px;
+        width: auto;
+        max-height: 80%;
+        background: linear-gradient(135deg, #0cffe5, #36b7ef);
+        padding: 20px 35px;
+        border-radius: 0px 0px 20px 20px;
         box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+        backdrop-filter: blur(10);
         overflow-y: auto;
         z-index: 100;
     }
+
+    .forming {
+        max-width: 1200px;
+        width: auto;
+        background: transparent;
+        backdrop-filter: blur(10);
+        z-index: 100;
+    }
+
+    .forming .title {
+        font-size: 35px;
+        font-weight: 600;
+        text-align: center;
+        line-height: 30px;
+        padding-top: 20px;
+        color: #ffffff;
+        user-select: none;
+        border-radius: 15px 15px 0 0;
+        background: linear-gradient(135deg, #36b7ef, #a436ed);
+    }
+
 
     .container::-webkit-scrollbar {
         width: 10px;
@@ -112,7 +234,7 @@
     }
 
     .container::-webkit-scrollbar-track {
-        background: linear-gradient(1355deg, #428af6, #fdd100);
+        background: linear-gradient(135deg, #a436ed, #36b7ef);
         border-radius: 5px;
     }
 
@@ -145,45 +267,23 @@
         padding: 3px 16px;
         background: #ffd300;
         border: 6px none;
-        text-align: center;
+        text-align: left;
         font-size: 15px;
         border-top: 3px solid #ffd300;
         border-bottom: 3px solid #ffd300;
     }
 
     .table td {
-        padding-left: 20px;
         border: 30px;
         font-size: 16px;
-        text-align: center;
+        white-space: nowrap;
+        padding: 2px 10px;
         background: linear-gradient(135deg, #fdd100, #428af6);
     }
 
     .table tbody tr:nth-child(even) {
         background: #4c698d !important;
     }
-
-    .error-container {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        backdrop-filter: blur(3px);
-        justify-content: center;
-        align-items: center;
-        z-index: 999999999999999;
-    }
-
-    .error-message {
-        display: none;
-        background-color: rgb(114, 3, 3);
-        padding: 20px;
-        border-radius: 5px;
-        z-index: 10000000;
-    }
-
 
     .wave {
         background: rgb(255 255 255 / 25%);
@@ -273,8 +373,6 @@
         background-image: linear-gradient(to right, #428af6 0%, #fdd100 51%, rgb(80, 0, 241) 100%);
         background-size: 200% auto;
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.31);
-
-        transition: text-shadow 0.5s ease;
         transition: .5s;
     }
 
@@ -282,12 +380,14 @@
         background-position: right center;
         color: rgb(0, 0, 0);
         box-shadow: 0 0 10px #f519f5;
+        font-size: 35px;
     }
 
     * {
+        padding: 0;
+        margin: 0;
         box-sizing: border-box;
     }
-
     body {
         margin: 0;
         padding: 0;
@@ -337,31 +437,29 @@
         font-weight: 100;
     }
 
+
     .input-search-background:focus-within {
+        border-radius: 10px;
         width: 300px;
     }
 
     .btn-search:focus + .input-search,
     .input-search:focus {
         width: 300px;
-        border-radius: 40px;
+        border-radius: 10px;
         background-color: transparent;
-        border-bottom: 2px solid rgb(255, 149, 59);
+        caret-color: #2c0248;
+        border-bottom: 2px solid rgb(59, 75, 255);
         animation: textColorChange 0.5s ease-in-out forwards;
     }
 
     .input-search:hover {
-        caret-color: #f1c700;
+        caret-color: #85f100;
         width: 300px;
     }
 
     .input-search-background:hover {
         width: 300px;
-    }
-
-    * {
-        padding: 0;
-        margin: 0;
     }
 
     .wrapper {
@@ -376,7 +474,6 @@
     }
 
     .wrapper span {
-
         z-index: 999955887;
         position: absolute;
         top: 10px;
@@ -403,12 +500,13 @@
 
     .wrapper .overlay {
         position: absolute;
-        bottom: -100%;
+        left: 0;
+        right: 75%;
+        bottom: 0;
+        width: 25%;
         height: 100%;
         background: linear-gradient(rgba(0, 241, 76, 0.82), rgba(73, 7, 187, 0.84));
-        left: 0;
-        width: 100%;
-        transition: all 0.5s ease;
+        z-index: 9955;
     }
 
     .blurry-background {
@@ -419,26 +517,10 @@
         height: 100%;
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
-        z-index: 99;
-        opacity: 0;
-        transition: opacity 0.5s ease;
-    }
-
-    .blurry {
         z-index: 100;
         opacity: 1;
     }
 
-    .wrapper .overlay.anim {
-        left: 0;
-        bottom: 0;
-        animation: menu-anim 1.5s 1 ease-out forwards;
-        width: 25%;
-        right: 75%;
-        z-index: 9955;
-        transition: all 0.5s ease;
-
-    }
 
     .wrapper .overlay ul {
         width: 100%;
@@ -448,17 +530,16 @@
         margin-left: -10px;
         font-size: 1em;
         font-weight: 800;
-
+        user-select: none;
     }
 
     .wrapper .overlay ul li {
         margin: 10px 0;
-        transition: all 0.5s ease;
+        transition: all 1s;
     }
     .wrapper .overlay ul li:hover{
         text-shadow:#f519f5 1px 0 10px;
     }
-
     .wrapper .overlay ul li a {
         text-decoration: none;
         color: #000000;
@@ -485,18 +566,6 @@
     }
 
     @keyframes menu-anim {
-        0% {
-            left: -99.5%;
-            bottom: -99%;
-            width: 100%;
-        }
-
-        50% {
-            left: -99.5%;
-            bottom: 0;
-            width: 100%;
-        }
-
         100% {
             bottom: 0;
             left: 0;
@@ -513,71 +582,67 @@
             transform: translateX(0);
         }
     }
+    .icon{
+        width: 38px;
+        height: 46px;
+        background:transparent;
+        text-shadow: 0 0 20px rgba(0, 0, 0, 0); ;
+        z-index: 100;
+        white-space: nowrap;
+        text-decoration: none;
+        color: #000000;
+        position: relative;
+        display: inline-block;
+        margin: 10px 0;
+        overflow: hidden;
+        transition: all 2.5s ease;
+    }
+
+    .icon i{
+        font-size: 40px;
+        color: rgba(0, 0, 0, 0.99);
+        text-shadow: 0 0 20px rgba(0, 0, 0, 0);
+        transition: all 0.5s ease;
+    }
+
+    .icon:hover{
+        width: 370px;
+    }
+
+    .icon i:hover{
+        color: #000000;
+        text-shadow: #f519f5 1px 0 20px;
+    }
+
+
 </style>
 <script>
-    document.getElementById('searchInput').addEventListener('keypress', function (event) {
-        if (event.key === 'Enter') {
-            var inputValue = document.getElementById('searchInput').value;
-            if (!/^\d+\-\d+$/.test(inputValue) && inputValue !== "") {
-                event.preventDefault();
-                document.getElementById('searchInput').disabled = true;
-                var errorContainer = document.getElementById('searchFormErrorContainer');
-                var errorMessage = document.getElementById('searchFormErrorMessage');
-                errorContainer.style.display = 'flex';
-                errorMessage.style.display = 'flex';
-                document.getElementById('searchInput').value = "";
-
-                function disableButtonClick(event) {
-                    if (!errorMessage.contains(event.target)) {
-                        errorContainer.style.display = 'none';
-                        errorMessage.style.display = 'none';
-                        document.getElementById('searchInput').disabled = false;
-                    }
-                }
-
-                document.body.addEventListener('click', disableButtonClick);
-
-            } else {
-                document.getElementById('searchForm').submit();
-            }
-        }
-    });
     $(document).ready(function () {
         $('.menu').click(function () {
-            $('.overlay').toggleClass('anim');
-            $(this).toggleClass('open');
-            $('.blurry-background').toggleClass('blurry');
+            event.preventDefault();
+            window.location.href = '/loginConductor';
         });
         $(document).click(function (event) {
             if (!$(event.target).closest('.overlay').length && !$(event.target).closest('.menu').length) {
-                $('.overlay').removeClass('anim');
-                $('.menu').removeClass('open');
-                $('.blurry-background').removeClass('blurry');
+                event.preventDefault();
+                window.location.href = '/loginConductor';
             }
         });
     });
-    function handleButtonClick() {
-        var errorContainer = document.getElementById('errorContainer');
-        var errorMessage = document.getElementById('errorMessage');
-        if (errorContainer && errorContainer.contains(event.target) && !errorMessage.contains(event.target) ) {
-            errorContainer.style.display = 'none';
-            errorMessage.style.display = 'none'
-        }
-    };
-    function handleEnterKeyPress() {
-        if (event.key === 'Enter' || event.keyCode === 32 ) {
+    var backLink = document.getElementById("backLink");
+    backLink.addEventListener("click", function (event) {
+        event.preventDefault();
+        window.history.back();
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+        var allowButton = document.getElementById('allow');
 
-            var errorContainer = document.getElementById('errorContainer');
-            var errorMessage = document.getElementById('errorMessage');
-            errorContainer.style.display = 'none';
-            errorMessage.style.display = 'none'
-        }
-    }
-    <% if (request.getAttribute("errMsg") != null) { %>
-    document.getElementById('errorMessage').style.display = 'flex';
-    document.getElementById('errorContainer').style.display = 'flex';
-    <% } %>
-    document.body.addEventListener('keypress',handleEnterKeyPress)
-    document.body.addEventListener('click', handleButtonClick);
+        allowButton.addEventListener('click', function() {
+            setTimeout(function() {
+                window.location.href = '/allowRegistration';
+            }, 220);
+        });
+    });
+
 </script>
 </html>

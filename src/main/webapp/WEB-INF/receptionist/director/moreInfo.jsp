@@ -12,41 +12,35 @@
 <html>
 <head>
     <title>Room Info</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
-<% Student student = (Student) request.getAttribute("student"); %>
+<%Student student = (Student) request.getAttribute("student");%>
 <body>
 
 <div class="wave"></div>
 <div class="wave"></div>
 <div class="wave"></div>
-<a href="#" class="gradient-button" id="backLink">BACK</a>
+<a href="#" class="gradient-button-back" id="backLink">BACK</a>
 <div class="container">
-    <h1><%=student.getName()%> <%=student.getSurname()%></h1>
+    <h1>Information</h1>
     <br/>
     <table class="table">
         <thead>
         <tr>
-            <th>REGISTRATION DATE</th>
-            <th>REGISTRATION DEADLINE</th>
-            <th>UNTIL THE END OF REGISTRATION </th>
+            <th>ADDER INFO</th>
+            <th>DATE INFO</th>
+            <th>ROOM INFO</th>
         </tr>
         </thead>
         <tbody>
-        <% if (student!= null){%>
         <tr>
-            <td><%= student.getRegisterDate() %>
+            <td><a class="gradient-button" href="/adderInfo?id=<%=student.getId()%>"><i class='bx bxs-user-detail' >ADDER</i></a>
             </td>
-            <td><%= student.getDeadline() %>
+            <td> <a class="gradient-button" href="/dateInfo?id=<%=student.getId()%>"><i class="bx bxs-calendar">DATE</i> </a>
             </td>
-            <% if (student.getDaysUntil() == 0 + "d " + 0 + "h" ){%>
-            <td style="color: #830505"><%= student.getDaysUntil() %>
+            <td> <a class="gradient-button" href="/roomsInfo?id=<%=student.getId()%>"><i class='bx bxs-building-house'>ROOM</i></a>
             </td>
-            <%}else {%>
-            <td><%= student.getDaysUntil() %>
-            </td>
-            <%}%>
         </tr>
-        <% } %>
         </tbody>
     </table>
 </div>
@@ -88,7 +82,6 @@
     }
 
     .table td {
-        padding-left: 20px;
         border: 30px;
         font-size: 16px;
         text-align: center;
@@ -174,6 +167,28 @@
         }
     }
     .gradient-button {
+        top: 20px;
+        right: 20px;
+        text-decoration: none;
+        color: #4907bb;
+        display: inline-block;
+        padding: 10px 20px;
+        margin: 5px 15px;
+        border-radius: 10px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        background-image: linear-gradient(to right, #428af6 0%, #fdd100 51%, rgb(80, 0, 241) 100%);
+        background-size: 200% auto;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.31);
+        transition: .5s;
+    }
+
+    .gradient-button:hover {
+        background-position: right center;
+        color: rgb(0, 0, 0);
+        box-shadow: 0 0 10px #f519f5;
+    }
+    .gradient-button-back {
         position: absolute;
         top: 10px;
         left: 20px;
@@ -191,7 +206,7 @@
         transition: all 0.5s ease;
     }
 
-    .gradient-button:hover {
+    .gradient-button-back:hover {
         background-position: right center;
         color: rgb(0, 0, 0);
         box-shadow: 0 0 10px #f519f5;

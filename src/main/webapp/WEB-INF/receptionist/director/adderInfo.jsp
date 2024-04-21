@@ -1,7 +1,7 @@
 
 <%@ page import="java.util.Date" %>
 <%@ page import="dormitory.models.Room" %>
-<%@ page import="dormitory.models.Student" %><%--
+<%@ page import="dormitory.models.Receptionist" %><%--
   Created by IntelliJ IDEA.
   User: User
   Date: 24.02.2024
@@ -13,7 +13,7 @@
 <head>
     <title>Room Info</title>
 </head>
-<% Student student = (Student) request.getAttribute("student"); %>
+<%Receptionist receptionist = (Receptionist) request.getAttribute("adder");%>
 <body>
 
 <div class="wave"></div>
@@ -21,32 +21,28 @@
 <div class="wave"></div>
 <a href="#" class="gradient-button" id="backLink">BACK</a>
 <div class="container">
-    <h1><%=student.getName()%> <%=student.getSurname()%></h1>
+    <h1>About Adder</h1>
     <br/>
     <table class="table">
         <thead>
         <tr>
-            <th>REGISTRATION DATE</th>
-            <th>REGISTRATION DEADLINE</th>
-            <th>UNTIL THE END OF REGISTRATION </th>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>SURNAME</th>
+            <th>E-MAIL</th>
         </tr>
         </thead>
         <tbody>
-        <% if (student!= null){%>
         <tr>
-            <td><%= student.getRegisterDate() %>
+            <td><%= receptionist.getId()%>
             </td>
-            <td><%= student.getDeadline() %>
+            <td><%= receptionist.getName()%>
             </td>
-            <% if (student.getDaysUntil() == 0 + "d " + 0 + "h" ){%>
-            <td style="color: #830505"><%= student.getDaysUntil() %>
+            <td><%= receptionist.getSurname()%>
             </td>
-            <%}else {%>
-            <td><%= student.getDaysUntil() %>
+            <td><%= receptionist.getEmail()%>
             </td>
-            <%}%>
         </tr>
-        <% } %>
         </tbody>
     </table>
 </div>
@@ -81,7 +77,7 @@
         padding: 3px 16px;
         background: #ffd300;
         border: 6px none;
-        text-align: center;
+        text-align: left;
         font-size: 15px;
         border-top: 3px solid #ffd300;
         border-bottom: 3px solid #ffd300;

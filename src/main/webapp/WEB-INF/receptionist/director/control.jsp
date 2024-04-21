@@ -1,110 +1,144 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.util.List" %>
-<%@ page import="dormitory.models.Room" %>
-<%@ page import="dormitory.models.Room" %>
+<%@ page import="dormitory.models.Student" %>
+<%@ page import="dormitory.models.Receptionist" %>
 <html>
 <head>
     <title>List of Rooms</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
-<% List<Room> rooms = (List<Room>) request.getAttribute("room"); %>
+<% List<Student> students = (List<Student>) request.getAttribute("students"); %>
+<%Receptionist receptionist = (Receptionist) session.getAttribute("receptionist");%>
 <body>
 
 <div class="wave"></div>
 <div class="wave"></div>
 <div class="wave"></div>
+<div class="forming">
+    <div class="title">STUDENTS LIST <p style="font-size: 15px; font-weight: 0">STUDENT'S TOTAL
+        NUMBER <%=request.getAttribute("numberOfStudents")%>
+    </p></div>
+    <div class="container">
 
-<div class="container">
-    <h1>CHOOSE ROOM</h1>
-    <form id="searchForm" action="/freeRooms" method="post">
-        <div class="search-box">
-            <div class="input-search-background">
-                <input type="hidden" name="id" value="<%=request.getAttribute("id")%>">
-                <div class="btn-search">
-                    <input type="text" name="search" class="input-search animate" placeholder="🔍 floor-room..."
-                           id="searchInput" value="${not empty param.search ? param.search : ''}">
+        <form id="searchForm" action="/directorControl" method="get">
+            <div class="search-box">
+                <div class="input-search-background">
+                    <input type="hidden" name="status" value="<%=request.getAttribute("inArchive")%>">
+                    <div class="btn-search">
+                        <input type="text" name="search" class="input-search animate" placeholder="🔍 search..."
+                               id="searchInput" value="${not empty param.search ? param.search : ''}">
+                    </div>
+
                 </div>
             </div>
+        </form>
+        <br/>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Inspection Booklet Number</th>
+                <th>NAME</th>
+                <th>SURNAME</th>
+                <th>PHONE</th>
+                <th>E-MAIL</th>
+                <th>BIRTHDAY</th>
+                <th style="padding-left: 10px">NUMBER OF PUNISHMENTS</th>
+                <th>MORE INFO</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% if (students != null && !students.isEmpty()) { %>
+            <% for (Student student : students) { %>
+            <tr>
+                <td>
+                    <%=student.getId()%>
+                </td>
+                <td><%= student.getName() %>
+                </td>
+                <td><%= student.getSurname() %>
+                </td>
+                <td><%=student.getPhoneNum()%>
+                </td>
+                <td>
+                    <%=student.getEmail()%>
+                </td>
+               <td>
+                   <%=student.getBirthday()%>
+               </td>
+                <td style="padding-left: 2px "><%=student.getPunishment()%>
+            </td>
+                <td><a href="/moreInfo?id=<%=student.getId()%>" class="gradient-button"><i style="font-size:20px" class='bx bxs-info-circle'></i></a></td>
+
+            </tr>
+            <% } %>
+            <% } %>
+            </tbody>
+        </table>
+    </div>
+    <% if (request.getAttribute("errMsg") != null) { %>
+    <div id="errorContainer" class="error-container">
+        <div id="errorMessage" class="error-message">
+            <p><%= request.getAttribute("errMsg") %>
+            </p>
         </div>
-    </form>
-
-
-    <br/>
-    <table class="table">
-        <thead>
-        <tr>
-            <th>FLOOR</th>
-            <th>ROOM NUM</th>
-            <%if (request.getAttribute("id") == null) {%>
-            <th>ADD</th>
-            <%} else {%>
-            <th>CHOOSE</th>
-            <%}%>
-        </tr>
-        </thead>
-        <tbody>
-        <% if (rooms != null && !rooms.isEmpty()) { %>
-        <% for (Room room : rooms) { %>
-        <tr>
-            <td><%= room.getFloor() %>
-            </td>
-            <td><%= room.getRoomNum()%>
-            </td>
-            <%if (request.getAttribute("id") == null) {%>
-            <td style="padding-left: 2px "><a href="/studentDataFilling?roomId=<%=room.getId()%>"
-                                              class="gradient-button"><i class='bx bx-plus' >ADD</i></a>
-            </td>
-            <%} else {%>
-            <td style="padding-left: 2px "><a
-                    href="/studentDateChange?roomId=<%=room.getId()%>&id=<%=request.getAttribute("id")%>"
-                    class="gradient-button"><i class='bx bx-check'>CHOOSE</i></a>
-            </td>
-            <%}%>
-
-        </tr>
         <% } %>
-        <% } %>
-        </tbody>
-    </table>
+    </div>
 </div>
 <div class="wrapper">
+
     <span class="menu"><i style="font-size:44px; " class='bx bx-menu'></i></span>
+
     <div class="overlay">
         <a style="position: absolute;top:5px " class="gradient-button" href="/logout"><i class='bx bx-log-out'></i></a>
         <ul>
-            <li><a href="/control"><i class='bx bxs-home'></i></a></li>
-            <li><a href="/control" >BACK</a></li>
+            <%if (request.getAttribute("inArchive") == null) { %>
+
+            <li><a href="/refactorMenu" class="icon" ><i class='bx bxs-user-circle'><%=receptionist.getName()%></i></a></li>
+            <li><a href="/controlOverStaffs" >CONTROL OVER STAFFS</a></li>
+            <li><a href="/directorControl?status=archive">STUDENTS ARCHIVE</a></li>
+            <%} else {%>
+            <li><a href="/directorControl">Back</a></li>
+            <%};%>
         </ul>
     </div>
     <div class="blurry-background"></div>
 </div>
-<div id="searchFormErrorContainer" class="error-container">
-    <div id="searchFormErrorMessage" class="error-message">
-        <p>Incorrect Search <br/>Floor-Room Num</p>
-    </div>
-</div>
-<% if (request.getAttribute("errMsg") != null) { %>
-<div id="errorContainer" class="error-container">
-    <div id="errorMessage" class="error-message">
-        <p><%=request.getAttribute("errMsg") %>
-        </p>
-    </div>
-</div>
-<% } %>
 </body>
 <style type="text/css">
     .container {
-        max-width: 800px;
-        width: 100%;
-        max-height: 90%;
-        background: linear-gradient(1355deg, rgba(66, 246, 231, 0.87), #69d7ff);
-        padding: 25px 30px;
-        border-radius: 5px;
+        max-width: 1200px;
+        width: auto;
+        max-height: 80%;
+        background: linear-gradient(135deg, #0cffe5, #36b7ef);
+        padding: 20px 35px;
+        border-radius: 0px 0px 20px 20px;
         box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+        backdrop-filter: blur(10);
         overflow-y: auto;
         z-index: 100;
     }
+
+    .forming {
+        max-width: 1200px;
+        width: auto;
+        background: transparent;
+        backdrop-filter: blur(10);
+        z-index: 100;
+    }
+
+    .forming .title {
+        font-size: 35px;
+        font-weight: 600;
+        text-align: center;
+        line-height: 30px;
+        padding-top: 20px;
+        color: #ffffff;
+        user-select: none;
+        border-radius: 15px 15px 0 0;
+        background: linear-gradient(135deg, #36b7ef, #a436ed);
+    }
+
 
     .container::-webkit-scrollbar {
         width: 10px;
@@ -112,7 +146,7 @@
     }
 
     .container::-webkit-scrollbar-track {
-        background: linear-gradient(1355deg, #428af6, #fdd100);
+        background: linear-gradient(135deg, #a436ed, #36b7ef);
         border-radius: 5px;
     }
 
@@ -152,38 +186,17 @@
     }
 
     .table td {
-        padding-left: 20px;
         border: 30px;
         font-size: 16px;
+        white-space: nowrap;
         text-align: center;
+        padding: 2px 10px;
         background: linear-gradient(135deg, #fdd100, #428af6);
     }
 
     .table tbody tr:nth-child(even) {
         background: #4c698d !important;
     }
-
-    .error-container {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        backdrop-filter: blur(3px);
-        justify-content: center;
-        align-items: center;
-        z-index: 999999999999999;
-    }
-
-    .error-message {
-        display: none;
-        background-color: rgb(114, 3, 3);
-        padding: 20px;
-        border-radius: 5px;
-        z-index: 10000000;
-    }
-
 
     .wave {
         background: rgb(255 255 255 / 25%);
@@ -273,8 +286,6 @@
         background-image: linear-gradient(to right, #428af6 0%, #fdd100 51%, rgb(80, 0, 241) 100%);
         background-size: 200% auto;
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.31);
-
-        transition: text-shadow 0.5s ease;
         transition: .5s;
     }
 
@@ -337,21 +348,24 @@
         font-weight: 100;
     }
 
+
     .input-search-background:focus-within {
+        border-radius: 10px;
         width: 300px;
     }
 
     .btn-search:focus + .input-search,
     .input-search:focus {
         width: 300px;
-        border-radius: 40px;
+        border-radius: 10px;
         background-color: transparent;
-        border-bottom: 2px solid rgb(255, 149, 59);
+        caret-color: #2c0248;
+        border-bottom: 2px solid rgb(59, 75, 255);
         animation: textColorChange 0.5s ease-in-out forwards;
     }
 
     .input-search:hover {
-        caret-color: #f1c700;
+        caret-color: #85f100;
         width: 300px;
     }
 
@@ -448,17 +462,15 @@
         margin-left: -10px;
         font-size: 1em;
         font-weight: 800;
-
     }
 
     .wrapper .overlay ul li {
         margin: 10px 0;
-        transition: all 0.5s ease;
+        transition: all 1s;
     }
-    .wrapper .overlay ul li:hover{
-        text-shadow:#f519f5 1px 0 10px;
-    }
-
+.wrapper .overlay ul li:hover{
+    text-shadow:#f519f5 1px 0 10px;
+}
     .wrapper .overlay ul li a {
         text-decoration: none;
         color: #000000;
@@ -513,33 +525,61 @@
             transform: translateX(0);
         }
     }
+    .icon{
+        width: 45px;
+        background:transparent;
+        text-shadow: 0 0 20px rgba(0, 0, 0, 0); ;
+        overflow-x: hidden;
+        z-index: 100;
+        white-space: nowrap;
+        transition: all 2.5s ease;
+    }
+
+    .icon i{
+        font-size: 50px;
+        color: rgba(0, 0, 0, 0.99);
+        text-shadow: 0 0 20px rgba(0, 0, 0, 0);
+        transition: all 0.5s ease;
+    }
+
+    .icon:hover{
+        width: 370px;
+    }
+
+    .icon i:hover{
+        color: #000000;
+        text-shadow: #f519f5 1px 0 20px;
+    }
+    .error-container {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        backdrop-filter: blur(5px);
+        justify-content: center;
+        align-items: center;
+        z-index:200000000000;
+    }
+    .error-message {
+        z-index: 200000000;
+        color: white;
+        height: auto;
+        width: auto;
+        background-color: rgb(114, 3, 3);
+        padding: 20px;
+        border-radius: 7px;
+
+    }
+
+
 </style>
 <script>
     document.getElementById('searchInput').addEventListener('keypress', function (event) {
         if (event.key === 'Enter') {
-            var inputValue = document.getElementById('searchInput').value;
-            if (!/^\d+\-\d+$/.test(inputValue) && inputValue !== "") {
-                event.preventDefault();
-                document.getElementById('searchInput').disabled = true;
-                var errorContainer = document.getElementById('searchFormErrorContainer');
-                var errorMessage = document.getElementById('searchFormErrorMessage');
-                errorContainer.style.display = 'flex';
-                errorMessage.style.display = 'flex';
-                document.getElementById('searchInput').value = "";
-
-                function disableButtonClick(event) {
-                    if (!errorMessage.contains(event.target)) {
-                        errorContainer.style.display = 'none';
-                        errorMessage.style.display = 'none';
-                        document.getElementById('searchInput').disabled = false;
-                    }
-                }
-
-                document.body.addEventListener('click', disableButtonClick);
-
-            } else {
-                document.getElementById('searchForm').submit();
-            }
+            event.preventDefault();
+            document.getElementById('searchForm').submit();
         }
     });
     $(document).ready(function () {
@@ -556,6 +596,8 @@
             }
         });
     });
+
+
     function handleButtonClick() {
         var errorContainer = document.getElementById('errorContainer');
         var errorMessage = document.getElementById('errorMessage');
@@ -566,7 +608,6 @@
     };
     function handleEnterKeyPress() {
         if (event.key === 'Enter' || event.keyCode === 32 ) {
-
             var errorContainer = document.getElementById('errorContainer');
             var errorMessage = document.getElementById('errorMessage');
             errorContainer.style.display = 'none';
@@ -579,5 +620,6 @@
     <% } %>
     document.body.addEventListener('keypress',handleEnterKeyPress)
     document.body.addEventListener('click', handleButtonClick);
+
 </script>
 </html>

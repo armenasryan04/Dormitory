@@ -13,6 +13,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class Student {
     private int id;
+    private int punishment;
     private String name;
     private String surname;
     private String email;
@@ -44,7 +45,6 @@ public class Student {
                 days++;
                 hours = 0;
             }
-
             return days + " d " + hours + " h ";
         } catch (NullPointerException e) {
             return null + " d " + null + " h ";
