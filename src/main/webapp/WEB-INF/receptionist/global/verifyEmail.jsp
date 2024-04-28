@@ -33,7 +33,6 @@
     </div>
     <div class="blurry-background"></div>
 </div>
-<%Receptionist receptionist = (Receptionist) request.getSession().getAttribute("receptionist");%>
 <div class="wrapper-data">
     <div class="title">Verification</div>
 <div class="content"></div>
@@ -42,9 +41,7 @@
             <input type="text" required name="code">
             <label class="input-box">Check your E-mail</label>
         </div>
-        <input type="hidden" name="checkCode" value="<%=receptionist.getVerifyCode()%>">
         <div class="field" >
-            <br/>
             <input type="submit" value="Confirm">
         </div>
         <div class="content">

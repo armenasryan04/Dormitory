@@ -49,7 +49,7 @@
         <%boolean can = (boolean) request.getAttribute("canReg");%>
         <%if (can) {%>
         <div class="signup-link">
-            Register <a href="/singInUp.jsp">SingIn up </a>
+            Sign Up  For Work <a href="/signUp">Sign Up</a>
         </div>
         <%}%>
         <%}%>

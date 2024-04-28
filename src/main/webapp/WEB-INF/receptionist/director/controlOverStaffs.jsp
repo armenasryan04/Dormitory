@@ -87,7 +87,10 @@
                 <td style="padding-left: 2px "><a href="/freeRooms?id=<%=student.getId()%>" class="gradient-button"><i
                         style="font-size: 20px" class='bx bx-refresh'></i></a>
                 </td>
-                <%};%>
+                <%
+                    }
+                    ;
+                %>
 
             </tr>
             <% } %>
@@ -103,13 +106,14 @@
     <div class="overlay">
         <a style="position: absolute;top:5px " class="gradient-button" href="/logout"><i class='bx bx-log-out'></i></a>
         <ul>
-            <li><a href="#" id = 'backLink'>Back</a></li>
+            <li><a href="/directorControl" ><i class='bx bxs-home'></i></a></li>
             <li><a href="/listOfStaffs">List Of Staffs</a></li>
             <li><a href="/listOfStaffs?status=archive">Staffs Archive</a></li>
             <li><a href="/ListOfRegistrants">Registrants</a></li>
-            <label class="switch" >
-                <input type="checkbox" >
-                <a class="slider" id = 'allow'></a>
+            <li>Allow Registration</li>
+            <label class="switch">
+                <input type="checkbox">
+                <a class="slider" id='allow'></a>
             </label>
         </ul>
     </div>
@@ -141,12 +145,9 @@
         left: 0;
         right: 0;
         bottom: 0;
-        <%if (!isAllowed){%>
-        background-color: #313033;
-        <%} else {%>
-        background-color: var(--primary);
-       <%}%>
-        transition: .2s;
+    <%if (!isAllowed){%> background-color: #313033;
+    <%} else {%> background-color: var(--primary);
+    <%}%> transition: .2s;
         border-radius: 30px;
     }
 
@@ -156,30 +157,23 @@
         height: 1.4em;
         width: 1.4em;
         border-radius: 20px;
-    <%if (!isAllowed){%>
-        background-color: #aeaaae;
+    <%if (!isAllowed){%> background-color: #aeaaae;
         left: 0.2em;
-    <%} else {%>
-        right: 0.2em;
+    <%} else {%> right: 0.2em;
         background-color: var(--secondary-container);
-    <%}%>
-        bottom: 0.2em;
+    <%}%> bottom: 0.2em;
         transition: .4s;
     }
 
     input:checked + .slider::before {
-    <%if (!isAllowed){%>
-        background-color: var(--secondary-container);
-    <%} else {%>
-        background-color: var(--primary);
+    <%if (!isAllowed){%> background-color: var(--secondary-container);
+    <%} else {%> background-color: var(--primary);
     <%}%>
     }
 
     input:checked + .slider {
-    <%if (!isAllowed){%>
-        background-color: var(--primary);
-    <%} else {%>
-        background-color: var(--secondary-container);
+    <%if (!isAllowed){%> background-color: var(--primary);
+    <%} else {%> background-color: var(--secondary-container);
     <%}%>
     }
 
@@ -188,12 +182,11 @@
     }
 
     input:checked + .slider:before {
-    <%if (!isAllowed){%>
-        transform: translateX(1.9em);
-    <%} else {%>
-        transform: translateX(-1.9em);
+    <%if (!isAllowed){%> transform: translateX(1.9em);
+    <%} else {%> transform: translateX(-1.9em);
     <%}%>
     }
+
     .container {
         max-width: 1200px;
         width: auto;
@@ -388,6 +381,7 @@
         margin: 0;
         box-sizing: border-box;
     }
+
     body {
         margin: 0;
         padding: 0;
@@ -537,9 +531,11 @@
         margin: 10px 0;
         transition: all 1s;
     }
-    .wrapper .overlay ul li:hover{
-        text-shadow:#f519f5 1px 0 10px;
+
+    .wrapper .overlay ul li:hover {
+        text-shadow: #f519f5 1px 0 10px;
     }
+
     .wrapper .overlay ul li a {
         text-decoration: none;
         color: #000000;
@@ -582,11 +578,12 @@
             transform: translateX(0);
         }
     }
-    .icon{
+
+    .icon {
         width: 38px;
         height: 46px;
-        background:transparent;
-        text-shadow: 0 0 20px rgba(0, 0, 0, 0); ;
+        background: transparent;
+        text-shadow: 0 0 20px rgba(0, 0, 0, 0);;
         z-index: 100;
         white-space: nowrap;
         text-decoration: none;
@@ -598,18 +595,18 @@
         transition: all 2.5s ease;
     }
 
-    .icon i{
+    .icon i {
         font-size: 40px;
         color: rgba(0, 0, 0, 0.99);
         text-shadow: 0 0 20px rgba(0, 0, 0, 0);
         transition: all 0.5s ease;
     }
 
-    .icon:hover{
+    .icon:hover {
         width: 370px;
     }
 
-    .icon i:hover{
+    .icon i:hover {
         color: #000000;
         text-shadow: #f519f5 1px 0 20px;
     }
@@ -629,16 +626,11 @@
             }
         });
     });
-    var backLink = document.getElementById("backLink");
-    backLink.addEventListener("click", function (event) {
-        event.preventDefault();
-        window.history.back();
-    });
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         var allowButton = document.getElementById('allow');
 
-        allowButton.addEventListener('click', function() {
-            setTimeout(function() {
+        allowButton.addEventListener('click', function () {
+            setTimeout(function () {
                 window.location.href = '/allowRegistration';
             }, 220);
         });

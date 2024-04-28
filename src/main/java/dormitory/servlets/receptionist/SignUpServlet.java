@@ -1,6 +1,5 @@
 package dormitory.servlets.receptionist;
 
-import dormitory.manager.PermissionManager;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,16 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/allowRegistration")
-public class AllowRegistrationServlet extends HttpServlet {
+@WebServlet("/signUp")
+public class SignUpServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        PermissionManager pm = new PermissionManager();
-        if (pm.getPermission()){
-            pm.deactivate();
-        }else {
-            pm.activate();
-        }
-        resp.sendRedirect("/controlOverStaffs");
+        req.getRequestDispatcher("WEB-INF/receptionist/registrant/signUp.jsp").forward(req,resp);
     }
 }

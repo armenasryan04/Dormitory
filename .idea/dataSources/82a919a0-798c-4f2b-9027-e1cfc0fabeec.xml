@@ -1017,7 +1017,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <schema id="293" parent="1" name="dormitory_student">
-      <LastIntrospectionLocalTimestamp>2024-04-20.16:05:23</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2024-04-27.15:14:12</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_bin</CollationName>
     </schema>
     <user id="294" parent="1" name="mysql.infoschema">
@@ -24304,138 +24304,172 @@ VARIABLE_NAME</ColNames>
       <Position>3</Position>
       <CollationName>utf8mb3_bin</CollationName>
     </column>
-    <column id="4659" parent="679" name="email">
-      <DasType>varchar(255)|0s</DasType>
+    <column id="4659" parent="679" name="birthday">
+      <DasType>date|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
-      <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </column>
-    <column id="4660" parent="679" name="password">
-      <DasType>varchar(255)|0s</DasType>
+    <column id="4660" parent="679" name="phone_num">
+      <DasType>varchar(15)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>5</Position>
-      <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </column>
-    <column id="4661" parent="679" name="role">
-      <DasType>enum(&apos;WAIT_PROCESS&apos;, &apos;ADMIN&apos;, &apos;DIRECTOR&apos;)|0e</DasType>
-      <DefaultExpression>&apos;WAIT_PROCESS&apos;</DefaultExpression>
+    <column id="4661" parent="679" name="email">
+      <DasType>varchar(255)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>6</Position>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </column>
-    <index id="4662" parent="679" name="PRIMARY">
+    <column id="4662" parent="679" name="password">
+      <DasType>varchar(255)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>7</Position>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </column>
+    <column id="4663" parent="679" name="employment_date">
+      <DasType>date|0s</DasType>
+      <Position>8</Position>
+    </column>
+    <column id="4664" parent="679" name="resignation_date">
+      <DasType>date|0s</DasType>
+      <Position>9</Position>
+    </column>
+    <column id="4665" parent="679" name="about_experience">
+      <DasType>text|0s</DasType>
+      <Position>10</Position>
+    </column>
+    <column id="4666" parent="679" name="role">
+      <DasType>enum(&apos;REGISTRANT&apos;, &apos;ADMIN&apos;, &apos;DIRECTOR&apos;, &apos;INACTIVE&apos;)|0e</DasType>
+      <DefaultExpression>&apos;REGISTRANT&apos;</DefaultExpression>
+      <NotNull>1</NotNull>
+      <Position>11</Position>
+    </column>
+    <column id="4667" parent="679" name="gender">
+      <DasType>enum(&apos;MALE&apos;, &apos;FEMALE&apos;)|0e</DasType>
+      <Position>12</Position>
+    </column>
+    <column id="4668" parent="679" name="control_code">
+      <DasType>int|0s</DasType>
+      <Position>13</Position>
+    </column>
+    <index id="4669" parent="679" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="4663" parent="679" name="PRIMARY">
+    <key id="4670" parent="679" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="4664" parent="680" name="is_allowed">
+    <column id="4671" parent="680" name="is_allowed">
       <DasType>tinyint(1)|0s</DasType>
       <DefaultExpression>0</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="4665" parent="681" name="id">
+    <column id="4672" parent="680" name="deadline">
+      <DasType>datetime|0s</DasType>
+      <Position>2</Position>
+    </column>
+    <column id="4673" parent="681" name="id">
       <AutoIncrement>654584142</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="4666" parent="681" name="punishment_num">
+    <column id="4674" parent="681" name="punishment_num">
       <DasType>int|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="4667" parent="681" name="name">
+    <column id="4675" parent="681" name="name">
       <DasType>varchar(255)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
       <CollationName>utf8mb3_bin</CollationName>
     </column>
-    <column id="4668" parent="681" name="surname">
+    <column id="4676" parent="681" name="surname">
       <DasType>varchar(255)|0s</DasType>
       <Position>4</Position>
       <CollationName>utf8mb3_bin</CollationName>
     </column>
-    <column id="4669" parent="681" name="email">
+    <column id="4677" parent="681" name="email">
       <DasType>varchar(255)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>5</Position>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </column>
-    <column id="4670" parent="681" name="birthday">
+    <column id="4678" parent="681" name="birthday">
       <DasType>date|0s</DasType>
       <Position>6</Position>
     </column>
-    <column id="4671" parent="681" name="phone_num">
+    <column id="4679" parent="681" name="phone_num">
       <DasType>varchar(15)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>7</Position>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </column>
-    <column id="4672" parent="681" name="register_date">
+    <column id="4680" parent="681" name="register_date">
       <DasType>date|0s</DasType>
       <DefaultExpression>(curdate())</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>8</Position>
     </column>
-    <column id="4673" parent="681" name="register_deadline">
+    <column id="4681" parent="681" name="register_deadline">
       <DasType>datetime|0s</DasType>
       <Position>9</Position>
     </column>
-    <column id="4674" parent="681" name="room_id">
+    <column id="4682" parent="681" name="room_id">
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>10</Position>
     </column>
-    <column id="4675" parent="681" name="receptionist_id">
+    <column id="4683" parent="681" name="receptionist_id">
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>11</Position>
     </column>
-    <column id="4676" parent="681" name="status">
+    <column id="4684" parent="681" name="status">
       <DasType>enum(&apos;ARCHIVE&apos;, &apos;ACTIVE&apos;, &apos;BAN&apos;)|0e</DasType>
       <DefaultExpression>&apos;ACTIVE&apos;</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>12</Position>
     </column>
-    <foreign-key id="4677" parent="681" name="student_dormitory_room_id_fk">
+    <foreign-key id="4685" parent="681" name="student_dormitory_room_id_fk">
       <ColNames>room_id</ColNames>
       <RefColNames>room_id</RefColNames>
       <RefTableName>dormitory</RefTableName>
     </foreign-key>
-    <foreign-key id="4678" parent="681" name="student_receptionist_id_fk">
+    <foreign-key id="4686" parent="681" name="student_receptionist_id_fk">
       <ColNames>receptionist_id</ColNames>
       <RefColNames>id</RefColNames>
       <RefTableName>receptionist</RefTableName>
     </foreign-key>
-    <index id="4679" parent="681" name="PRIMARY">
+    <index id="4687" parent="681" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="4680" parent="681" name="student_dormitory_room_id_fk">
+    <index id="4688" parent="681" name="student_dormitory_room_id_fk">
       <ColNames>room_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="4681" parent="681" name="student_receptionist_id_fk">
+    <index id="4689" parent="681" name="student_receptionist_id_fk">
       <ColNames>receptionist_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="4682" parent="681" name="PRIMARY">
+    <key id="4690" parent="681" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="4683" parent="682" name="url">
+    <column id="4691" parent="682" name="url">
       <DasType>varchar(120)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="4684" parent="682" name="role">
-      <DasType>enum(&apos;ADMIN&apos;, &apos;WAIT_PROCESS&apos;, &apos;DIRECTOR&apos;)|0e</DasType>
+    <column id="4692" parent="682" name="role">
+      <DasType>enum(&apos;ADMIN&apos;, &apos;REGISTRANTS&apos;, &apos;DIRECTOR&apos;)|0e</DasType>
       <DefaultExpression>&apos;DIRECTOR&apos;</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>2</Position>

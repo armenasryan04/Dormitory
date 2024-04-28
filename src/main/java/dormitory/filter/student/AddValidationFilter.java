@@ -60,18 +60,19 @@ public class AddValidationFilter implements Filter {
                         .verifyCode(String.valueOf(randomNumber))
                         .build();
                 EmailSender emailSender = new EmailSender();
-                if (Validation.studentValidation(student, roomManager, studentManager) == null && emailSender.sendMail(student.getEmail(), randomNumber)) {
+                String checkAnswer = Validation.checkValidation(student, roomManager, studentManager);
+                if (checkAnswer == null && emailSender.sendMail(student.getEmail(), randomNumber)) {
                     req.getSession().setAttribute("student", student);
                     filterChain.doFilter(req, resp);
                 } else {
-                    req.setAttribute("errMsg", Validation.studentValidation(student, roomManager, studentManager));
-                    req.getSession().setAttribute("student", Validation.removeStudentInvalidData(student, studentManager));
+                    req.setAttribute("errMsg", checkAnswer);
+                    req.getSession().setAttribute("student", Validation.removeInvalidData(student, studentManager));
                     req.getRequestDispatcher("WEB-INF/student/dataFilling.jsp").forward(req, resp);
                 }
             } catch (ParseException e) {
                 req.getSession().invalidate();
                 req.setAttribute("errMsg", "something suspicious was noticed :-(");
-                req.getRequestDispatcher("WEB-INF/login.jsp").forward(req, resp);
+                req.getRequestDispatcher("WEB-INF/receptionist/global/login.jsp").forward(req, resp);
             }
         } catch (NullPointerException e) {
             resp.sendRedirect("/control");

@@ -15,6 +15,7 @@ public class LoginServlet extends HttpServlet {
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         PermissionManager permissionManager = new PermissionManager();
         req.setAttribute("canReg",permissionManager.getPermission());
-        req.getRequestDispatcher("WEB-INF/login.jsp").forward(req,resp);
+        req.getSession().removeAttribute("receptionist");
+        req.getRequestDispatcher("WEB-INF/receptionist/global/login.jsp").forward(req,resp);
     }
 }

@@ -2,6 +2,7 @@ package dormitory.manager;
 
 
 import dormitory.db.provider.DBConnectionProvider;
+import dormitory.models.Gender;
 import dormitory.models.Receptionist;
 import dormitory.models.ReceptionistRole;
 
@@ -42,13 +43,16 @@ public class ReceptionistManager {
     }
 
     public Receptionist addToDb(Receptionist receptionist) {
-        if (getByEmail(receptionist.getEmail()).equals(null)) {
-            try (PreparedStatement statement = connection.prepareStatement("INSERT INTO receptionist(name,surname,email,password,role) VALUES(?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS)) {
+        if (getByEmail(receptionist.getEmail()).getId() == 0) {
+            try (PreparedStatement statement = connection.prepareStatement("INSERT INTO receptionist(name,surname,birthday,phone_num,email,password,about_experience,gender) VALUES(?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS)) {
                 statement.setString(1, receptionist.getName());
                 statement.setString(2, receptionist.getSurname());
-                statement.setString(3, receptionist.getEmail());
-                statement.setString(4, receptionist.getPassword());
-                statement.setString(5, receptionist.getReceptionistRole().name());
+                statement.setDate(3, (Date) receptionist.getBirthday());
+                statement.setString(4,receptionist.getPhone());
+                statement.setString(5, receptionist.getEmail());
+                statement.setString(6, receptionist.getPassword());
+                statement.setString(7,receptionist.getExperienceInformation());
+                statement.setString(8, receptionist.getGender().name());
                 statement.executeUpdate();
                 ResultSet resultSet = statement.getGeneratedKeys();
                 if (resultSet.next()) {
@@ -123,9 +127,16 @@ public class ReceptionistManager {
                 .id(resultSet.getInt("id"))
                 .name(resultSet.getString("name"))
                 .surname(resultSet.getString("surname"))
+                .birthday(resultSet.getDate("birthday"))
+                .phone(resultSet.getString("phone_num"))
                 .email(resultSet.getString("email"))
                 .password(resultSet.getString("password"))
+                .employmentDate(resultSet.getDate("employment_date"))
+                .resignationDate(resultSet.getDate("resignation_date"))
+                .experienceInformation(resultSet.getString("about_experience"))
                 .receptionistRole(ReceptionistRole.valueOf(resultSet.getString("role")))
+                .gender(Gender.valueOf(resultSet.getString("gender")))
+                .controlCode(resultSet.getString("control_code"))
                 .build();
         return receptionist;
     }

@@ -6,6 +6,7 @@
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/admin/changeNameSurname.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/admin" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/admin/refactor.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/admin" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/director/adderInfo.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/director" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/director/controlOverStaffs.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/director" />
       </map>
     </option>
   </component>

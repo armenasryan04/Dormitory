@@ -30,7 +30,7 @@ public class LoginConductorServlet extends HttpServlet {
                     session.setAttribute("receptionist", receptionist);
                     resp.sendRedirect("/directorControl");
                     break;
-                case WAIT_PROCESS:
+                case REGISTRANT:
                     req.getRequestDispatcher("WEB-INF/inWaiting.jsp").forward(req, resp);
                     break;
             }
@@ -51,15 +51,16 @@ public class LoginConductorServlet extends HttpServlet {
                             session.setAttribute("receptionist", receptionist);
                             resp.sendRedirect("/directorControl");
                             break;
-                        case WAIT_PROCESS:
+                        case REGISTRANT:
                             req.getRequestDispatcher("WEB-INF/inWaiting.jsp").forward(req, resp);
                             break;
                     }
                 } else {
                     req.setAttribute("errMsg", "Email or Pass not variable");
-                    req.getRequestDispatcher("WEB-INF/login.jsp").forward(req, resp);
+                    req.getRequestDispatcher("WEB-INF/receptionist/global/login.jsp").forward(req, resp);
                 }
             } catch (NullPointerException e) {
+                e.printStackTrace();
                 resp.sendRedirect("/");
             }
 
