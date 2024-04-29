@@ -71,8 +71,8 @@
         <p style="color: #6e0025; padding:0  115px;">not required!</p>
 
         <div class="field">
-            <input type="text" name="bio">
-            <label>ABOUT YOU</label>
+            <input type="text" name="experienceInformation">
+            <label>Your Experience</label>
         </div>
         <div class="field">
             <br/> <input type="submit" value="Sign Up">

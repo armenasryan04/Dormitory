@@ -2,14 +2,52 @@ package dormitory.manager;
 
 
 import dormitory.db.provider.DBConnectionProvider;
-import dormitory.models.Gender;
-import dormitory.models.Receptionist;
-import dormitory.models.ReceptionistRole;
+import dormitory.models.*;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ReceptionistManager {
     private Connection connection = DBConnectionProvider.getInstance().getConnection();
+    public List<Receptionist> getAllAdmins() {
+        List<Receptionist> receptionists = new ArrayList<>();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * from receptionist where role = 'ADMIN' order by name asc ");
+            while (resultSet.next()) {
+                receptionists.add(getFromResultSet(resultSet));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return receptionists;
+    }   public List<Receptionist> getAllInactives() {
+        List<Receptionist> receptionists = new ArrayList<>();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * from receptionist where role = 'INACTIVE' order by name asc ");
+            while (resultSet.next()) {
+                receptionists.add(getFromResultSet(resultSet));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return receptionists;
+    }
+ public List<Receptionist> getAllRegistrants() {
+        List<Receptionist> receptionists = new ArrayList<>();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * from receptionist where role = 'REGISTRANT' order by name asc ");
+            while (resultSet.next()) {
+                receptionists.add(getFromResultSet(resultSet));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return receptionists;
+    }
 
     public void changeNameSurnameById(int id, String name, String surname) {
         String sql = "update receptionist set name = ? , surname = ? where id = " + id;
@@ -66,6 +104,57 @@ public class ReceptionistManager {
         return null;
     }
 
+    public List<Receptionist> getByNameOrSurnameInactive(String search) {
+        List<Receptionist> receptionists = new ArrayList<>();
+        String sql = "select * from (SELECT * FROM receptionist WHERE  (UPPER(name) LIKE CONCAT('%', UPPER(?), '%') OR UPPER(surname) LIKE CONCAT('%', UPPER(?), '%'))) as alias_name";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, search);
+            statement.setString(2, search);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                if (getFromResultSet(resultSet).getReceptionistRole().equals(ReceptionistRole.INACTIVE)) {
+                    receptionists.add(getFromResultSet(resultSet));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return receptionists;
+    }    public List<Receptionist> getByNameOrSurnameRegistrants(String search) {
+        List<Receptionist> receptionists = new ArrayList<>();
+        String sql = "select * from (SELECT * FROM receptionist WHERE  (UPPER(name) LIKE CONCAT('%', UPPER(?), '%') OR UPPER(surname) LIKE CONCAT('%', UPPER(?), '%'))) as alias_name";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, search);
+            statement.setString(2, search);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                if (getFromResultSet(resultSet).getReceptionistRole().equals(ReceptionistRole.REGISTRANT)) {
+                    receptionists.add(getFromResultSet(resultSet));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return receptionists;
+    }
+    public List<Receptionist> getByNameOrSurnameAdmin(String search) {
+        List<Receptionist> receptionists = new ArrayList<>();
+        String sql = "select * from (SELECT * FROM receptionist WHERE  (UPPER(name) LIKE CONCAT('%', UPPER(?), '%') OR UPPER(surname) LIKE CONCAT('%', UPPER(?), '%'))) as alias_name";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, search);
+            statement.setString(2, search);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                if (getFromResultSet(resultSet).getReceptionistRole().equals(ReceptionistRole.ADMIN)) {
+                    receptionists.add(getFromResultSet(resultSet));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return receptionists;
+    }
+
     public Receptionist getById(int id) {
         Receptionist receptionist = new Receptionist();
         String sql = "select * from receptionist where id = " + id;
@@ -75,7 +164,7 @@ public class ReceptionistManager {
                 receptionist = getFromResultSet(resultSet);
             }
         } catch (SQLException e) {
-
+e.printStackTrace();
         }
         return receptionist;
     }
@@ -111,16 +200,6 @@ public class ReceptionistManager {
         return receptionist;
     }
 
-    public void deleteByEmailAndPassword(String email, String password) {
-        String sql = "delete from  receptionist where email = ? and password = ?";
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setString(1, email);
-            preparedStatement.setString(2, password);
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
 
     private Receptionist getFromResultSet(ResultSet resultSet) throws SQLException {
         Receptionist receptionist = Receptionist.builder()

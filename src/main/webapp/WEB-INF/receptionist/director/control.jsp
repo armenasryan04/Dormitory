@@ -43,8 +43,8 @@
                 <th>PHONE</th>
                 <th>E-MAIL</th>
                 <th>BIRTHDAY</th>
-                <th style="padding-left: 10px">NUMBER OF PUNISHMENTS</th>
-                <th>MORE INFO</th>
+                <th>NUMBER OF PUNISHMENTS</th>
+                <th>MORE INFORMATION</th>
             </tr>
             </thead>
             <tbody>

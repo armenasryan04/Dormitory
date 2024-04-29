@@ -11,37 +11,25 @@
   <component name="ChangeListManager">
     <list default="true" id="c610ceff-b1f4-43b1-969f-8a8498bcd15f" name="Changes" comment="ok">
       <change afterPath="$PROJECT_DIR$/config.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dormitory/filter/receptionist/CreatePasswordValidationFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dormitory/filter/receptionist/RegistrantDataValidationFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dormitory/models/Gender.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dormitory/models/RegistrationPermission.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dormitory/servlets/receptionist/AddServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dormitory/servlets/receptionist/CreatePasswordServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dormitory/servlets/receptionist/RegistrantEmailVerifyServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dormitory/servlets/receptionist/SignUpServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/registrant/createPassword.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/registrant/verifyEmail.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/82a919a0-798c-4f2b-9027-e1cfc0fabeec.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/82a919a0-798c-4f2b-9027-e1cfc0fabeec.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dormitory/servlets/receptionist/InactiveReceptionistListServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dormitory/servlets/receptionist/ReceptionistExperienceServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dormitory/servlets/receptionist/ReceptionistListServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dormitory/servlets/receptionist/RegistrantsListServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/director/inactiveReceptionistsList.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/director/receptionistExperience.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/director/receptionistsList.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/director/registrantsList.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dormitory/filter/receptionist/AdminFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dormitory/filter/receptionist/AdminFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dormitory/filter/receptionist/EmailVerifyFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dormitory/filter/receptionist/EmailVerifyFilter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dormitory/filter/receptionist/LoginFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dormitory/filter/receptionist/LoginFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dormitory/filter/student/AddValidationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dormitory/filter/student/AddValidationFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dormitory/manager/PermissionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dormitory/manager/PermissionManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dormitory/filter/receptionist/RegistrantDataValidationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dormitory/filter/receptionist/RegistrantDataValidationFilter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dormitory/manager/ReceptionistManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dormitory/manager/ReceptionistManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dormitory/models/Receptionist.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dormitory/models/Receptionist.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dormitory/models/ReceptionistRole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dormitory/models/ReceptionistRole.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dormitory/servlets/receptionist/AdminControlServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dormitory/servlets/receptionist/AdminControlServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dormitory/servlets/receptionist/AllowRegistrationServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dormitory/servlets/receptionist/AllowRegistrationServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dormitory/servlets/receptionist/DirectorControlServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dormitory/servlets/receptionist/DirectorControlServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dormitory/servlets/receptionist/LoginConductorServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dormitory/servlets/receptionist/LoginConductorServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dormitory/servlets/receptionist/LoginServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dormitory/servlets/receptionist/LoginServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dormitory/validation/Validation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dormitory/validation/Validation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/global/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/director/control.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/director/control.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/director/controlOverStaffs.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/director/controlOverStaffs.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/global/verifyEmail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/global/verifyEmail.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/registration.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/registrant/signUp.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/registrant/signUp.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/registrant/signUp.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,7 +103,7 @@
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/User/IdeaProjects/dormitory/src/main/webapp/WEB-INF/receptionist/registrant",
+    "last_opened_file_path": "C:/Users/User/IdeaProjects/dormitory/src/main/webapp/WEB-INF/receptionist/director",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -135,8 +123,8 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\User\IdeaProjects\dormitory\src\main\webapp\WEB-INF\receptionist\registrant" />
       <recent name="C:\Users\User\IdeaProjects\dormitory\src\main\webapp\WEB-INF\receptionist\director" />
+      <recent name="C:\Users\User\IdeaProjects\dormitory\src\main\webapp\WEB-INF\receptionist\registrant" />
       <recent name="C:\Users\User\IdeaProjects\dormitory\src\main\webapp" />
       <recent name="C:\Users\User\IdeaProjects\dormitory\src\main\webapp\WEB-INF\student" />
     </key>
@@ -289,7 +277,8 @@
       <workItem from="1714155201792" duration="616000" />
       <workItem from="1714225887428" duration="10144000" />
       <workItem from="1714242160935" duration="5605000" />
-      <workItem from="1714313063368" duration="19543000" />
+      <workItem from="1714313063368" duration="19785000" />
+      <workItem from="1714381033330" duration="27648000" />
     </task>
     <task id="LOCAL-00001" summary="ok">
       <option name="closed" value="true" />
@@ -379,7 +368,15 @@
       <option name="project" value="LOCAL" />
       <updated>1713724409444</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="ok">
+      <option name="closed" value="true" />
+      <created>1714333099103</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1714333099103</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -401,16 +398,6 @@
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/dormitory/servlets/receptionist/LoginConductorServlet.java</url>
-          <line>23</line>
-          <option name="timeStamp" value="16" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/dormitory/servlets/receptionist/LoginConductorServlet.java</url>
-          <line>38</line>
-          <option name="timeStamp" value="18" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

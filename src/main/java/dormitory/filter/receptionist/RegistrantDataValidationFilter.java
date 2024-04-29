@@ -45,7 +45,8 @@ public class RegistrantDataValidationFilter implements Filter {
                             .surname(req.getParameter("surname").trim())
                             .email(req.getParameter("email").trim())
                             .phone(req.getParameter("phone").trim())
-                            .gender(Gender.valueOf(req.getParameter("gender").trim()))
+                            .experienceInformation(req.getParameter("experienceInformation").trim())
+                            .gender(Gender.valueOf(gender))
                             .birthday(sqlBirthday)
                             .build();
                     String checkAnswer = Validation.checkValidation(receptionist, receptionistManager);
@@ -65,7 +66,6 @@ public class RegistrantDataValidationFilter implements Filter {
 
                 }
             } catch (NullPointerException e) {
-                e.printStackTrace();
                 resp.sendRedirect("/login");
             }
         }else {

@@ -101,6 +101,10 @@ public class Validation {
             validation = "Sorry but we need to employees aged 18 to 45 years old";
             return validation;
         }
+        if (receptionist.getExperienceInformation().length() > 285){
+            validation = "your experience is incorrect";
+            return validation;
+        }
         return null;
     }
     public static Student removeInvalidData(Student student, StudentManager studentManager) {
