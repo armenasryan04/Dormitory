@@ -11,25 +11,14 @@
   <component name="ChangeListManager">
     <list default="true" id="c610ceff-b1f4-43b1-969f-8a8498bcd15f" name="Changes" comment="ok">
       <change afterPath="$PROJECT_DIR$/config.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dormitory/servlets/receptionist/InactiveReceptionistListServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dormitory/servlets/receptionist/ReceptionistExperienceServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dormitory/servlets/receptionist/ReceptionistListServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dormitory/servlets/receptionist/RegistrantsListServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/director/inactiveReceptionistsList.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/director/receptionistExperience.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/director/receptionistsList.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/director/registrantsList.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dormitory/servlets/receptionist/AdditionalInformationServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/director/additionalInformation.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/82a919a0-798c-4f2b-9027-e1cfc0fabeec.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/82a919a0-798c-4f2b-9027-e1cfc0fabeec.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dormitory/filter/receptionist/LoginFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dormitory/filter/receptionist/LoginFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dormitory/filter/receptionist/RegistrantDataValidationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dormitory/filter/receptionist/RegistrantDataValidationFilter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dormitory/manager/ReceptionistManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dormitory/manager/ReceptionistManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dormitory/servlets/receptionist/AdminControlServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dormitory/servlets/receptionist/AdminControlServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dormitory/servlets/receptionist/DirectorControlServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dormitory/servlets/receptionist/DirectorControlServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dormitory/validation/Validation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dormitory/validation/Validation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/director/control.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/director/control.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/director/controlOverStaffs.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/director/controlOverStaffs.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/registrant/signUp.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/registrant/signUp.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dormitory/models/Receptionist.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dormitory/models/Receptionist.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/director/receptionistsList.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/director/receptionistsList.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,38 +78,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Application.AddURLManager.executor": "Run",
-    "Notification.DisplayName-DoNotAsk-Compiler": "Build finished",
-    "Notification.DoNotAsk-Compiler": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Tomcat Server.Tomcat 9.0.85.executor": "Run",
-    "deletionFromPopupRequiresConfirmation": "false",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/User/IdeaProjects/dormitory/src/main/webapp/WEB-INF/receptionist/director",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "MavenSettings",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Application.AddURLManager.executor&quot;: &quot;Run&quot;,
+    &quot;Notification.DisplayName-DoNotAsk-Compiler&quot;: &quot;Build finished&quot;,
+    &quot;Notification.DoNotAsk-Compiler&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Tomcat Server.Tomcat 9.0.85.executor&quot;: &quot;Run&quot;,
+    &quot;deletionFromPopupRequiresConfirmation&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/User/IdeaProjects/dormitory/src/main/webapp/WEB-INF/receptionist/director&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql_aurora_aws"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql_aurora_aws&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\User\IdeaProjects\dormitory\src\main\webapp\WEB-INF\receptionist\director" />
@@ -279,6 +268,26 @@
       <workItem from="1714242160935" duration="5605000" />
       <workItem from="1714313063368" duration="19785000" />
       <workItem from="1714381033330" duration="27648000" />
+      <workItem from="1714413700898" duration="121000" />
+      <workItem from="1714413831600" duration="5000" />
+      <workItem from="1714487852085" duration="163000" />
+      <workItem from="1714556313494" duration="92000" />
+      <workItem from="1714557433347" duration="72000" />
+      <workItem from="1714557756215" duration="177000" />
+      <workItem from="1714557939555" duration="54000" />
+      <workItem from="1714758049028" duration="154000" />
+      <workItem from="1714758911411" duration="43000" />
+      <workItem from="1714809654395" duration="9705000" />
+      <workItem from="1714830611530" duration="621000" />
+      <workItem from="1714833595169" duration="1977000" />
+      <workItem from="1714841485369" duration="1302000" />
+      <workItem from="1714846771471" duration="480000" />
+      <workItem from="1714921915948" duration="2488000" />
+      <workItem from="1714990754736" duration="2000" />
+      <workItem from="1715001740600" duration="198000" />
+      <workItem from="1715002079859" duration="1218000" />
+      <workItem from="1715017339708" duration="7902000" />
+      <workItem from="1715173146820" duration="4043000" />
     </task>
     <task id="LOCAL-00001" summary="ok">
       <option name="closed" value="true" />
@@ -376,7 +385,23 @@
       <option name="project" value="LOCAL" />
       <updated>1714333099103</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="ok">
+      <option name="closed" value="true" />
+      <created>1714413814683</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1714413814683</updated>
+    </task>
+    <task id="LOCAL-00014" summary="ok">
+      <option name="closed" value="true" />
+      <created>1714847254546</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1714847254546</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

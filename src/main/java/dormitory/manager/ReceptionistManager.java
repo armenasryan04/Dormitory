@@ -120,7 +120,9 @@ public class ReceptionistManager {
             e.printStackTrace();
         }
         return receptionists;
-    }    public List<Receptionist> getByNameOrSurnameRegistrants(String search) {
+    }
+
+    public List<Receptionist> getByNameOrSurnameRegistrants(String search) {
         List<Receptionist> receptionists = new ArrayList<>();
         String sql = "select * from (SELECT * FROM receptionist WHERE  (UPPER(name) LIKE CONCAT('%', UPPER(?), '%') OR UPPER(surname) LIKE CONCAT('%', UPPER(?), '%'))) as alias_name";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -137,6 +139,7 @@ public class ReceptionistManager {
         }
         return receptionists;
     }
+
     public List<Receptionist> getByNameOrSurnameAdmin(String search) {
         List<Receptionist> receptionists = new ArrayList<>();
         String sql = "select * from (SELECT * FROM receptionist WHERE  (UPPER(name) LIKE CONCAT('%', UPPER(?), '%') OR UPPER(surname) LIKE CONCAT('%', UPPER(?), '%'))) as alias_name";

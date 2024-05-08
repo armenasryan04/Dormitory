@@ -70,7 +70,7 @@
             </td>
             <td><%= receptionist.getGender()%>
             </td>
-            <td><a class="gradient-button" href="/additionalInformation?<%=receptionist.getId()%>"><i class='bx bxs-info-circle' style="font-size: 20px"></i></a></td>
+            <td><a class="gradient-button" href="/additionalInformation?id=<%=receptionist.getId()%>"><i class='bx bxs-info-circle' style="font-size: 20px"></i></a></td>
         </tr>
         <% } %>
         <% } %>
