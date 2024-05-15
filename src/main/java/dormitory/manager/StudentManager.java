@@ -44,6 +44,19 @@ public class StudentManager {
         }
         return students;
     }
+    public List<Student> getAllByReceptionistId(int receptionistId) {
+        List<Student> students = new ArrayList<>();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * from student where receptionist_id = " + receptionistId + " order by name asc ");
+            while (resultSet.next()) {
+                students.add(getFromResultSet(resultSet));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return students;
+    }
 
     public List<Student> getByNameOrSurnameActive(String search) {
         List<Student> students = new ArrayList<>();
@@ -125,20 +138,6 @@ public class StudentManager {
             e.printStackTrace();
         }
         return student;
-    }
-
-    public int getStudentsCount() {
-        int count = 0;
-        try {
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT COUNT(*) FROM student");
-            if (resultSet.next()) {
-                count = resultSet.getInt(1);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return count;
     }
 
     public int getActiveStudentsNumber() {

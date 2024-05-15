@@ -15,6 +15,7 @@ public class ReceptionistExperienceServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ReceptionistManager receptionistManager = new ReceptionistManager();
+    try {
         if (req.getParameter("id") != null && receptionistManager.getById(Integer.parseInt(req.getParameter("id"))).getId() != 0 && receptionistManager.getById(Integer.parseInt(req.getParameter("id"))).getReceptionistRole().equals(ReceptionistRole.REGISTRANT)) {
             int id = Integer.parseInt(req.getParameter("id"));
             String aboutExperience = receptionistManager.getById(id).getExperienceInformation();
@@ -26,5 +27,8 @@ public class ReceptionistExperienceServlet extends HttpServlet {
         }else {
             resp.sendRedirect("/listOfRegistrants");
         }
+    }catch (NumberFormatException e ){
+        resp.sendRedirect("/listOfRegistrants");
+    }
     }
 }

@@ -1,8 +1,5 @@
-
 <%@ page import="java.util.Date" %>
-<%@ page import="dormitory.models.Room" %>
-<%@ page import="dormitory.models.Student" %>
-<%@ page import="dormitory.models.Receptionist" %><%--
+<%@ page import="dormitory.models.Room" %><%--
   Created by IntelliJ IDEA.
   User: User
   Date: 24.02.2024
@@ -13,32 +10,29 @@
 <html>
 <head>
     <title>Room Info</title>
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <%String controlCode = request.getAttribute("controlCode").toString();%>
 </head>
-<%Receptionist receptionist = (Receptionist) request.getAttribute("receptionist");%>
 <body>
 
 <div class="wave"></div>
 <div class="wave"></div>
 <div class="wave"></div>
-<a href="#" class="gradient-button-back" id="backLink">BACK</a>
+<a href="#" class="gradient-button" id="backLink">BACK</a>
 <div class="container">
-    <h1>Information</h1>
     <br/>
     <table class="table">
         <thead>
         <tr>
-            <th>STUDENTS ADD HISTORY</th>
             <th>CONTROL CODE</th>
         </tr>
         </thead>
         <tbody>
+        <% if (controlCode != null) {%>
         <tr>
-            <td><a class="gradient-button" href="/addHistory?id=<%=receptionist.getId()%>"><i class='bx bx-history' style="font-size: 25px"></i></a>
-            </td>
-            <td> <a class="gradient-button" href="/controlCode?id=<%=receptionist.getId()%>"><i class='bx bxs-key'  style="font-size: 25px"></i></a>
+            <td><%= controlCode %>
             </td>
         </tr>
+        <% } %>
         </tbody>
     </table>
 </div>
@@ -46,13 +40,6 @@
 
 </body>
 <style type="text/css">
-    .container {
-        max-width: 100%;
-        background-color: #80caff;
-        padding: 25px 30px 0 25px;
-        border-radius: 5px;
-        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
-    }
 
     .table {
         max-width: 100%;
@@ -63,7 +50,6 @@
         border-bottom: 0px solid #fff;
         border-collapse: collapse;
         outline: 5px solid #ffd300;
-        align-items: center;
         font-size: 20px;
         background: #ffffff !important;
     }
@@ -80,6 +66,7 @@
     }
 
     .table td {
+        padding-left: 20px;
         border: 30px;
         font-size: 16px;
         text-align: center;
@@ -164,29 +151,8 @@
             background-position: 0% 0%;
         }
     }
-    .gradient-button {
-        top: 20px;
-        right: 20px;
-        text-decoration: none;
-        color: #4907bb;
-        display: inline-block;
-        padding: 10px 20px;
-        margin: 5px 15px;
-        border-radius: 10px;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        background-image: linear-gradient(to right, #428af6 0%, #fdd100 51%, rgb(80, 0, 241) 100%);
-        background-size: 200% auto;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.31);
-        transition: .5s;
-    }
 
-    .gradient-button:hover {
-        background-position: right center;
-        color: rgb(0, 0, 0);
-        box-shadow: 0 0 10px #f519f5;
-    }
-    .gradient-button-back {
+    .gradient-button {
         position: absolute;
         top: 10px;
         left: 20px;
@@ -204,7 +170,7 @@
         transition: all 0.5s ease;
     }
 
-    .gradient-button-back:hover {
+    .gradient-button:hover {
         background-position: right center;
         color: rgb(0, 0, 0);
         box-shadow: 0 0 10px #f519f5;

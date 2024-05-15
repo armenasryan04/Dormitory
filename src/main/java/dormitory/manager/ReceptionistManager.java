@@ -59,6 +59,16 @@ public class ReceptionistManager {
             e.printStackTrace();
         }
     }
+    public void ActivateById(int id,Date employmentDate) {
+        String updateSql = "update receptionist set role = 'ADMIN' ,employment_date = ? where  id = " + id;
+        try (PreparedStatement updateStatement = connection.prepareStatement(updateSql)) {
+            updateStatement.setDate(1, employmentDate);
+            updateStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public void changeEmailById(int id, String email) {
         String sql = "update receptionist set email = ? where id = " + id;

@@ -23,6 +23,10 @@
 <div class="forming">
     <div class="title">Receptionists</div>
     <div class="container">
+        <div class="box">
+            <a class="gradient-button-remove" href="#" id='remove'>Remove list</a>
+        </div>
+
         <form id="searchForm" action="/listOfRegistrants" method="get">
             <div class="search-box">
                 <div class="input-search-background">
@@ -34,8 +38,24 @@
             </div>
         </form>
 
-
+        <% if (request.getAttribute("doneMsg") != null) { %>
+        <div id="doneContainer" class="done-container">
+            <div id="doneMessage"  class="done-message" >
+                <%=request.getAttribute("doneMsg")%>ok
+            </div>
+        </div>
+        <% } %>
         <br/>
+        <div id="requestContainer" class="request-container">
+            <div id="requestMessage" class="request-message">
+                realy? you need to remove the list?
+                <br/>
+                <a href="/removeRegistrants" style="color: red">YES</a> || <a id="cancel" href="#"
+                                                                              style="color: orange">NO</a>
+            </div>
+        </div>
+
+
         <table class="table">
             <thead>
             <tr>
@@ -53,6 +73,13 @@
             <tbody>
             <% if (receptionists != null && !receptionists.isEmpty()) { %>
             <% for (Receptionist receptionist : receptionists) { %>
+            <div id="requestContainerForActivate" class="request-container-for-activate">
+                <div id="requestMessageForActivate" class="request-message-for-activate">
+                    you need to activate this employee?
+                    <br/>
+                    <a href="/activateReceptionist?id=<%=receptionist.getId()%>" style="color: red">YES</a> || <a id="cancel1" href="#" style="color: orange">NO</a>
+                </div>
+            </div>
             <tr>
                 <td><%= receptionist.getId()%>
                 </td>
@@ -71,7 +98,7 @@
                 <td><a href="/receptionistExperience?id=<%=receptionist.getId()%> " class="gradient-button"><i
                         class='bx bxs-file' style="font-size: 20px"></i></a>
                 </td>
-                <td><a class="gradient-button" href="/giveAdminRole?id=<%=receptionist.getId()%>"><i
+                <td><a class="gradient-button" href="#" id="activate"><i
                         class='bx bxs-user-check' style="font-size: 20px"></i></a></td>
             </tr>
             <% } %>
@@ -91,6 +118,10 @@
         </ul>
     </div>
     <div class="blurry-background"></div>
+</div>
+
+
+</div>
 </div>
 </body>
 <style type="text/css">
@@ -376,6 +407,41 @@
         }
     }
 
+    .box {
+        left: 600px;
+        position: absolute;
+        max-width: 100%;
+        border: white;
+        padding-left: 550px;
+        padding-top: 13px;
+        z-index: 1;
+    }
+
+    .gradient-button-remove {
+
+        width: 63px;
+        height: 40px;
+        border: none;
+        border-radius: 40px;
+        font-size: 15px;
+        text-decoration: none;
+        color: #4907bb;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        padding: 10px 10px;
+        background-image: linear-gradient(to right, #428af6 0%, #fdd100 51%, rgb(80, 0, 241) 100%);
+        background-size: 200% auto;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.31);
+        transition: all 0.5s ease;
+        z-index: 2;
+    }
+
+    .gradient-button-remove:hover {
+        background-position: right center;
+        color: rgb(0, 0, 0);
+        box-shadow: 0 0 10px #f519f5;
+    }
+
     .gradient-button {
         top: 20px;
         right: 20px;
@@ -432,6 +498,7 @@
         -webkit-background-clip: text;
         background-clip: text;
         transition: all 0.5s ease-in-out;
+        z-index: 2;
     }
 
     .input-search-background {
@@ -443,6 +510,7 @@
         font-size: 18px;
         background: linear-gradient(135deg, #fdd100, #428af6);
         transition: all 0.5s ease-in-out;
+        z-index: 2;
 
     }
 
@@ -632,6 +700,87 @@
         }
     }
 
+    .request-container-for-activate {
+        visibility: hidden;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        padding: 500px;
+        padding-top: 30%;
+        backdrop-filter: blur(3px);
+        justify-content: center;
+        align-items: center;
+        z-index: 9;
+    }
+
+    .request-message-for-activate {
+        color: white;
+        background-color: rgb(3, 114, 110);
+        text-align: center;
+        padding: 20px 20px;
+        line-height: 1.5;
+        underline: none;
+        border-radius: 7px;
+    }
+
+    .request-container {
+        visibility: hidden;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        padding: 500px;
+        padding-top: 30%;
+        backdrop-filter: blur(3px);
+        justify-content: center;
+        align-items: center;
+        z-index: 9;
+    }
+
+    .request-message {
+        color: white;
+        background-color: rgb(3, 114, 110);
+        text-align: center;
+        padding: 20px 20px;
+        line-height: 1.5;
+        underline: none;
+        border-radius: 7px;
+    }
+    .done-container {
+    <%if(request.getAttribute("doneMsg")==null){%>
+        display: none;
+    <%}else {%>
+        display: flex;
+    <%}%>
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        backdrop-filter: blur(5px);
+        justify-content: center;
+        align-items: center;
+        z-index:200000000000;
+    }
+    .done-message {
+    <%if(request.getAttribute("doneMsg")==null){%>
+        display: none;
+    <%}else {%>
+        display: flex;
+        <%}%>
+        z-index: 200000000;
+        color: white;
+        height: auto;
+        width: auto;
+        background-color: rgb(3, 114, 110);
+        padding: 20px;
+        border-radius: 7px;
+
+    }
+
 </style>
 <script>
     document.getElementById('searchInput').addEventListener('keypress', function (event) {
@@ -653,6 +802,48 @@
                 $('.blurry-background').removeClass('blurry');
             }
         });
+    });
+    var removeElement = document.getElementById('remove');
+    var cancelElement = document.getElementById('cancel');
+    var cancelElement1 = document.getElementById('cancel1');
+    var activateElement = document.getElementById('activate')
+    function handleButtonClick() {
+        var errorContainer = document.getElementById('doneContainer');
+        var errorMessage = document.getElementById('doneMessage');
+        if (errorContainer && errorContainer.contains(event.target) && !errorMessage.contains(event.target) ) {
+            errorContainer.style.display = 'none';
+            errorMessage.style.display = 'none'
+            window.location.replace('/listOfRegistrants');
+        }
+    };
+    function handleEnterKeyPress() {
+        if (event.key === 'Enter' || event.keyCode === 32 ) {
+            var errorContainer = document.getElementById('doneContainer');
+            var errorMessage = document.getElementById('doneMessage');
+            errorContainer.style.display = 'none';
+            errorMessage.style.display = 'none'
+            window.location.replace('/listOfRegistrants');
+        }
+    }
+    document.body.addEventListener('keypress',handleEnterKeyPress)
+    document.body.addEventListener('click', handleButtonClick);
+
+    removeElement.addEventListener('click', function () {
+        document.getElementById('requestContainer').style.visibility = 'visible';
+        document.getElementById('requestMessage').style.visibility = 'visible';
+    });
+    cancelElement.addEventListener('click', function () {
+        document.getElementById('requestMessage').style.visibility = 'hidden';
+        document.getElementById('requestContainer').style.visibility = 'hidden';
+
+    })
+    cancelElement1.addEventListener('click',function (){
+        document.getElementById('requestMessageForActivate').style.visibility = 'hidden';
+        document.getElementById('requestContainerForActivate').style.visibility = 'hidden';
+    })
+    activateElement.addEventListener('click', function () {
+        document.getElementById('requestContainerForActivate').style.visibility = 'visible';
+        document.getElementById('requestMessageForActivate').style.visibility = 'visible';
     });
 
 </script>

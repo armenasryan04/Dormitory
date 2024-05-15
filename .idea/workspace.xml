@@ -10,15 +10,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c610ceff-b1f4-43b1-969f-8a8498bcd15f" name="Changes" comment="ok">
-      <change afterPath="$PROJECT_DIR$/config.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dormitory/servlets/receptionist/AdditionalInformationServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/director/additionalInformation.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dormitory/servlets/receptionist/ActivateReceptionistServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dormitory/servlets/receptionist/AddHistoryServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dormitory/servlets/receptionist/ReceptionistControlCodeServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/director/addHistory.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/director/controlCode.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/82a919a0-798c-4f2b-9027-e1cfc0fabeec.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/82a919a0-798c-4f2b-9027-e1cfc0fabeec.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dormitory/manager/ReceptionistManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dormitory/manager/ReceptionistManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dormitory/models/Receptionist.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dormitory/models/Receptionist.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/director/receptionistsList.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/director/receptionistsList.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dormitory/manager/StudentManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dormitory/manager/StudentManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dormitory/servlets/receptionist/ReceptionistExperienceServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dormitory/servlets/receptionist/ReceptionistExperienceServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/director/additionalInformation.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/director/additionalInformation.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/director/registrantsList.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/director/registrantsList.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,9 +41,17 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
+  &quot;history&quot;: [
+    {
+      &quot;state&quot;: &quot;MERGED&quot;,
+      &quot;author&quot;: &quot;armenasryan04&quot;
+    },
+    {
+      &quot;author&quot;: &quot;armenasryan04&quot;
+    }
+  ],
   &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;armenasryan04&quot;
+    &quot;author&quot;: &quot;armenasryan04&quot;
   }
 }</component>
   <component name="GithubPullRequestsUISettings">{
@@ -78,38 +89,39 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Application.AddURLManager.executor&quot;: &quot;Run&quot;,
-    &quot;Notification.DisplayName-DoNotAsk-Compiler&quot;: &quot;Build finished&quot;,
-    &quot;Notification.DoNotAsk-Compiler&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Tomcat Server.Tomcat 9.0.85.executor&quot;: &quot;Run&quot;,
-    &quot;deletionFromPopupRequiresConfirmation&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/User/IdeaProjects/dormitory/src/main/webapp/WEB-INF/receptionist/director&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Application.AddURLManager.executor": "Run",
+    "Notification.DisplayName-DoNotAsk-Compiler": "Build finished",
+    "Notification.DoNotAsk-Compiler": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Tomcat Server.Tomcat 9.0.85.executor": "Run",
+    "ToolWindowChatGPT.ShowToolbar": "false",
+    "deletionFromPopupRequiresConfirmation": "false",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/User/IdeaProjects/dormitory/src/main/webapp/WEB-INF/receptionist/director",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "configurable.group.editor",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql_aurora_aws&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql_aurora_aws"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\User\IdeaProjects\dormitory\src\main\webapp\WEB-INF\receptionist\director" />
@@ -288,6 +300,17 @@
       <workItem from="1715002079859" duration="1218000" />
       <workItem from="1715017339708" duration="7902000" />
       <workItem from="1715173146820" duration="4043000" />
+      <workItem from="1715177239892" duration="248000" />
+      <workItem from="1715184793264" duration="1441000" />
+      <workItem from="1715246228328" duration="1324000" />
+      <workItem from="1715250468414" duration="3397000" />
+      <workItem from="1715255785981" duration="2198000" />
+      <workItem from="1715258320992" duration="831000" />
+      <workItem from="1715259163113" duration="3877000" />
+      <workItem from="1715439973349" duration="1803000" />
+      <workItem from="1715679550304" duration="1333000" />
+      <workItem from="1715687200525" duration="20226000" />
+      <workItem from="1715768686698" duration="21419000" />
     </task>
     <task id="LOCAL-00001" summary="ok">
       <option name="closed" value="true" />
@@ -401,7 +424,23 @@
       <option name="project" value="LOCAL" />
       <updated>1714847254546</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="ok">
+      <option name="closed" value="true" />
+      <created>1715177363569</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1715177363569</updated>
+    </task>
+    <task id="LOCAL-00016" summary="ok">
+      <option name="closed" value="true" />
+      <created>1715250516945</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1715250516945</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -424,7 +463,16 @@
           </properties>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/dormitory/servlets/receptionist/ActivateReceptionistServlet.java</url>
+          <line>41</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
