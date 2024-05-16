@@ -66,6 +66,7 @@ public class RegistrantDataValidationFilter implements Filter {
 
                 }
             } catch (NullPointerException e) {
+                e.printStackTrace();
                 resp.sendRedirect("/login");
             }
         }else {

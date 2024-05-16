@@ -29,6 +29,7 @@ public class EmailVerifyFilter implements Filter {
                 }
             }
         } catch (NullPointerException e) {
+            e.printStackTrace();
             resp.sendRedirect("/login");
         }
 

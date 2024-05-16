@@ -91,7 +91,7 @@ public class ReceptionistManager {
     }
 
     public Receptionist addToDb(Receptionist receptionist) {
-        if (getByEmail(receptionist.getEmail()).getId() == 0) {
+
             try (PreparedStatement statement = connection.prepareStatement("INSERT INTO receptionist(name,surname,birthday,phone_num,email,password,about_experience,gender) VALUES(?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS)) {
                 statement.setString(1, receptionist.getName());
                 statement.setString(2, receptionist.getSurname());
@@ -110,8 +110,6 @@ public class ReceptionistManager {
                 e.printStackTrace();
             }
             return receptionist;
-        }
-        return null;
     }
 
     public List<Receptionist> getByNameOrSurnameInactive(String search) {

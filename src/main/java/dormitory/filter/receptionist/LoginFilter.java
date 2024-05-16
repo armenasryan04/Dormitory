@@ -1,6 +1,7 @@
 package dormitory.filter.receptionist;
 
 import dormitory.models.Receptionist;
+import dormitory.models.ReceptionistRole;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -17,7 +18,7 @@ public class LoginFilter implements Filter {
         HttpServletResponse resp = (HttpServletResponse) servletResponse;
         HttpSession session = req.getSession();
         Receptionist receptionist = (Receptionist) session.getAttribute("receptionist");
-        if (receptionist == null || receptionist.getReceptionistRole() == null){
+        if (receptionist == null || receptionist.getReceptionistRole() == null || receptionist.getReceptionistRole().equals(ReceptionistRole.INACTIVE)){
             filterChain.doFilter(req,resp);
         }else {
             resp.sendRedirect("/loginConductor");

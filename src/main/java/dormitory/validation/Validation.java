@@ -4,6 +4,7 @@ import dormitory.manager.ReceptionistManager;
 import dormitory.manager.RoomManager;
 import dormitory.manager.StudentManager;
 import dormitory.models.Receptionist;
+import dormitory.models.ReceptionistRole;
 import dormitory.models.Student;
 
 import javax.mail.internet.AddressException;
@@ -81,7 +82,7 @@ public class Validation {
             validation = "Incorrect Email try again!";
             return validation;
         }
-        if(receptionistManager.getByEmail(receptionist.getEmail()).getId() != 0) {
+        if(receptionistManager.getByEmail(receptionist.getEmail()).getId() != 0 && !receptionistManager.getByEmail(receptionist.getEmail()).getReceptionistRole().equals(ReceptionistRole.INACTIVE)) {
             validation = "this email is already in use! \n please choose another one!";
             return validation;
         }
