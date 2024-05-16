@@ -41,7 +41,7 @@
         <% if (request.getAttribute("doneMsg") != null) { %>
         <div id="doneContainer" class="done-container">
             <div id="doneMessage"  class="done-message" >
-                <%=request.getAttribute("doneMsg")%>ok
+                <%=request.getAttribute("doneMsg")%>
             </div>
         </div>
         <% } %>
@@ -412,13 +412,12 @@
         position: absolute;
         max-width: 100%;
         border: white;
-        padding-left: 550px;
+        padding-left: 500px;
         padding-top: 13px;
         z-index: 1;
     }
 
     .gradient-button-remove {
-
         width: 63px;
         height: 40px;
         border: none;

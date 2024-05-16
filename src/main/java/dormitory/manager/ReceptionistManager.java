@@ -232,4 +232,13 @@ e.printStackTrace();
                 .build();
         return receptionist;
     }
+
+    public void removeAllRegistrants() {
+        try {
+            Statement statement = connection.createStatement();
+            statement.executeUpdate("DELETE  from receptionist where role = 'REGISTRANT'");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
