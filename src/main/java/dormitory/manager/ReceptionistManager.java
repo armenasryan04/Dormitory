@@ -141,7 +141,7 @@ public class ReceptionistManager {
     }
 
     public void deActivateById(int id, Date resignationDay) {
-        String updateSql = "update receptionist set role = 'INACTIVE' ,resignoration_date = ? where  id = " + id;
+        String updateSql = "update receptionist set role = 'INACTIVE' ,resignation_date = ? where  id = " + id;
         try (PreparedStatement updateStatement = connection.prepareStatement(updateSql)) {
             updateStatement.setDate(1, resignationDay);
             updateStatement.executeUpdate();

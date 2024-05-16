@@ -48,21 +48,9 @@
             <br/>
             <input type="submit" value="confirm">
         </div>
-        <div class="content">
-            <div class="pass-link">
-                <a href="#" id="newCode">need a new code?</a>
-            </div>
-        </div>
+
     </form>
-        <% if (request.getAttribute("reqMsg") != null && (request.getAttribute("errMsg") == null)  ) { %>
-    <div id="requestContainer" class="request-container">
-        <div id="requestMessage"  class="request-message" >
-            <%=request.getAttribute("reqMsg")%>
-        <br/>
-        <a id="cancel" href="#" style="color: red">YES</a> || <a href="/refactorMenu" style="color: orange">NO</a>
-    </div>
-    </div>
-        <% } %>
+
     <% if (request.getAttribute("errMsg") != null) { %>
     <div id="errorContainer" class="error-container">
         <div id="errorMessage" class="error-message">
@@ -70,8 +58,19 @@
             </p>
         </div>
         <% } %>
+            <% if (request.getAttribute("reqMsg") != null && (request.getAttribute("errMsg") == null)  ) { %>
+        <div id="requestContainer" class="request-container">
+            <div id="requestMessage"  class="request-message" >
+                <%=request.getAttribute("reqMsg")%>
+                <br/>
+                <a id="cancel" href="#" style="color: red">YES</a> || <a href="/refactorMenu" style="color: orange">NO</a>
+            </div>
     </div>
+
 </body>
+
+</div>
+<% } %>
 <style type="text/css">
     .wave {
         background: rgb(255 255 255 / 25%);
@@ -546,11 +545,7 @@
             errorMessage.style.display = 'none'
             location.replace('/studentDataFilling')
         }
-    }    var newCode = document.getElementById("newCode");
-    newCode.addEventListener("click", function (event) {
-        event.preventDefault();
-        location.reload();
-    });
+    }
     var cancelElement = document.getElementById('cancel');
     <% if (request.getAttribute("errMsg") == null && request.getAttribute("reqMsg")!=null) { %>
     document.getElementById('requestContainer').style.visibility = 'visible';
