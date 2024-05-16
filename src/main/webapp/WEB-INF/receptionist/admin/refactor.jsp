@@ -108,7 +108,7 @@
             <li><a href="/changeNameSurname">Name and Surname</a></li>
             <li><a href="/changeEmailData">Email</a></li>
             <li><a href="/changePassword">Password</a></li>
-            <li><a href="/deactivation" style="color: brown">Deactivation</a></li>
+            <li><a href="/verifyControlCode" style="color: brown">Deactivation</a></li>
         </ul>
     </div>
     <div class="blurry-background"></div>

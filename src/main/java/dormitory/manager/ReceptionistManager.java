@@ -131,7 +131,24 @@ public class ReceptionistManager {
         }
         return receptionists;
     }
+    public void removeAllRegistrants() {
+        try {
+            Statement statement = connection.createStatement();
+            statement.executeUpdate("DELETE  from receptionist where role = 'REGISTRANT'");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
+    public void deActivateById(int id, Date resignationDay) {
+        String updateSql = "update receptionist set role = 'INACTIVE' ,resignoration_date = ? where  id = " + id;
+        try (PreparedStatement updateStatement = connection.prepareStatement(updateSql)) {
+            updateStatement.setDate(1, resignationDay);
+            updateStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
     public List<Receptionist> getByNameOrSurnameRegistrants(String search) {
         List<Receptionist> receptionists = new ArrayList<>();
         String sql = "select * from (SELECT * FROM receptionist WHERE  (UPPER(name) LIKE CONCAT('%', UPPER(?), '%') OR UPPER(surname) LIKE CONCAT('%', UPPER(?), '%'))) as alias_name";
@@ -233,12 +250,5 @@ e.printStackTrace();
         return receptionist;
     }
 
-    public void removeAllRegistrants() {
-        try {
-            Statement statement = connection.createStatement();
-            statement.executeUpdate("DELETE  from receptionist where role = 'REGISTRANT'");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+
 }
