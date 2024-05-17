@@ -16,13 +16,16 @@ public class DatesInfoServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
      if (req.getParameter("id") != null ) {
-         int id = Integer.parseInt(req.getParameter("id"));
-         Student student = studentManager.getById(id);
-         req.setAttribute("student", student);
-         req.getRequestDispatcher("WEB-INF/student/dateInfo.jsp").forward(req, resp);
+    try {
+        int id = Integer.parseInt(req.getParameter("id"));
+        Student student = studentManager.getById(id);
+        req.setAttribute("student", student);
+        req.getRequestDispatcher("WEB-INF/student/dateInfo.jsp").forward(req, resp);
+    }catch (NumberFormatException e) {
+        resp.sendRedirect("/directorControl");
+    }
      }else {
-         req.setAttribute("student", studentManager.getById(1));
-         req.getRequestDispatcher("WEB-INF/student/dateInfo.jsp").forward(req, resp);
+       resp.sendRedirect("/directorControl");
      }
 
     }

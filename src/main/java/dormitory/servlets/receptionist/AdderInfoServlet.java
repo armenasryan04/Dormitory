@@ -16,6 +16,7 @@ public class AdderInfoServlet extends HttpServlet {
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String id = req.getParameter("id");
         if (id != null && !id.isEmpty()) {
+        try {
             StudentManager studentManager = new StudentManager();
             Student student = studentManager.getById(Integer.parseInt(id));
             if (student.getReceptionist()!=null){
@@ -24,7 +25,9 @@ public class AdderInfoServlet extends HttpServlet {
             }else {
                 resp.sendRedirect("/directorControl");
             }
-
+        }catch (NumberFormatException e) {
+            resp.sendRedirect("/directorControl");
+        }
         } else {
             resp.sendRedirect("/directorControl");
         }
