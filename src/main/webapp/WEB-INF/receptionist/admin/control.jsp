@@ -48,9 +48,9 @@
                 <%if (request.getAttribute("inArchive") != null) { %>
                 <th>Activate</th>
                 <%
-                    }
-                    ;
-                %>
+                    }else {%>
+                <th>DEACTIVATE</th>
+                <%}%>
             </tr>
             </thead>
             <tbody>
@@ -60,7 +60,7 @@
                 <div id="requestMessageForDeactivate" class="request-message-for-deactivate">
                     you need to activate this employee?
                     <br/>
-                    <a href="/deactivateStudent?id=<%=student.getId()%>" style="color: red">YES</a> || <a id="cancel1" href="#" style="color: orange">NO</a>
+                    <a href="/deactivateStudent?id=<%=student.getId()%>" style="color: red">YES</a> || <a id="cancel" href="#" style="color: orange">NO</a>
                 </div>
             </div>
             <tr>
@@ -79,15 +79,17 @@
                <td>
                    <%=student.getBirthday()%>
                </td>
+
                 <td><a href="/dateInfo?id=<%=student.getId()%>" class="gradient-button"><i class='bx bxs-calendar'>DATE</i></a></td>
                 <td> <a class="gradient-button" href="/roomsInfo?id=<%=student.getId()%>"><i class='bx bxs-building-house'>ROOM</i></a>
                 </td>
+
                 <%if (request.getAttribute("inArchive") != null) {%>
                 <td style="padding-left: 2px "><a href="/freeRooms?id=<%=student.getId()%>" class="gradient-button"><i
                         style="font-size: 20px" class='bx bx-refresh'></i></a>
                 </td>
-                <%};%>
-
+                <%}else {%>
+                <td><a href="#" class="gradient-button" id = "deactivate"><i class='bx bxs-user-x'></i></a> </td><%}%>
             </tr>
             <% } %>
             <% } %>
@@ -145,7 +147,7 @@
     }
 
     .forming {
-        max-width: 1250px;
+        max-width: 1300px;
         width: auto;
         background: transparent;
         backdrop-filter: blur(10);
@@ -719,16 +721,15 @@
     }
     document.body.addEventListener('keypress',handleEnterKeyPressDone)
     document.body.addEventListener('click', handleButtonClickDone);
-
-    var cancelElement1 = document.getElementById('cancel1');
-    var activateElement = document.getElementById('deactivate')
-    cancelElement1.addEventListener('click',function (){
-        document.getElementById('requestMessageForActivate').style.visibility = 'hidden';
-        document.getElementById('requestContainerForActivate').style.visibility = 'hidden';
+    var cancelElement = document.getElementById('cancel');
+    var deactivateElement = document.getElementById('deactivate')
+    cancelElement.addEventListener('click',function (){
+        document.getElementById('requestMessageForDeactivate').style.visibility = 'hidden';
+        document.getElementById('requestContainerForDeactivate').style.visibility = 'hidden';
     })
-    activateElement.addEventListener('click', function () {
-        document.getElementById('requestContainerForActivate').style.visibility = 'visible';
-        document.getElementById('requestMessageForActivate').style.visibility = 'visible';
+    deactivateElement.addEventListener('click', function () {
+        document.getElementById('requestContainerForDeactivate').style.visibility = 'visible';
+        document.getElementById('requestMessageForDeactivate').style.visibility = 'visible';
     });
 </script>
 </html>

@@ -10,20 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c610ceff-b1f4-43b1-969f-8a8498bcd15f" name="Changes" comment="ok">
-      <change afterPath="$PROJECT_DIR$/src/main/java/dormitory/servlets/student/DeactivateStudentServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dormitory/manager/ReceptionistManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dormitory/manager/ReceptionistManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dormitory/manager/StudentManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dormitory/manager/StudentManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dormitory/servlets/receptionist/ActivateReceptionistServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dormitory/servlets/receptionist/ActivateReceptionistServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dormitory/servlets/receptionist/EmailChangeServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dormitory/servlets/receptionist/EmailChangeServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dormitory/servlets/receptionist/NameSurnameSaveServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dormitory/servlets/receptionist/NameSurnameSaveServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dormitory/servlets/receptionist/SavePassChangingServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dormitory/servlets/receptionist/SavePassChangingServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dormitory/servlets/student/AddServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dormitory/servlets/student/AddServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dormitory/servlets/student/MakeActiveServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dormitory/servlets/student/MakeActiveServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/admin/control.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/admin/control.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/director/control.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/director/control.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/director/inactiveReceptionistsList.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/director/inactiveReceptionistsList.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/director/registrantsList.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/director/registrantsList.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -319,7 +307,7 @@
       <workItem from="1715852823063" duration="2563000" />
       <workItem from="1715858263132" duration="14377000" />
       <workItem from="1715879306200" duration="6607000" />
-      <workItem from="1715942081085" duration="10303000" />
+      <workItem from="1715942081085" duration="13925000" />
     </task>
     <task id="LOCAL-00001" summary="ok">
       <option name="closed" value="true" />
@@ -497,7 +485,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715886123077</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="ok">
+      <option name="closed" value="true" />
+      <created>1715953970055</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1715953970055</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
