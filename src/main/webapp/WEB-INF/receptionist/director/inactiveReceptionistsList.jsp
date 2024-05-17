@@ -46,6 +46,7 @@
             <th>PHONE NUMBER</th>
             <th>EMAIL</th>
             <th>EMPLOYMENT DATE</th>
+            <th>RESIGNATION DATE</th>
             <th>GENDER</th>
             <th>ADDITIONAL INFORMATION</th>
         </tr>
@@ -68,9 +69,11 @@
             </td>
             <td><%= receptionist.getEmploymentDate()%>
             </td>
+            <td><%=receptionist.getResignationDate()%>
+            </td>
             <td><%= receptionist.getGender()%>
             </td>
-            <td><a class="gradient-button" href="/additionalInformation?<%=receptionist.getId()%>"><i class='bx bxs-info-circle' style="font-size: 20px"></i></a></td>
+            <td><a class="gradient-button" href="/additionalInformation?id=<%=receptionist.getId()%>"><i class='bx bxs-info-circle' style="font-size: 20px"></i></a></td>
         </tr>
         <% } %>
         <% } %>
@@ -93,7 +96,7 @@
 </body>
 <style type="text/css">
     .container {
-        max-width: 800px;
+        max-width: 900px;
         width: 100%;
         max-height: 90%;
         background: linear-gradient(1355deg, rgba(66, 246, 231, 0.87), #69d7ff);
@@ -207,7 +210,7 @@
         }
     }
     .container {
-        max-width: 1200px;
+        max-width: 1300px;
         width: auto;
         max-height: 80%;
         background: linear-gradient(135deg, #0cffe5, #36b7ef);
@@ -220,7 +223,7 @@
     }
 
     .forming {
-        max-width: 1200px;
+        max-width: 1300px;
         width: auto;
         background: transparent;
         backdrop-filter: blur(10);

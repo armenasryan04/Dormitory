@@ -56,6 +56,13 @@
             <tbody>
             <% if (students != null && !students.isEmpty()) { %>
             <% for (Student student : students) { %>
+            <div id="requestContainerForDeactivate" class="request-container-for-deactivate">
+                <div id="requestMessageForDeactivate" class="request-message-for-deactivate">
+                    you need to activate this employee?
+                    <br/>
+                    <a href="/deactivateStudent?id=<%=student.getId()%>" style="color: red">YES</a> || <a id="cancel1" href="#" style="color: orange">NO</a>
+                </div>
+            </div>
             <tr>
                 <td>
                     <%=student.getId()%>
@@ -87,14 +94,21 @@
             </tbody>
         </table>
     </div>
+    <% if (request.getAttribute("doneMsg") != null && request.getAttribute("errMsg")==null) { %>
+    <div id="doneContainer" class="done-container">
+        <div id="doneMessage"  class="done-message" >
+            <%=request.getAttribute("doneMsg")%>
+        </div>
+    </div>
+    <% } %>
     <% if (request.getAttribute("errMsg") != null) { %>
     <div id="errorContainer" class="error-container">
         <div id="errorMessage" class="error-message">
             <p><%= request.getAttribute("errMsg") %>
             </p>
         </div>
-        <% } %>
     </div>
+    <% } %>
 </div>
 <div class="wrapper">
 
@@ -583,8 +597,60 @@
         border-radius: 7px;
 
     }
+    .request-container-for-deactivate {
+        visibility: hidden;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        padding: 500px;
+        padding-top: 30%;
+        backdrop-filter: blur(3px);
+        justify-content: center;
+        align-items: center;
+        z-index: 9;
+    }
 
-
+    .request-message-for-deactivate {
+        color: white;
+        background-color: rgb(3, 114, 110);
+        text-align: center;
+        padding: 20px 20px;
+        line-height: 1.5;
+        underline: none;
+        border-radius: 7px;
+    }
+    .done-container {
+    <%if(request.getAttribute("doneMsg")==null && request.getAttribute("errMsg")!=null){%>
+        display: none;
+    <%}else {%>
+        display: flex;
+    <%}%>
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        backdrop-filter: blur(5px);
+        justify-content: center;
+        align-items: center;
+        z-index:200000000000;
+    }
+    .done-message {
+    <%if(request.getAttribute("doneMsg")==null && request.getAttribute("errMsg")!=null){%>
+        display: none;
+    <%}else {%>
+        display: flex;
+    <%}%>
+        z-index: 200000000;
+        color: white;
+        height: auto;
+        width: auto;
+        background-color: rgb(3, 114, 110);
+        padding: 20px;
+        border-radius: 7px;
+    }
 </style>
 <script>
     document.getElementById('searchInput').addEventListener('keypress', function (event) {
@@ -615,6 +681,7 @@
         if (errorContainer && errorContainer.contains(event.target) && !errorMessage.contains(event.target) ) {
             errorContainer.style.display = 'none';
             errorMessage.style.display = 'none'
+            window.location.replace('/control');
         }
     };
     function handleEnterKeyPress() {
@@ -623,6 +690,7 @@
             var errorMessage = document.getElementById('errorMessage');
             errorContainer.style.display = 'none';
             errorMessage.style.display = 'none'
+            window.location.replace('/control');
         }
     }
     <% if (request.getAttribute("errMsg") != null) { %>
@@ -631,6 +699,36 @@
     <% } %>
     document.body.addEventListener('keypress',handleEnterKeyPress)
     document.body.addEventListener('click', handleButtonClick);
+    function handleButtonClickDone() {
+        var doneContainer = document.getElementById('doneContainer');
+        var doneMessage = document.getElementById('doneMessage');
+        if (doneContainer && doneContainer.contains(event.target) && !doneMessage.contains(event.target) ) {
+            doneContainer.style.display = 'none';
+            doneMessage.style.display = 'none'
+            window.location.replace('/control');
+        }
+    };
+    function handleEnterKeyPressDone() {
+        if (event.key === 'Enter' || event.keyCode === 32 ) {
+            var doneContainer = document.getElementById('doneContainer');
+            var doneMessage = document.getElementById('doneMessage');
+            doneContainer.style.display = 'none';
+            doneMessage.style.display = 'none'
+            window.location.replace('/control');
+        }
+    }
+    document.body.addEventListener('keypress',handleEnterKeyPressDone)
+    document.body.addEventListener('click', handleButtonClickDone);
 
+    var cancelElement1 = document.getElementById('cancel1');
+    var activateElement = document.getElementById('deactivate')
+    cancelElement1.addEventListener('click',function (){
+        document.getElementById('requestMessageForActivate').style.visibility = 'hidden';
+        document.getElementById('requestContainerForActivate').style.visibility = 'hidden';
+    })
+    activateElement.addEventListener('click', function () {
+        document.getElementById('requestContainerForActivate').style.visibility = 'visible';
+        document.getElementById('requestMessageForActivate').style.visibility = 'visible';
+    });
 </script>
 </html>

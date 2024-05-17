@@ -2,6 +2,7 @@ package dormitory.servlets.receptionist;
 
 import dormitory.manager.ReceptionistManager;
 import dormitory.models.Receptionist;
+import dormitory.models.ReceptionistRole;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,6 +23,11 @@ public class EmailChangeServlet extends HttpServlet {
         session.removeAttribute("newEmail");
         session.removeAttribute("email");
         session.removeAttribute("password");
-        resp.sendRedirect("/loginConductor");
+        req.setAttribute("doneMsg","your email has been changed!");
+        if (receptionist.getReceptionistRole().equals(ReceptionistRole.DIRECTOR)) {
+            req.getRequestDispatcher("WEB-INF/receptionist/director/control.jsp").forward(req, resp);
+        } else if (receptionist.getReceptionistRole().equals(ReceptionistRole.ADMIN)){
+            req.getRequestDispatcher("WEB-INF/receptionist/admin/control.jsp").forward(req, resp);
+        }
     }
 }

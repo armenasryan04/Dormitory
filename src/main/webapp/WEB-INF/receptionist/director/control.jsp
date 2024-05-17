@@ -76,6 +76,13 @@
             </tbody>
         </table>
     </div>
+    <% if (request.getAttribute("doneMsg") != null && request.getAttribute("errMsg")==null) { %>
+    <div id="doneContainer" class="done-container">
+        <div id="doneMessage"  class="done-message" >
+            <%=request.getAttribute("doneMsg")%>
+        </div>
+    </div>
+    <% } %>
     <% if (request.getAttribute("errMsg") != null) { %>
     <div id="errorContainer" class="error-container">
         <div id="errorMessage" class="error-message">
@@ -572,6 +579,37 @@
         border-radius: 7px;
 
     }
+    .done-container {
+    <%if(request.getAttribute("doneMsg")==null && request.getAttribute("errMsg")!=null){%>
+        display: none;
+    <%}else {%>
+        display: flex;
+    <%}%>
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        backdrop-filter: blur(5px);
+        justify-content: center;
+        align-items: center;
+        z-index:200000000000;
+    }
+    .done-message {
+    <%if(request.getAttribute("doneMsg")==null && request.getAttribute("errMsg")!=null){%>
+        display: none;
+    <%}else {%>
+        display: flex;
+    <%}%>
+        z-index: 200000000;
+        color: white;
+        height: auto;
+        width: auto;
+        background-color: rgb(3, 114, 110);
+        padding: 20px;
+        border-radius: 7px;
+
+    }
 
 
 </style>
@@ -604,6 +642,7 @@
         if (errorContainer && errorContainer.contains(event.target) && !errorMessage.contains(event.target) ) {
             errorContainer.style.display = 'none';
             errorMessage.style.display = 'none'
+            window.location.replace('/directorControl');
         }
     };
     function handleEnterKeyPress() {
@@ -612,6 +651,7 @@
             var errorMessage = document.getElementById('errorMessage');
             errorContainer.style.display = 'none';
             errorMessage.style.display = 'none'
+            window.location.replace('/directorControl');
         }
     }
     <% if (request.getAttribute("errMsg") != null) { %>
@@ -621,5 +661,25 @@
     document.body.addEventListener('keypress',handleEnterKeyPress)
     document.body.addEventListener('click', handleButtonClick);
 
+    function handleButtonClickDone() {
+        var doneContainer = document.getElementById('doneContainer');
+        var doneMessage = document.getElementById('doneMessage');
+        if (doneContainer && doneContainer.contains(event.target) && !doneMessage.contains(event.target) ) {
+            doneContainer.style.display = 'none';
+            doneMessage.style.display = 'none'
+            window.location.replace('/directorControl');
+        }
+    };
+    function handleEnterKeyPressDone() {
+        if (event.key === 'Enter' || event.keyCode === 32 ) {
+            var doneContainer = document.getElementById('doneContainer');
+            var doneMessage = document.getElementById('doneMessage');
+            doneContainer.style.display = 'none';
+            doneMessage.style.display = 'none'
+            window.location.replace('/directorControl');
+        }
+    }
+    document.body.addEventListener('keypress',handleEnterKeyPressDone)
+    document.body.addEventListener('click', handleButtonClickDone);
 </script>
 </html>

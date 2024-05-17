@@ -59,7 +59,7 @@ public class ReceptionistManager {
             e.printStackTrace();
         }
     }
-    public void ActivateById(int id,Date employmentDate) {
+    public void activateById(int id, Date employmentDate) {
         String updateSql = "update receptionist set role = 'ADMIN' ,employment_date = ? where  id = " + id;
         try (PreparedStatement updateStatement = connection.prepareStatement(updateSql)) {
             updateStatement.setDate(1, employmentDate);
@@ -247,6 +247,5 @@ e.printStackTrace();
                 .build();
         return receptionist;
     }
-
 
 }

@@ -2,10 +2,8 @@ package dormitory.servlets.receptionist;
 
 import dormitory.emailVerifycation.EmailSender;
 import dormitory.manager.ReceptionistManager;
-import dormitory.manager.StudentManager;
 import dormitory.models.Receptionist;
 import dormitory.models.ReceptionistRole;
-import dormitory.models.Student;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Date;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 @WebServlet("/activateReceptionist")
@@ -31,7 +28,7 @@ public class ActivateReceptionistServlet extends HttpServlet {
                     Date date = new Date(System.currentTimeMillis());
                     String today = sdf.format(date);
                     Date sqlEmploymentDay = Date.valueOf(today);
-                    receptionistManager.ActivateById(id, sqlEmploymentDay);
+                    receptionistManager.activateById(id, sqlEmploymentDay);
                     String subject = "Your Information";
                     String text = "you have been registered in our dormitory as an receptionist \n" +
                             "your id" + receptionist.getId() + "\n" +

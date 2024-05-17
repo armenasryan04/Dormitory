@@ -48,7 +48,7 @@
         <br/>
         <div id="requestContainer" class="request-container">
             <div id="requestMessage" class="request-message">
-                realy? you need to remove the list?
+                you need to remove the list?
                 <br/>
                 <a href="/removeRegistrants" style="color: red">YES</a> || <a id="cancel" href="#"
                                                                               style="color: orange">NO</a>
@@ -807,20 +807,20 @@
     var cancelElement1 = document.getElementById('cancel1');
     var activateElement = document.getElementById('activate')
     function handleButtonClick() {
-        var errorContainer = document.getElementById('doneContainer');
-        var errorMessage = document.getElementById('doneMessage');
-        if (errorContainer && errorContainer.contains(event.target) && !errorMessage.contains(event.target) ) {
-            errorContainer.style.display = 'none';
-            errorMessage.style.display = 'none'
+        var doneContainer = document.getElementById('doneContainer');
+        var doneMessage = document.getElementById('doneMessage');
+        if (doneContainer && doneContainer.contains(event.target) && !doneMessage.contains(event.target) ) {
+            doneContainer.style.display = 'none';
+            doneMessage.style.display = 'none'
             window.location.replace('/listOfRegistrants');
         }
     };
     function handleEnterKeyPress() {
         if (event.key === 'Enter' || event.keyCode === 32 ) {
-            var errorContainer = document.getElementById('doneContainer');
-            var errorMessage = document.getElementById('doneMessage');
-            errorContainer.style.display = 'none';
-            errorMessage.style.display = 'none'
+            var doneContainer = document.getElementById('doneContainer');
+            var doneMessage = document.getElementById('doneMessage');
+            doneContainer.style.display = 'none';
+            doneMessage.style.display = 'none'
             window.location.replace('/listOfRegistrants');
         }
     }

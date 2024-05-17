@@ -3,6 +3,7 @@ package dormitory.servlets.student;
 import dormitory.emailVerifycation.EmailSender;
 import dormitory.manager.StudentManager;
 import dormitory.models.Receptionist;
+import dormitory.models.ReceptionistRole;
 import dormitory.models.Student;
 
 import javax.servlet.ServletException;
@@ -32,6 +33,11 @@ public class AddServlet extends HttpServlet {
         studentManager.addToDB(student);
         req.getSession().removeAttribute("room");
         req.getSession().removeAttribute("student");
-        resp.sendRedirect("/control");
+        req.setAttribute("doneMsg","the student has been registered!");
+        if (receptionist.getReceptionistRole().equals(ReceptionistRole.DIRECTOR)) {
+            req.getRequestDispatcher("WEB-INF/receptionist/director/control.jsp").forward(req, resp);
+        } else if (receptionist.getReceptionistRole().equals(ReceptionistRole.ADMIN)){
+            req.getRequestDispatcher("WEB-INF/receptionist/admin/control.jsp").forward(req, resp);
+        }
     }
 }

@@ -188,7 +188,15 @@ public class StudentManager {
         }
         return student;
     }
-
+    public void deactivateByid(int id, Date today) {
+        String updateSql = "update student set status = 'ARCHIVE' ,register_deadline = ? where  id = " + id;
+        try (PreparedStatement updateStatement = connection.prepareStatement(updateSql)) {
+            updateStatement.setDate(1, today);
+            updateStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
     public void statusToActive(int id, int roomId, String email, Date registerDeadline, Date registerDate, Receptionist receptionist) {
         String updateSql = "UPDATE student SET status = 'ACTIVE' , room_id = ?, register_deadline = ? ,register_date = ?, receptionist_id = ?, email = ?  WHERE id = ?";
         try (PreparedStatement updateStatement = connection.prepareStatement(updateSql)) {
