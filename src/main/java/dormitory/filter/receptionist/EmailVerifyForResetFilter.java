@@ -1,0 +1,49 @@
+package dormitory.filter.receptionist;
+
+import dormitory.emailVerifycation.EmailSender;
+import dormitory.manager.ReceptionistManager;
+import dormitory.models.Receptionist;
+import dormitory.validation.Validation;
+
+import javax.servlet.*;
+import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.Random;
+
+@WebFilter(urlPatterns = {"/emailVerifyForReset"})
+public class EmailVerifyForResetFilter implements Filter {
+    @Override
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+        HttpServletRequest req = (HttpServletRequest) servletRequest;
+        HttpServletResponse resp = (HttpServletResponse) servletResponse;
+        req.setCharacterEncoding("UTF-8");
+        ReceptionistManager receptionistManager = new ReceptionistManager();
+        try {
+            if (req.getParameter("email") != null && !req.getParameter("email").isEmpty() && Validation.isEmailAddressValid(req.getParameter("email"))) {
+                if (receptionistManager.getByEmail(req.getParameter("email")).getId() != 0) {
+                    Random rand = new Random();
+                    int randomNum = rand.nextInt(900000) + 100000;
+                    EmailSender emailSender = new EmailSender();
+                    emailSender.sendMail(req.getParameter("email"),randomNum);
+                    req.setAttribute("verifyCode", randomNum);
+                    filterChain.doFilter(req, resp);
+                }else {
+                    req.setAttribute("errMsg", "we dont have employee with this email");
+                    req.getRequestDispatcher("WEB-INF/receptionist/global/verifyEmail.jsp").forward(req, resp);
+                }
+            } else {
+                    req.setAttribute("errMsg", "invalid email address");
+                    req.getRequestDispatcher("WEB-INF/receptionist/global/verifyEmail.jsp").forward(req, resp);
+                }
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+            resp.sendRedirect("/login");
+        }
+
+    }
+}
+
+
+

@@ -1,12 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: User
-  Date: 04.03.2024
-  Time: 20:06
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="dormitory.models.Student" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <html>
 <head>
     <title>List of Rooms</title>
@@ -14,42 +6,38 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
+<% if (request.getAttribute("errMsg") != null) { %>
+<div id="errorContainer" class="error-container">
+    <div id="errorMessage" class="error-message">
+        <p><%= request.getAttribute("errMsg") %>
+        </p>
+    </div>
+    <% } %>
+</div>
 
 <div class="wave"></div>
 <div class="wave"></div>
 <div class="wave"></div>
-
 
 
 <br/>
+
 <div class="wrapper-data">
-    <div class="title">Add Student</div>
-<div class="content"></div>
-    <form action="/sendNewPassword" method="post">
+    <div class="title">EMAIL</div>
+
+    <form action="/emailVerifyForReset" method="post">
         <div class="field">
-            <input type="text" required name="code">
-            <label class="input-box">Check your Gmail</label>
+            <input type="email" name="email" required>
+            <label class="input-box">Email</label>
         </div>
-        <div class="field" >
-            <br/>
-            <input type="submit" value="get new password">
-        </div>
-        <div class="content">
-            <div class="pass-link">
-                <a href="#" id="newCode">need a new code?</a>
-            </div>
+        <div class="field">
+            <br/> <input type="submit" value="Set">
         </div>
     </form>
-    <% if (request.getAttribute("errMsg") != null) { %>
-    <div id="errorContainer" class="error-container">
-        <div id="errorMessage" class="error-message">
-            <p><%= request.getAttribute("errMsg") %>
-            </p>
-        </div>
-        <% } %>
-    </div>
+</div>
 </body>
 <style type="text/css">
+
     .wave {
         background: rgb(255 255 255 / 25%);
         border-radius: 1000% 1000% 0 0;
@@ -97,6 +85,7 @@
             transform: translateX(0%);
         }
     }
+
     body {
         font-family: -apple-system, BlinkMacSystemFont, sans-serif;
         overflow: auto;
@@ -180,7 +169,7 @@
     }
 
     .wrapper span {
-        z-index: 999955887;
+        z-index: 99941;
         position: absolute;
         top: 10px;
         left: 20px;
@@ -204,8 +193,6 @@
         box-shadow: 0 0 10px #f519f5;
     }
 
-
-
     .wrapper .overlay {
         position: absolute;
         bottom: -100%;
@@ -228,6 +215,7 @@
         opacity: 0;
         transition: opacity 0.5s ease;
     }
+
     .blurry {
         z-index: 100;
         opacity: 1;
@@ -256,7 +244,10 @@
 
     .wrapper .overlay ul li {
         margin: 10px 0;
-        transition: all 1s ease;
+    }
+
+    .wrapper .overlay ul li:hover {
+        text-shadow: #f519f5 1px 0 10px;
     }
 
     .wrapper .overlay ul li a {
@@ -267,9 +258,7 @@
         padding: 20px 0;
         overflow: hidden;
     }
-    .wrapper .overlay ul li:hover{
-        text-shadow:#f519f5 1px 0 10px;
-    }
+
     .wrapper .overlay ul li a:after {
         display: block;
         border-radius: 2px;
@@ -315,6 +304,7 @@
             transform: translateX(0);
         }
     }
+
     ::selection {
         background: #4158d0;
         color: #ffffff;
@@ -322,7 +312,7 @@
 
     .wrapper-data {
         width: 380px;
-        background:  linear-gradient(135deg, rgba(165, 54, 239, 0.44), #00878c);
+        background: linear-gradient(135deg, rgba(165, 54, 239, 0.44), #00878c);
         border-radius: 15px;
         box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.1);
         z-index: 99;
@@ -336,7 +326,8 @@
         color: #fff;
         user-select: none;
         border-radius: 15px 15px 0 0;
-        background:linear-gradient(135deg, #a436ed, #36b7ef); );
+        background: linear-gradient(135deg, #a436ed, #36b7ef);
+    );
     }
 
     .wrapper-data form {
@@ -384,26 +375,16 @@
         top: 0%;
         font-size: 14px;
         color: rgba(30, 2, 166, 0.4);
-        background:linear-gradient(135deg, #a436ed, #36b7ef);
+        background: linear-gradient(135deg, #a436ed, #36b7ef);
         border-radius: 7px;
         transform: translateY(-50%);
     }
-
-    form .content {
-        display: flex;
-        width: 100%;
-        height: 50px;
-        font-size: 16px;
-        align-items: center;
-        justify-content: space-around;
-    }
-
 
 
     form .content input {
         width: 15px;
         height: 15px;
-        background: #0e6ec7;
+        background: red;
     }
 
     form .content label {
@@ -411,18 +392,7 @@
         user-select: none;
         padding-left: 5px;
     }
-    form .pass-link a,
-    form .signup-link a {
-        color: rgba(0, 59, 150, 0.76);
-        text-decoration: none;
-        transition: all 0.5s ease;
-    }
-    form .pass-link a:hover,
-    form .signup-link a:hover {
-        text-decoration: underline;
-        color: black;
-        text-shadow:#f519f5 1px 0 10px;
-    }
+
     form .field input[type="submit"] {
         color: #4907bb;
         border: none;
@@ -432,10 +402,11 @@
         font-weight: 500;
         cursor: pointer;
         background-image: linear-gradient(to right, #6ee547, #4158d0);
-        background-size:200% auto;
+        background-size: 200% auto;
         transition: all 0.5s ease;
     }
-    form .field input[type =  "submit"]:hover{
+
+    form .field input[type =  "submit"]:hover {
         background-position: right center;
         color: #6ee547;
     }
@@ -444,25 +415,42 @@
         transform: scale(0.95);
     }
 
+
+    form .pass-link a,
+    form .signup-link a {
+        color: rgba(172, 208, 65, 0.76);
+        text-decoration: none;
+    }
+
+    form .pass-link a:hover,
+    form .signup-link a:hover {
+        text-decoration: underline;
+    }
+
     .error-container {
         display: none;
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
-        height: 100%;
-        backdrop-filter: blur(3px);
+        height:100%;
+        backdrop-filter: blur(5px);
         justify-content: center;
         align-items: center;
+        z-index: 200000000000;
     }
+
     .error-message {
+        z-index: 200000000;
         color: white;
         height: auto;
         width: auto;
         background-color: rgb(114, 3, 3);
         padding: 20px;
         border-radius: 7px;
+
     }
+
 </style>
 <script>
     $(document).ready(function () {
@@ -484,32 +472,30 @@
     function handleButtonClick() {
         var errorContainer = document.getElementById('errorContainer');
         var errorMessage = document.getElementById('errorMessage');
-        if (errorContainer && errorContainer.contains(event.target) && !errorMessage.contains(event.target) ) {
+        if (errorContainer && errorContainer.contains(event.target) && !errorMessage.contains(event.target)) {
             errorContainer.style.display = 'none';
             errorMessage.style.display = 'none'
-           location.replace('/studentDataFilling')
+            window.location.replace('/changeEmailData');
         }
     };
+
     function handleEnterKeyPress() {
-        if (event.key === 'Enter' || event.keyCode === 32 ) {
+        if (event.key === 'Enter' || event.keyCode === 32) {
 
             var errorContainer = document.getElementById('errorContainer');
             var errorMessage = document.getElementById('errorMessage');
             errorContainer.style.display = 'none';
             errorMessage.style.display = 'none'
-            location.replace('/studentDataFilling')
+            window.location.replace('/changeEmailData');
         }
-    }    var newCode = document.getElementById("newCode");
-    newCode.addEventListener("click", function (event) {
-        event.preventDefault();
-        location.reload();
-    });
+    }
+
     <% if (request.getAttribute("errMsg") != null) { %>
     document.getElementById('errorMessage').style.display = 'flex';
     document.getElementById('errorContainer').style.display = 'flex';
     <% } %>
-    document.body.addEventListener('keypress',handleEnterKeyPress)
+    document.body.addEventListener('keypress', handleEnterKeyPress)
     document.body.addEventListener('click', handleButtonClick);
-
 </script>
 </html>
+

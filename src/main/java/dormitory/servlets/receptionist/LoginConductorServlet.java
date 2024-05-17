@@ -33,8 +33,6 @@ public class LoginConductorServlet extends HttpServlet {
                         resp.sendRedirect("/directorControl");
                         break;
                     case REGISTRANT:
-                        req.getRequestDispatcher("WEB-INF/inWaiting.jsp").forward(req, resp);
-                        break;
                 }
         } else {
             try {
@@ -54,7 +52,8 @@ public class LoginConductorServlet extends HttpServlet {
                             resp.sendRedirect("/directorControl");
                             break;
                         case REGISTRANT:
-                            req.getRequestDispatcher("WEB-INF/inWaiting.jsp").forward(req, resp);
+                            req.setAttribute("doneMsg","we call you later!");
+                            req.getRequestDispatcher("WEB-INF/receptionist/global/login.jsp").forward(req, resp);
                             break;
                     }
                 } else {

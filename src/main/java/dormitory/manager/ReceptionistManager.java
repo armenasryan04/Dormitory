@@ -89,6 +89,16 @@ public class ReceptionistManager {
             e.printStackTrace();
         }
     }
+    public void changePasswordByEmail(String email, String password) {
+        String sql = "update receptionist set password = ? where email = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, password);
+            preparedStatement.setString(2, email);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     public Receptionist addToDb(Receptionist receptionist) {
 

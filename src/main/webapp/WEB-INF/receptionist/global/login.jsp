@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: User
-  Date: 22.02.2024
-  Time: 1:11
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
@@ -39,7 +33,7 @@
         </div>
         <div class="content">
             <div class="pass-link">
-                <a style="right:5px " href="/forgetPassword"> Forgot password?</a>
+                <a style="right:5px " href="/resetPassword"> Forgot password?</a>
             </div>
         </div>
         <div class="field">
@@ -54,6 +48,13 @@
         <%}%>
         <%}%>
     </form>
+    <% if (request.getAttribute("doneMsg") != null && request.getAttribute("errMsg")==null) { %>
+    <div id="doneContainer" class="done-container">
+        <div id="doneMessage"  class="done-message" >
+            <%=request.getAttribute("doneMsg")%>
+        </div>
+    </div>
+    <% } %>
     <% if (request.getAttribute("errMsg") != null) { %>
     <div id="errorContainer" class="error-container">
         <div id="errorMessage" class="error-message">
@@ -303,7 +304,36 @@
     form .signup-link a:hover {
         text-decoration: underline;
     }
-
+    .done-container {
+    <%if(request.getAttribute("doneMsg")==null && request.getAttribute("errMsg")!=null){%>
+        display: none;
+    <%}else {%>
+        display: flex;
+    <%}%>
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        backdrop-filter: blur(5px);
+        justify-content: center;
+        align-items: center;
+        z-index:200000000000;
+    }
+    .done-message {
+    <%if(request.getAttribute("doneMsg")==null && request.getAttribute("errMsg")!=null){%>
+        display: none;
+    <%}else {%>
+        display: flex;
+    <%}%>
+        z-index: 200000000;
+        color: white;
+        height: auto;
+        width: auto;
+        background-color: rgb(3, 114, 110);
+        padding: 20px;
+        border-radius: 7px;
+    }
 </style>
 <script>
     function handleButtonClick() {
@@ -331,11 +361,28 @@
     <% if (request.getAttribute("errMsg") != null) { %>
     document.getElementById('errorMessage').style.display = 'flex';
     document.getElementById('errorContainer').style.display = 'flex';
-
     <% } %>
-
-
     document.body.addEventListener('keypress', handleEnterKeyPress)
     document.body.addEventListener('click', handleButtonClick);
+    function handleButtonClickDone() {
+        var doneContainer = document.getElementById('doneContainer');
+        var doneMessage = document.getElementById('doneMessage');
+        if (doneContainer && doneContainer.contains(event.target) && !doneMessage.contains(event.target) ) {
+            doneContainer.style.display = 'none';
+            doneMessage.style.display = 'none'
+            window.location.replace('/login');
+        }
+    };
+    function handleEnterKeyPressDone() {
+        if (event.key === 'Enter' || event.keyCode === 32 ) {
+            var doneContainer = document.getElementById('doneContainer');
+            var doneMessage = document.getElementById('doneMessage');
+            doneContainer.style.display = 'none';
+            doneMessage.style.display = 'none'
+            window.location.replace('/login');
+        }
+    }
+    document.body.addEventListener('keypress',handleEnterKeyPressDone)
+    document.body.addEventListener('click', handleButtonClickDone);
 
 </script>
