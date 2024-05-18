@@ -102,7 +102,8 @@
             <%if (request.getAttribute("inArchive") == null) { %>
 
             <li><a href="/refactorMenu" class="icon" ><i class='bx bxs-user-circle'><%=receptionist.getName()%></i></a></li>
-            <li><a href="/controlOverStaffs" >CONTROL OVER STAFFS</a></li>
+            <li><a href="/controlOverStaffs">CONTROL OVER STAFFS</a></li>
+            <li><a href="/reprimandStudent">REPRIMAND STUDENT</a></li>
             <li><a href="/directorControl?status=archive">STUDENTS ARCHIVE</a></li>
             <%} else {%>
             <li><a href="/directorControl">Back</a></li>

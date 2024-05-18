@@ -246,4 +246,20 @@ public class StudentManager {
                 .build();
         return student;
     }
+
+    public Student getByIdActive(int id)  {
+        String sql = "select * from student where status = 'ACTIVE' and id = " + id;
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+            if (resultSet.next()) {
+                Student student = getFromResultSet(resultSet);
+                return student;
+            }
+            return null;
+        }catch (SQLException e) {
+        return  null;
+        }
+    }
 }
+
