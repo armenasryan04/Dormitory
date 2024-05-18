@@ -521,6 +521,5 @@
     <% } %>
     document.body.addEventListener('keypress',handleEnterKeyPress)
     document.body.addEventListener('click', handleButtonClick);
-
 </script>
 </html>

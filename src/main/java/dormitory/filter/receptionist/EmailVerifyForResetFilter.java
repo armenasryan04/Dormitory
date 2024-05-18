@@ -3,6 +3,7 @@ package dormitory.filter.receptionist;
 import dormitory.emailVerifycation.EmailSender;
 import dormitory.manager.ReceptionistManager;
 import dormitory.models.Receptionist;
+import dormitory.models.ReceptionistRole;
 import dormitory.validation.Validation;
 
 import javax.servlet.*;
@@ -22,12 +23,12 @@ public class EmailVerifyForResetFilter implements Filter {
         ReceptionistManager receptionistManager = new ReceptionistManager();
         try {
             if (req.getParameter("email") != null && !req.getParameter("email").isEmpty() && Validation.isEmailAddressValid(req.getParameter("email"))) {
-                if (receptionistManager.getByEmail(req.getParameter("email")).getId() != 0) {
-                    Random rand = new Random();
-                    int randomNum = rand.nextInt(900000) + 100000;
+          Receptionist receptionist = receptionistManager.getByEmail(req.getParameter("email"));
+                if (receptionist.getId() != 0 && !receptionist.getReceptionistRole().equals(ReceptionistRole.REGISTRANT) ) {
+                    int randomNum = (int)req.getSession().getAttribute("verifyCode");
+                    req.getSession().setAttribute("email", req.getParameter("email"));
                     EmailSender emailSender = new EmailSender();
                     emailSender.sendMail(req.getParameter("email"),randomNum);
-                    req.setAttribute("verifyCode", randomNum);
                     filterChain.doFilter(req, resp);
                 }else {
                     req.setAttribute("errMsg", "we dont have employee with this email");

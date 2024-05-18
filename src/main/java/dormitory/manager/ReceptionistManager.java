@@ -90,10 +90,11 @@ public class ReceptionistManager {
         }
     }
     public void changePasswordByEmail(String email, String password) {
-        String sql = "update receptionist set password = ? where email = ?";
+        String sql = "update receptionist set password = ? where email = ? and role = 'ADMIN' or email = ? and role = 'DIRECTOR' ";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, password);
             preparedStatement.setString(2, email);
+            preparedStatement.setString(3, email);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -225,11 +226,12 @@ e.printStackTrace();
 
     public Receptionist getByEmail(String email) {
         Receptionist receptionist = new Receptionist();
-        String sql = "SELECT * from receptionist WHERE email = ?";
+        String sql = "SELECT * from receptionist WHERE email = ? and  role = 'ADMIN' or email = ? and role = 'DIRECTOR'";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, email);
+            preparedStatement.setString(2, email);
             ResultSet resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()) {
+            while (resultSet.next()) {
                 receptionist = getFromResultSet(resultSet);
             }
         } catch (SQLException e) {

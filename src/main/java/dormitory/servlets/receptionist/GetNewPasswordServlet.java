@@ -18,8 +18,10 @@ public class GetNewPasswordServlet extends HttpServlet {
         ReceptionistManager receptionistManager = new ReceptionistManager();
         EmailSender emailSender = new EmailSender();
         String newPassword = Receptionist.generatePassword();
-        receptionistManager.changePasswordByEmail(req.getParameter("email"), newPassword);
-        emailSender.sendNewPassword(req.getParameter("email"), newPassword);
+        receptionistManager.changePasswordByEmail(req.getSession().getAttribute ("email").toString(), newPassword);
+        emailSender.sendNewPassword(req.getSession().getAttribute ("email").toString(), newPassword);
+        req.getSession().removeAttribute("email");
+        req.getSession().removeAttribute("verifyCode");
         req.setAttribute("doneMsg","we send your new password in your email");
         req.getRequestDispatcher("WEB-INF/receptionist/global/login.jsp").forward(req, resp);
     }

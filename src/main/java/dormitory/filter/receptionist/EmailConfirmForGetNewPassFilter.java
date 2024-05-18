@@ -16,7 +16,7 @@ public class EmailConfirmForGetNewPassFilter implements Filter {
         HttpServletResponse resp = (HttpServletResponse) servletResponse;
         req.setCharacterEncoding("UTF-8");
         try {
-            if (req.getAttribute("verifyCode").equals(req.getParameter("code").trim())) {
+            if (req.getSession().getAttribute("verifyCode").toString().equals(req.getParameter("code").trim())) {
                 filterChain.doFilter(req,resp);
             }else {
                     req.setAttribute("errMsg","not variable code try again!");
