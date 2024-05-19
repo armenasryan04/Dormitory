@@ -31,7 +31,7 @@ public class ReprimandStudentServlet extends HttpServlet {
             }
         }
         req.setAttribute("student",student);
-        req.getRequestDispatcher("WEB-INF/student/studentsList.jsp").forward(req,resp);
+        req.getRequestDispatcher("WEB-INF/receptionist/director/reprimand.jsp").forward(req,resp);
 
     }
 }

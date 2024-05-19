@@ -12,7 +12,7 @@
 <head>
     <title>List of Rooms</title>
 </head>
-<% Student student = (Student) request.getAttribute("students"); %>
+<% Student student = (Student) request.getAttribute("student"); %>
 <body>
 <a href="#" style="position: absolute; right: 91%" class="gradient-button" id="backLink">BACK</a>
 <div class="wave"></div>
@@ -46,8 +46,19 @@
             </tr>
             </thead>
             <tbody>
-            <% if (student != null) { %>
+            <% if(student != null && student.getId() != 0) { %>
             <tr>
+                <div id="requestContainer" class="request-container">
+                    <div id="requestMessage" class="request-message">
+                        <%if (student.getId() < 2){%>
+                        you need to add punishment?
+                        <%}else if(student.getId() == 2) {%>
+                        you need to block this student?
+                        <%}%>
+                        <br/>
+                        <a href="/updatePunishment?id=<%=student.getId()%>" style="color: red">YES</a> || <a id="cancel" href="#" style="color: orange">NO</a>
+                    </div>
+                </div>
                 <td><%= student.getName() %>
                 </td>
                 <td><%= student.getSurname() %>
@@ -56,7 +67,7 @@
                 </td>
                 <td><%= student.getPunishment()%>
                 </td>
-                <td><a href="/+1punishment?id=<%=student.getId()%>" class="gradient-button">+1</a>
+                <td><a href= '#' class="gradient-button" id='punishment'>+1</a>
                 </td>
             </tr>
             <% } %>
@@ -445,7 +456,61 @@
         caret-color: #85f100;
         width: 300px;
     }
+    .request-container {
+        visibility: hidden;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        padding: 500px;
+        padding-top: 30%;
+        backdrop-filter: blur(3px);
+        justify-content: center;
+        align-items: center;
+        z-index: 9;
+    }
 
+    .request-message{
+        color: white;
+        background-color: rgb(3, 114, 110);
+        text-align: center;
+        padding: 20px 20px;
+        line-height: 1.5;
+        underline: none;
+        border-radius: 7px;
+    }
+    .done-container {
+    <%if(request.getAttribute("doneMsg")==null){%>
+        display: none;
+    <%}else {%>
+        display: flex;
+    <%}%>
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        backdrop-filter: blur(5px);
+        justify-content: center;
+        align-items: center;
+        z-index:200000000000;
+    }
+    .done-message {
+    <%if(request.getAttribute("doneMsg")==null){%>
+        display: none;
+    <%}else {%>
+        display: flex;
+    <%}%>
+        z-index: 200000000;
+        color: white;
+        height: auto;
+        width: auto;
+        background-color: rgb(3, 114, 110);
+        padding: 20px;
+        border-radius: 7px;
+
+    }
     .input-search-background:hover {
         width: 300px;
     }
@@ -457,11 +522,41 @@
             document.getElementById('searchForm').submit();
         }
     });
-
     var backLink = document.getElementById("backLink");
     backLink.addEventListener("click", function (event) {
         event.preventDefault();
         window.history.back();
+    });
+    var cancelElement = document.getElementById('cancel');
+    var punishmentElement = document.getElementById('punishment')
+    function handleButtonClick() {
+        var doneContainer = document.getElementById('doneContainer');
+        var doneMessage = document.getElementById('doneMessage');
+        if (doneContainer && doneContainer.contains(event.target) && !doneMessage.contains(event.target) ) {
+            doneContainer.style.display = 'none';
+            doneMessage.style.display = 'none'
+            window.location.replace('/reprimandStudent');
+        }
+    };
+    function handleEnterKeyPress() {
+        if (event.key === 'Enter' || event.keyCode === 32 ) {
+            var doneContainer = document.getElementById('doneContainer');
+            var doneMessage = document.getElementById('doneMessage');
+            doneContainer.style.display = 'none';
+            doneMessage.style.display = 'none'
+            window.location.replace('/reprimandStudent');
+        }
+    }
+    document.body.addEventListener('keypress',handleEnterKeyPress)
+    document.body.addEventListener('click', handleButtonClick);
+
+    cancelElement.addEventListener('click', function () {
+        document.getElementById('requestMessage').style.visibility = 'hidden';
+        document.getElementById('requestContainer').style.visibility = 'hidden';
+    })
+    punishmentElement.addEventListener('click', function () {
+        document.getElementById('requestContainer').style.visibility = 'visible';
+        document.getElementById('requestMessage').style.visibility = 'visible';
     });
 </script>
 </html>

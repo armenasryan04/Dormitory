@@ -27,7 +27,7 @@ public class DeactivateStudentServlet extends HttpServlet {
                     Date date = new Date(System.currentTimeMillis());
                     String today = sdf.format(date);
                     Date sqlDeadline = Date.valueOf(today);
-                    studentManager.deactivateByid(student.getId(), sqlDeadline);
+                    studentManager.deactivateById(student.getId(), sqlDeadline);
                     req.setAttribute("doneMsg","student has been deactivated!");
                     req.getRequestDispatcher("WEB-INF/receptionist/admin/control.jsp").forward(req, resp);
                 } else {

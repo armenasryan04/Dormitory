@@ -170,7 +170,7 @@ public class StudentManager {
 
 
     public Student addToDB(Student student) {
-        String sql = "insert  into student(name,surname,email,phone_num,birthday,register_date,register_deadline,room_id,receptionist_id,id) values (?,?,?,?,?,?,?,?,?,?)";
+        String sql = "insert  into student(name,surname,email,phone_num,birthday,register_date,register_deadline,room_id,receptionist_id,id,punishment_num) values (?,?,?,?,?,?,?,?,?,?,0)";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, student.getName());
             preparedStatement.setString(2, student.getSurname());
@@ -188,7 +188,7 @@ public class StudentManager {
         }
         return student;
     }
-    public void deactivateByid(int id, Date today) {
+    public void deactivateById(int id, Date today) {
         String updateSql = "update student set status = 'ARCHIVE' ,register_deadline = ? where  id = " + id;
         try (PreparedStatement updateStatement = connection.prepareStatement(updateSql)) {
             updateStatement.setDate(1, today);
@@ -198,14 +198,15 @@ public class StudentManager {
         }
     }
     public void statusToActive(int id, int roomId, String email, Date registerDeadline, Date registerDate, Receptionist receptionist) {
-        String updateSql = "UPDATE student SET status = 'ACTIVE' , room_id = ?, register_deadline = ? ,register_date = ?, receptionist_id = ?, email = ?  WHERE id = ?";
+        String updateSql = "UPDATE student SET status = 'ACTIVE' , room_id = ?, register_deadline = ? ,register_date = ?, receptionist_id = ?, email = ? ,punishment_num = ? WHERE id = ?";
         try (PreparedStatement updateStatement = connection.prepareStatement(updateSql)) {
             updateStatement.setInt(1, roomId);
             updateStatement.setDate(2, registerDeadline);
             updateStatement.setDate(3, registerDate);
             updateStatement.setInt(4, receptionist.getId());
             updateStatement.setString(5, email);
-            updateStatement.setInt(6, id);
+            updateStatement.setInt(6, 0);
+            updateStatement.setInt(7, id);
             updateStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -213,7 +214,7 @@ public class StudentManager {
     }
 
     public void checkStatusToChange() {
-        String updateSql = "UPDATE student SET status = 'ARCHIVE' WHERE id = ?";
+        String updateSql = "UPDATE student SET status = 'ARCHIVE' ,  WHERE id = ?";
         try (PreparedStatement updateStatement = connection.prepareStatement(updateSql)) {
             List<Student> students = getAllActive();
             for (Student student : students) {
@@ -259,6 +260,27 @@ public class StudentManager {
             return null;
         }catch (SQLException e) {
         return  null;
+        }
+    }
+
+
+    public  void updatePunishmentById(int id) {
+        String sql = "UPDATE student SET punishment_num = punishment_num + 1 WHERE id = ?";
+        try (PreparedStatement preparedStatement =  connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        }
+
+    public void blockStudentById(int id) {
+        String sql = "UPDATE student SET punishment_num = 0 , status = 'BAN' WHERE id = ? and status = 'ACTIVE'";
+        try (PreparedStatement preparedStatement =  connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }
