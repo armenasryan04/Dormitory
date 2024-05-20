@@ -23,7 +23,7 @@
 
 <br/>
 <div class="wrapper-data">
-    <div class="title">Add Student</div>
+    <div class="title">GET PASSWORD</div>
 <div class="content"></div>
     <form action="/sendNewPassword" method="post">
         <div class="field">

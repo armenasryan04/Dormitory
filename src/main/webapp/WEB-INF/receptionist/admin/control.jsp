@@ -56,11 +56,11 @@
             <tbody>
             <% if (students != null && !students.isEmpty()) { %>
             <% for (Student student : students) { %>
-            <div id="requestContainerForDeactivate" class="request-container-for-deactivate">
-                <div id="requestMessageForDeactivate" class="request-message-for-deactivate">
+            <div id="requestContainerForDeactivate<%=student.getId()%>" class="request-container-for-deactivate">
+                <div id="requestMessageForDeactivate<%=student.getId()%>" class="request-message-for-deactivate">
                     you need to activate this employee?
                     <br/>
-                    <a href="/deactivateStudent?id=<%=student.getId()%>" style="color: red">YES</a> || <a id="cancel" href="#" style="color: orange">NO</a>
+                    <a href="/deactivateStudent?id=<%=student.getId()%>" style="color: red">YES</a> || <a id="cancel<%=student.getId()%>" href="#" style="color: orange">NO</a>
                 </div>
             </div>
             <tr>
@@ -89,7 +89,7 @@
                         style="font-size: 20px" class='bx bx-refresh'></i></a>
                 </td>
                 <%}else {%>
-                <td><a href="#" class="gradient-button" id = "deactivate"><i class='bx bxs-user-x'></i></a> </td><%}%>
+                <td><a href="#" class="gradient-button" id = "deactivate<%=student.getId()%>"><i class='bx bxs-user-x'></i></a> </td><%}%>
             </tr>
             <% } %>
             <% } %>
@@ -721,15 +721,26 @@
     }
     document.body.addEventListener('keypress',handleEnterKeyPressDone)
     document.body.addEventListener('click', handleButtonClickDone);
-    var cancelElement = document.getElementById('cancel');
-    var deactivateElement = document.getElementById('deactivate')
-    cancelElement.addEventListener('click',function (){
-        document.getElementById('requestMessageForDeactivate').style.visibility = 'hidden';
-        document.getElementById('requestContainerForDeactivate').style.visibility = 'hidden';
-    })
-    deactivateElement.addEventListener('click', function () {
-        document.getElementById('requestContainerForDeactivate').style.visibility = 'visible';
-        document.getElementById('requestMessageForDeactivate').style.visibility = 'visible';
+
+    document.addEventListener('DOMContentLoaded', function() {
+        <% if (students != null && !students.isEmpty()) { %>
+        <% for (Student student : students) { %>
+        (function(studentId) {
+            var cancelElement = document.getElementById('cancel' + studentId);
+            var deactivateElement = document.getElementById('deactivate' + studentId)
+            cancelElement.addEventListener('click', function (event) {
+                event.preventDefault();
+                document.getElementById('requestMessageForDeactivate' + studentId).style.visibility = 'hidden';
+                document.getElementById('requestContainerForDeactivate' + studentId).style.visibility = 'hidden';
+            });
+            deactivateElement.addEventListener('click', function (event) {
+                event.preventDefault();
+                document.getElementById('requestContainerForDeactivate' + studentId).style.visibility = 'visible';
+                document.getElementById('requestMessageForDeactivate' + studentId).style.visibility = 'visible';
+            });
+        })(<%= student.getId() %>);
+        <% } %>
+        <% } %>
     });
 </script>
 </html>

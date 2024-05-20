@@ -11,6 +11,7 @@
 <html>
 <head>
     <title>List of Rooms</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <% Student student = (Student) request.getAttribute("student"); %>
 <body>
@@ -42,21 +43,27 @@
                 <th>SURNAME</th>
                 <th>INSPECTION BOOKLET NUMBER</th>
                 <th>PUNISHMENT NUMBER</th>
-                <th>ADD PUNISHMENT</th>
+                <th><%if (student != null && student.getPunishment() < 2) {%>
+                    ADD PUNISHMENT
+                    <%} else if (student != null && student.getPunishment() == 2) {%>
+                    BLOCK
+                    <%}%></th>
             </tr>
             </thead>
             <tbody>
-            <% if(student != null && student.getId() != 0) { %>
+            <% if (student != null && student.getId() != 0) { %>
             <tr>
                 <div id="requestContainer" class="request-container">
                     <div id="requestMessage" class="request-message">
-                        <%if (student.getId() < 2){%>
+                        <%if (student.getPunishment() < 2) {%>
                         you need to add punishment?
-                        <%}else if(student.getId() == 2) {%>
+                        <%} else if (student.getPunishment() == 2) {%>
                         you need to block this student?
                         <%}%>
                         <br/>
-                        <a href="/updatePunishment?id=<%=student.getId()%>" style="color: red">YES</a> || <a id="cancel" href="#" style="color: orange">NO</a>
+                        <a href="/updatePunishment?id=<%=student.getId()%>" style="color: red">YES</a> || <a id="cancel"
+                                                                                                             href="#"
+                                                                                                             style="color: orange">NO</a>
                     </div>
                 </div>
                 <td><%= student.getName() %>
@@ -67,7 +74,11 @@
                 </td>
                 <td><%= student.getPunishment()%>
                 </td>
-                <td><a href= '#' class="gradient-button" id='punishment'>+1</a>
+                <td><%if (student.getPunishment() < 2) {%>
+                    <a href='#' class="gradient-button" id='punishment'>+1</a>
+                    <%} else if (student.getPunishment() == 2) {%>
+                    <a href='#' class="gradient-button" id='punishment'><i class='bx bxs-user-x'></i></a>
+                    <%}%>
                 </td>
             </tr>
             <% } %>
@@ -75,124 +86,14 @@
         </table>
     </div>
 </div>
-
+<% if (request.getAttribute("doneMsg") != null) { %>
+<div id="doneContainer" class="done-container">
+    <div id="doneMessage" class="done-message">
+        <%=request.getAttribute("doneMsg")%>
+    </div>
+</div>
+<% } %>
 </body>
-<style type="text/css">
-    .container {
-        max-width: 800px;
-        width: 100%;
-        max-height: 90%;
-        background: linear-gradient(1355deg, rgba(66, 246, 231, 0.87), #69d7ff);
-        padding: 25px 30px;
-        border-radius: 5px;
-        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
-        overflow-y: auto;
-    }
-
-    .container::-webkit-scrollbar {
-        width: 10px;
-        border-radius: 5px;
-    }
-
-    .container::-webkit-scrollbar-track {
-        background: linear-gradient(1355deg, #428af6, #fdd100);
-        border-radius: 5px;
-    }
-
-    .container::-webkit-scrollbar-thumb {
-        background: linear-gradient(1355deg, #00fde8, #428af6);
-        background-size: 12px;
-        border-radius: 5px;
-        transition: background .5s;
-    }
-
-    .container::-webkit-scrollbar-thumb:hover {
-        background: linear-gradient(135deg, #00fd9c, #428af6);
-    }
-
-    .table {
-        width: 100%;
-        margin-bottom: 50px;
-        border-radius: 5px;
-        border: 0px solid #ffffff;
-        border-top: 0px solid #ffffff;
-        border-bottom: 0px solid #fff;
-        border-collapse: collapse;
-        outline: 5px solid #ffd300;
-        font-size: 20px;
-        background: #ffffff !important;
-    }
-
-    .table th {
-        font-weight: bold;
-        padding: 3px 16px;
-        background: #ffd300;
-        border: 6px none;
-        text-align: left;
-        font-size: 15px;
-        border-top: 3px solid #ffd300;
-        border-bottom: 3px solid #ffd300;
-    }
-
-    .table td {
-        padding-left: 20px;
-        border: 30px;
-        font-size: 16px;
-        background: linear-gradient(135deg, #fdd100, #428af6);
-    }
-
-    .table tbody tr:nth-child(even) {
-        background: #4c698d !important;
-    }
-
-    .wave {
-        background: rgb(255 255 255 / 25%);
-        border-radius: 1000% 1000% 0 0;
-        position: fixed;
-        width: 200%;
-        height: 12em;
-        animation: wave 10s -3s linear infinite;
-        transform: translate3d(0, 0, 0);
-        opacity: 0.8;
-        bottom: 0;
-        left: 0;
-        z-index: -1;
-    }
-
-    .wave:nth-of-type(2) {
-        bottom: -1.25em;
-        animation: wave 18s linear reverse infinite;
-        opacity: 0.8;
-    }
-
-    .wave:nth-of-type(3) {
-        bottom: -2.5em;
-        animation: wave 20s -1s reverse infinite;
-        opacity: 0.9;
-    }
-
-    @keyframes wave {
-        2% {
-            transform: translateX(0%);
-        }
-
-        25% {
-            transform: translateX(-25%);
-        }
-
-        50% {
-            transform: translateX(-50%);
-        }
-
-        75% {
-            transform: translateX(-25%);
-        }
-
-        100% {
-            transform: translateX(0%);
-        }
-    }
-</style>
 <style>
     .container {
         max-width: 1200px;
@@ -268,7 +169,7 @@
         padding: 3px 16px;
         background: #ffd300;
         border: 6px none;
-        text-align: left;
+        text-align: center;
         font-size: 15px;
         border-top: 3px solid #ffd300;
         border-bottom: 3px solid #ffd300;
@@ -278,6 +179,7 @@
         border: 30px;
         font-size: 16px;
         white-space: nowrap;
+        text-align: center;
         padding: 2px 10px;
         background: linear-gradient(135deg, #fdd100, #428af6);
     }
@@ -456,6 +358,7 @@
         caret-color: #85f100;
         width: 300px;
     }
+
     .request-container {
         visibility: hidden;
         position: fixed;
@@ -471,7 +374,7 @@
         z-index: 9;
     }
 
-    .request-message{
+    .request-message {
         color: white;
         background-color: rgb(3, 114, 110);
         text-align: center;
@@ -480,13 +383,11 @@
         underline: none;
         border-radius: 7px;
     }
+
     .done-container {
-    <%if(request.getAttribute("doneMsg")==null){%>
-        display: none;
-    <%}else {%>
-        display: flex;
-    <%}%>
-        position: fixed;
+    <%if(request.getAttribute("doneMsg")==null){%> display: none;
+    <%}else {%> display: flex;
+    <%}%> position: fixed;
         top: 0;
         left: 0;
         width: 100%;
@@ -494,15 +395,13 @@
         backdrop-filter: blur(5px);
         justify-content: center;
         align-items: center;
-        z-index:200000000000;
+        z-index: 200000000000;
     }
+
     .done-message {
-    <%if(request.getAttribute("doneMsg")==null){%>
-        display: none;
-    <%}else {%>
-        display: flex;
-    <%}%>
-        z-index: 200000000;
+    <%if(request.getAttribute("doneMsg")==null){%> display: none;
+    <%}else {%> display: flex;
+    <%}%> z-index: 200000000;
         color: white;
         height: auto;
         width: auto;
@@ -511,6 +410,7 @@
         border-radius: 7px;
 
     }
+
     .input-search-background:hover {
         width: 300px;
     }
@@ -525,21 +425,23 @@
     var backLink = document.getElementById("backLink");
     backLink.addEventListener("click", function (event) {
         event.preventDefault();
-        window.history.back();
+        window.location.replace('/directorControl');
     });
     var cancelElement = document.getElementById('cancel');
     var punishmentElement = document.getElementById('punishment')
+
     function handleButtonClick() {
         var doneContainer = document.getElementById('doneContainer');
         var doneMessage = document.getElementById('doneMessage');
-        if (doneContainer && doneContainer.contains(event.target) && !doneMessage.contains(event.target) ) {
+        if (doneContainer && doneContainer.contains(event.target) && !doneMessage.contains(event.target)) {
             doneContainer.style.display = 'none';
             doneMessage.style.display = 'none'
             window.location.replace('/reprimandStudent');
         }
     };
+
     function handleEnterKeyPress() {
-        if (event.key === 'Enter' || event.keyCode === 32 ) {
+        if (event.key === 'Enter' || event.keyCode === 32) {
             var doneContainer = document.getElementById('doneContainer');
             var doneMessage = document.getElementById('doneMessage');
             doneContainer.style.display = 'none';
@@ -547,7 +449,8 @@
             window.location.replace('/reprimandStudent');
         }
     }
-    document.body.addEventListener('keypress',handleEnterKeyPress)
+
+    document.body.addEventListener('keypress', handleEnterKeyPress)
     document.body.addEventListener('click', handleButtonClick);
 
     cancelElement.addEventListener('click', function () {

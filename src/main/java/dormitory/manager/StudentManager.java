@@ -30,6 +30,39 @@ public class StudentManager {
         }
         return students;
     }
+    public List<Student> getAllBan() {
+
+        List<Student> students = new ArrayList<>();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * from student where status = 'BAN' order by name asc ");
+            while (resultSet.next()) {
+                students.add(getFromResultSet(resultSet));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return students;
+    }
+
+
+    public List<Student> getByNameOrSurnameBan(String search) {
+        List<Student> students = new ArrayList<>();
+        String sql = "SELECT * FROM student WHERE   UPPER(name) LIKE CONCAT('%', UPPER(?), '%') OR UPPER(surname) LIKE CONCAT('%', UPPER(?), '%')";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, "%" + search + "%");
+            statement.setString(2, "%" + search + "%");
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                if (getFromResultSet(resultSet).getStudentStatus().equals(StudentStatus.BAN)) {
+                    students.add(getFromResultSet(resultSet));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return students;
+    }
 
     public List<Student> getAllArchive() {
         List<Student> students = new ArrayList<>();
@@ -167,6 +200,19 @@ public class StudentManager {
         }
         return count;
     }
+    public int getBanStudentsNumber() {
+        int count = 0;
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT COUNT(*) FROM student where status = 'BAN'");
+            if (resultSet.next()) {
+                count = resultSet.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
 
 
     public Student addToDB(Student student) {
@@ -214,7 +260,7 @@ public class StudentManager {
     }
 
     public void checkStatusToChange() {
-        String updateSql = "UPDATE student SET status = 'ARCHIVE' ,  WHERE id = ?";
+        String updateSql = "UPDATE student SET status = 'ARCHIVE' ,  WHERE id = ? ";
         try (PreparedStatement updateStatement = connection.prepareStatement(updateSql)) {
             List<Student> students = getAllActive();
             for (Student student : students) {
@@ -276,6 +322,15 @@ public class StudentManager {
 
     public void blockStudentById(int id) {
         String sql = "UPDATE student SET punishment_num = 0 , status = 'BAN' WHERE id = ? and status = 'ACTIVE'";
+        try (PreparedStatement preparedStatement =  connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public void unBlockStudentById(int id) {
+        String sql = "UPDATE student SET punishment_num = 0 , status = 'ARCHIVE' WHERE id = ?";
         try (PreparedStatement preparedStatement =  connection.prepareStatement(sql)) {
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();

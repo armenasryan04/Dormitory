@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/updatePunishment")
-public class UpdatePunishmentServlet extends HttpServlet {
+@WebServlet("/unblockStudent")
+public class UnblockStudentServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if (req.getParameter("id") != null || req.getParameter("id").isEmpty()) {
@@ -20,17 +20,12 @@ public class UpdatePunishmentServlet extends HttpServlet {
                 int id = Integer.parseInt(req.getParameter("id"));
                 StudentManager studentManager = new StudentManager();
                 Student student = studentManager.getById(id);
-                if (student.getId() != 0 && student.getStudentStatus().equals(StudentStatus.ACTIVE)) {
-                    if (student.getPunishment() < 2){
-                        studentManager.updatePunishmentById(student.getId());
-                        req.setAttribute("doneMsg","the remark was incremented by one!");
-                    }else if (student.getPunishment() == 2){
-                        studentManager.blockStudentById(student.getId());
-                        req.setAttribute("doneMsg","the student has been blocked!");
-                    }
-                    req.getRequestDispatcher("WEB-INF/receptionist/director/reprimand.jsp").forward(req,resp);
-                }else {
-                    resp.sendRedirect("/reprimandStudent");
+                if (student.getId() != 0 && student.getStudentStatus().equals(StudentStatus.BAN)) {
+                    studentManager.unBlockStudentById(id);
+                    req.setAttribute("doneMsg", "the Student has been unblocked!");
+                    req.getRequestDispatcher("WEB-INF/receptionist/director/control.jsp").forward(req, resp);
+                } else {
+                    resp.sendRedirect("/studentsBlockList");
                 }
             } catch (NumberFormatException e) {
                 e.printStackTrace();

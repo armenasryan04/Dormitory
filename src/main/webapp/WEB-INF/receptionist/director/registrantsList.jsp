@@ -73,11 +73,11 @@
             <tbody>
             <% if (receptionists != null && !receptionists.isEmpty()) { %>
             <% for (Receptionist receptionist : receptionists) { %>
-            <div id="requestContainerForActivate" class="request-container-for-activate">
-                <div id="requestMessageForActivate" class="request-message-for-activate">
+            <div id="requestContainerForActivate<%=receptionist.getId()%>" class="request-container-for-activate">
+                <div id="requestMessageForActivate<%=receptionist.getId()%>" class="request-message-for-activate">
                     you need to activate this employee?
                     <br/>
-                    <a href="/activateReceptionist?id=<%=receptionist.getId()%>" style="color: red">YES</a> || <a id="cancel1" href="#" style="color: orange">NO</a>
+                    <a href="/activateReceptionist?id=<%=receptionist.getId()%>" style="color: red">YES</a> || <a id="cancel1<%=receptionist.getId()%>" href="#" style="color: orange">NO</a>
                 </div>
             </div>
             <tr>
@@ -98,7 +98,7 @@
                 <td><a href="/receptionistExperience?id=<%=receptionist.getId()%> " class="gradient-button"><i
                         class='bx bxs-file' style="font-size: 20px"></i></a>
                 </td>
-                <td><a class="gradient-button" href="#" id="activate"><i
+                <td><a class="gradient-button" href="#" id="activate<%=receptionist.getId()%>"><i
                         class='bx bxs-user-check' style="font-size: 20px"></i></a></td>
             </tr>
             <% } %>
@@ -125,121 +125,6 @@
 </div>
 </body>
 <style type="text/css">
-    .container {
-        max-width: 800px;
-        width: 100%;
-        max-height: 90%;
-        background: linear-gradient(1355deg, rgba(66, 246, 231, 0.87), #69d7ff);
-        padding: 25px 30px;
-        border-radius: 5px;
-        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
-        overflow-y: auto;
-    }
-
-    .container::-webkit-scrollbar {
-        width: 10px;
-        border-radius: 5px;
-    }
-
-    .container::-webkit-scrollbar-track {
-        background: linear-gradient(1355deg, #428af6, #fdd100);
-        border-radius: 5px;
-    }
-
-    .container::-webkit-scrollbar-thumb {
-        background: linear-gradient(1355deg, #00fde8, #428af6);
-        background-size: 12px;
-        border-radius: 5px;
-        transition: background .5s;
-    }
-
-    .container::-webkit-scrollbar-thumb:hover {
-        background: linear-gradient(135deg, #00fd9c, #428af6);
-    }
-
-    .table {
-        width: 100%;
-        margin-bottom: 50px;
-        border-radius: 5px;
-        border: 0px solid #ffffff;
-        border-top: 0px solid #ffffff;
-        border-bottom: 0px solid #fff;
-        border-collapse: collapse;
-        outline: 5px solid #ffd300;
-        font-size: 20px;
-        background: #ffffff !important;
-    }
-
-    .table th {
-        font-weight: bold;
-        padding: 3px 16px;
-        background: #ffd300;
-        border: 6px none;
-        text-align: left;
-        font-size: 15px;
-        border-top: 3px solid #ffd300;
-        border-bottom: 3px solid #ffd300;
-    }
-
-    .table td {
-        padding-left: 20px;
-        border: 30px;
-        font-size: 16px;
-        background: linear-gradient(135deg, #fdd100, #428af6);
-    }
-
-    .table tbody tr:nth-child(even) {
-        background: #4c698d !important;
-    }
-
-    .wave {
-        background: rgb(255 255 255 / 25%);
-        border-radius: 1000% 1000% 0 0;
-        position: fixed;
-        width: 200%;
-        height: 12em;
-        animation: wave 10s -3s linear infinite;
-        transform: translate3d(0, 0, 0);
-        opacity: 0.8;
-        bottom: 0;
-        left: 0;
-        z-index: -1;
-    }
-
-    .wave:nth-of-type(2) {
-        bottom: -1.25em;
-        animation: wave 18s linear reverse infinite;
-        opacity: 0.8;
-    }
-
-    .wave:nth-of-type(3) {
-        bottom: -2.5em;
-        animation: wave 20s -1s reverse infinite;
-        opacity: 0.9;
-    }
-
-    @keyframes wave {
-        2% {
-            transform: translateX(0%);
-        }
-
-        25% {
-            transform: translateX(-25%);
-        }
-
-        50% {
-            transform: translateX(-50%);
-        }
-
-        75% {
-            transform: translateX(-25%);
-        }
-
-        100% {
-            transform: translateX(0%);
-        }
-    }
-
     .container {
         max-width: 1200px;
         width: auto;
@@ -804,8 +689,6 @@
     });
     var removeElement = document.getElementById('remove');
     var cancelElement = document.getElementById('cancel');
-    var cancelElement1 = document.getElementById('cancel1');
-    var activateElement = document.getElementById('activate')
     function handleButtonClick() {
         var doneContainer = document.getElementById('doneContainer');
         var doneMessage = document.getElementById('doneMessage');
@@ -836,13 +719,27 @@
         document.getElementById('requestContainer').style.visibility = 'hidden';
 
     })
-    cancelElement1.addEventListener('click',function (){
-        document.getElementById('requestMessageForActivate').style.visibility = 'hidden';
-        document.getElementById('requestContainerForActivate').style.visibility = 'hidden';
-    })
-    activateElement.addEventListener('click', function () {
-        document.getElementById('requestContainerForActivate').style.visibility = 'visible';
-        document.getElementById('requestMessageForActivate').style.visibility = 'visible';
+
+    document.addEventListener('DOMContentLoaded', function() {
+        <% if (receptionists != null && !receptionists.isEmpty()) { %>
+        <% for (Receptionist receptionist : receptionists) { %>
+        (function(receptionistId) {
+            var cancelElement1 = document.getElementById('cancel1' + receptionistId);
+            var activateElement = document.getElementById('activate' + receptionistId);
+            cancelElement1.addEventListener('click', function (event) {
+                event.preventDefault();
+                document.getElementById('requestMessageForActivate' + receptionistId).style.visibility = 'hidden';
+                document.getElementById('requestContainerForActivate' + receptionistId).style.visibility = 'hidden';
+            });
+
+            activateElement.addEventListener('click', function (event) {
+                event.preventDefault();
+                document.getElementById('requestContainerForActivate' + receptionistId).style.visibility = 'visible';
+                document.getElementById('requestMessageForActivate' + receptionistId).style.visibility = 'visible';
+            });
+        })(<%= receptionist.getId() %>);
+        <% } %>
+        <% } %>
     });
 
 </script>

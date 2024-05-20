@@ -9,7 +9,6 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <% List<Student> students = (List<Student>) request.getAttribute("students"); %>
-<%Receptionist receptionist = (Receptionist) session.getAttribute("receptionist");%>
 <body>
 
 <div class="wave"></div>
@@ -29,7 +28,6 @@
                         <input type="text" name="search" class="input-search animate" placeholder="🔍 search..."
                                id="searchInput" value="${not empty param.search ? param.search : ''}">
                     </div>
-
                 </div>
             </div>
         </form>
@@ -44,13 +42,22 @@
                 <th>E-MAIL</th>
                 <th>BIRTHDAY</th>
                 <th>NUMBER OF PUNISHMENTS</th>
-                <th>MORE INFORMATION</th>
+                <th>UNBLOCK</th>
             </tr>
             </thead>
             <tbody>
             <% if (students != null && !students.isEmpty()) { %>
             <% for (Student student : students) { %>
             <tr>
+                <div id="requestContainer<%=student.getId()%>" class="request-container">
+                    <div id="requestMessage<%=student.getId()%>" class="request-message">
+                        You need to unblock this student?
+                        <br/>
+                        <a href="/unblockStudent?id=<%=student.getId()%>" style="color: red">YES</a> || <a id="cancel<%=student.getId()%>"
+                                                                                                           href="#"
+                                                                                                           style="color: orange">NO</a>
+                    </div>
+                </div>
                 <td>
                     <%=student.getId()%>
                 </td>
@@ -68,8 +75,7 @@
                 </td>
                 <td style="padding-left: 2px "><%=student.getPunishment()%>
                 </td>
-                <td><a href="/moreInfo?id=<%=student.getId()%>" class="gradient-button"><i style="font-size:20px"
-                                                                                           class='bx bxs-info-circle'></i></a>
+                <td><a href='#' class="gradient-button" id='unblock<%=student.getId()%>'><i class='bx bxs-user-x'></i></a>
                 </td>
 
             </tr>
@@ -78,7 +84,7 @@
             </tbody>
         </table>
     </div>
-    <% if (request.getAttribute("doneMsg") != null && request.getAttribute("errMsg") == null) { %>
+    <% if (request.getAttribute("doneMsg") != null) { %>
     <div id="doneContainer" class="done-container">
         <div id="doneMessage" class="done-message">
             <%=request.getAttribute("doneMsg")%>
@@ -101,20 +107,7 @@
     <div class="overlay">
         <a style="position: absolute;top:5px " class="gradient-button" href="/logout"><i class='bx bx-log-out'></i></a>
         <ul>
-            <%if (request.getAttribute("inArchive") == null) { %>
-
-            <li><a href="/refactorMenu" class="icon"><i class='bx bxs-user-circle'><%=receptionist.getName()%>
-            </i></a></li>
-            <li><a href="/controlOverStaffs">CONTROL OVER STAFFS</a></li>
-            <li><a href="/reprimandStudent">REPRIMAND STUDENT</a></li>
-            <li><a href="/directorControl?status=archive">STUDENTS ARCHIVE</a></li>
-            <li><a href="/studentsBlockList">STUDENTS BLOCK LIST</a></li>
-            <%} else {%>
             <li><a href="/directorControl">Back</a></li>
-            <%
-                }
-                ;
-            %>
         </ul>
     </div>
     <div class="blurry-background"></div>
@@ -148,7 +141,7 @@
         text-align: center;
         line-height: 30px;
         padding-top: 20px;
-        color: #ffffff;
+        color: darkred;
         user-select: none;
         border-radius: 15px 15px 0 0;
         background: linear-gradient(135deg, #36b7ef, #a436ed);
@@ -196,6 +189,7 @@
         border: 6px none;
         text-align: center;
         font-size: 15px;
+        color: darkred;
         border-top: 3px solid #ffd300;
         border-bottom: 3px solid #ffd300;
     }
@@ -206,6 +200,7 @@
         white-space: nowrap;
         text-align: center;
         padding: 2px 10px;
+        color: darkred;
         background: linear-gradient(135deg, #fdd100, #428af6);
     }
 
@@ -569,32 +564,33 @@
         text-shadow: #f519f5 1px 0 20px;
     }
 
-    .error-container {
-        display: none;
+    .request-container {
+        visibility: hidden;
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        backdrop-filter: blur(5px);
+        padding: 500px;
+        padding-top: 30%;
+        backdrop-filter: blur(3px);
         justify-content: center;
         align-items: center;
-        z-index: 200000000000;
+        z-index: 9;
     }
 
-    .error-message {
-        z-index: 200000000;
+    .request-message {
         color: white;
-        height: auto;
-        width: auto;
-        background-color: rgb(114, 3, 3);
-        padding: 20px;
+        background-color: rgb(3, 114, 110);
+        text-align: center;
+        padding: 20px 20px;
+        line-height: 1.5;
+        underline: none;
         border-radius: 7px;
-
     }
 
     .done-container {
-    <%if(request.getAttribute("doneMsg")==null && request.getAttribute("errMsg")!=null){%> display: none;
+    <%if(request.getAttribute("doneMsg")==null){%> display: none;
     <%}else {%> display: flex;
     <%}%> position: fixed;
         top: 0;
@@ -608,7 +604,7 @@
     }
 
     .done-message {
-    <%if(request.getAttribute("doneMsg")==null && request.getAttribute("errMsg")!=null){%> display: none;
+    <%if(request.getAttribute("doneMsg")==null){%> display: none;
     <%}else {%> display: flex;
     <%}%> z-index: 200000000;
         color: white;
@@ -694,5 +690,25 @@
 
     document.body.addEventListener('keypress', handleEnterKeyPressDone)
     document.body.addEventListener('click', handleButtonClickDone);
+    document.addEventListener('DOMContentLoaded', function() {
+        <% if (students != null && !students.isEmpty()) { %>
+        <% for (Student student : students) { %>
+        (function(studentId) {
+            var cancelElement = document.getElementById('cancel' + studentId);
+            var deactivateElement = document.getElementById('unblock' + studentId)
+            cancelElement.addEventListener('click', function (event) {
+                event.preventDefault();
+                document.getElementById('requestMessage' + studentId).style.visibility = 'hidden';
+                document.getElementById('requestContainer' + studentId).style.visibility = 'hidden';
+            });
+            deactivateElement.addEventListener('click', function (event) {
+                event.preventDefault();
+                document.getElementById('requestContainer' + studentId).style.visibility = 'visible';
+                document.getElementById('requestMessage' + studentId).style.visibility = 'visible';
+            });
+        })(<%= student.getId() %>);
+        <% } %>
+        <% } %>
+    });
 </script>
 </html>
