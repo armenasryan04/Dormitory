@@ -9,6 +9,7 @@
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/director/controlOverStaffs.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/director" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/director/receptionistsList.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/director" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/director/registrantsList.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/director" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/student/getInfo.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/student" />
       </map>
     </option>
   </component>

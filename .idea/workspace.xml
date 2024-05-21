@@ -10,18 +10,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c610ceff-b1f4-43b1-969f-8a8498bcd15f" name="Changes" comment="ok">
-      <change afterPath="$PROJECT_DIR$/src/main/java/dormitory/servlets/receptionist/StudentsBlockListServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dormitory/servlets/receptionist/UnblockStudentServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/director/blockList.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dormitory/filter/receptionist/SignUpPermissionFilter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dormitory/manager/StudentManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dormitory/manager/StudentManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dormitory/servlets/receptionist/UpdatePunishmentServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dormitory/servlets/receptionist/UpdatePunishmentServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/admin/control.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/admin/control.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/director/control.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/director/control.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/director/registrantsList.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/director/registrantsList.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/director/reprimand.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/director/reprimand.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dormitory/filter/receptionist/AdminFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dormitory/filter/receptionist/UrlPermissionFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dormitory/filter/receptionist/LoginFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dormitory/filter/receptionist/LoginFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dormitory/servlets/student/AddServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dormitory/servlets/student/AddServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dormitory/servlets/student/MakeActiveServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dormitory/servlets/student/MakeActiveServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dormitory/servlets/student/StudentsListServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dormitory/servlets/student/GetInfoServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/global/email.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/global/email.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/global/verifyEmail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/global/verifyEmail.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/registrant/createPassword.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/registrant/createPassword.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/registrant/signUp.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/registrant/signUp.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/registrant/verifyEmail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/receptionist/registrant/verifyEmail.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/student/reVerifyEmail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/student/reVerifyEmail.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/student/studentsList.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/student/getInfo.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,8 +141,8 @@
       <recent name="C:\Users\User\IdeaProjects\dormitory\src\main\java\dormitory\manager" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="dormitory.servlets.receptionist" />
       <recent name="dormitory.filter.receptionist" />
+      <recent name="dormitory.servlets.receptionist" />
       <recent name="dormitory.servlets.student" />
     </key>
   </component>
@@ -325,7 +330,9 @@
       <workItem from="1716050146486" duration="5650000" />
       <workItem from="1716121585207" duration="1501000" />
       <workItem from="1716132931852" duration="10483000" />
-      <workItem from="1716207169575" duration="16083000" />
+      <workItem from="1716207169575" duration="16526000" />
+      <workItem from="1716232663139" duration="4244000" />
+      <workItem from="1716285879843" duration="3335000" />
     </task>
     <task id="LOCAL-00001" summary="ok">
       <option name="closed" value="true" />
@@ -559,7 +566,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716144709421</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="ok">
+      <option name="closed" value="true" />
+      <created>1716223788564</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1716223788564</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

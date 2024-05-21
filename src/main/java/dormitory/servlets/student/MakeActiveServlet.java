@@ -27,7 +27,7 @@ public class MakeActiveServlet extends HttpServlet {
                 "registration deadline " + student.getDeadline() + "\n" +
                 "your room floor:" + student.getRoom().getFloor() + "   room number:" + student.getRoom().getRoomNum() + "\n" +
                 "general information can be found here \n " +
-                "http://localhost:8080/studentList \n";
+                "http://localhost:8080/getInfo?search=" + student.getId() + "\n";
         Receptionist receptionist = (Receptionist) req.getSession().getAttribute("receptionist");
         Date endDate = (Date) student.getDeadline();
         Date registerDate = (Date) student.getRegisterDate();

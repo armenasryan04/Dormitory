@@ -25,7 +25,7 @@ public class AddServlet extends HttpServlet {
                 "registration deadline " + student.getDeadline() + "\n" +
                 "your room floor:" + student.getRoom().getFloor() + "   room number:" + student.getRoom().getRoomNum() + "\n" +
                 "general information can be found here \n " +
-                "http://localhost:8080/studentList \n";
+                "http://localhost:8080/getInfo?search=" + student.getId() + "\n";
         EmailSender emailSender = new EmailSender();
         emailSender.sendInformantMail(student.getEmail(), subject, text);
         Receptionist receptionist = (Receptionist) req.getSession().getAttribute("receptionist");

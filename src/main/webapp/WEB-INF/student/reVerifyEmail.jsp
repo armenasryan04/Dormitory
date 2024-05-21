@@ -473,7 +473,7 @@
     var backLink = document.getElementById("backLink");
     backLink.addEventListener("click", function (event) {
         event.preventDefault();
-        window.history.back();
+        window.location.replace('/studentDateChange');
     });
 
 </script>

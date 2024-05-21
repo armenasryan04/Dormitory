@@ -10,14 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 @WebFilter("/*")
-public class AdminFilter implements Filter {
+public class UrlPermissionFilter implements Filter {
 URLManager urlManager = new URLManager();
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         HttpServletResponse resp = (HttpServletResponse) servletResponse;
         String url = req.getRequestURI();
-        if ("/".equals(url) || "/login".equals(url) ||"/loginConductor".equals(url)|| "/studentList".equals(url) || "/roomsInfo".equals(url)|| "/logout".equals(url) || "/signUp".equals(url) || "/createPassword".equals(url) ||"/registrantEmailVerify".equals(url)||"/addReceptionist".equals(url) || "/resetPassword".equals(url) || "/sendNewPassword".equals(url) || "/emailVerifyForReset".equals(url)) {
+        if ("/".equals(url) || "/login".equals(url) ||"/loginConductor".equals(url)|| "/getInfo".equals(url) || "/roomsInfo".equals(url)|| "/logout".equals(url) || "/signUp".equals(url) || "/createPassword".equals(url) ||"/registrantEmailVerify".equals(url)||"/addReceptionist".equals(url) || "/resetPassword".equals(url) || "/sendNewPassword".equals(url) || "/emailVerifyForReset".equals(url)) {
             filterChain.doFilter(req, resp);
         }else {
             HttpSession session = req.getSession();

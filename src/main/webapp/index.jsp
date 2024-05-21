@@ -19,7 +19,7 @@ response.sendRedirect("/loginConductor");
     <h1>Welcome to our Dormitory
     </h1>
     <br/>
-    <a href="/studentList" class="gradient-button">STUDENTS</a>
+    <a href="/getInfo" class="gradient-button">STUDENTS</a>
     <a href="/login" class="gradient-button">Log in</a>
 </div>
 </body>

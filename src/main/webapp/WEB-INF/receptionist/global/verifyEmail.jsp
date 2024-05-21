@@ -22,6 +22,7 @@
 
 
 <br/>
+<a href="/login" class="gradient-button">Back</a>
 <div class="wrapper-data">
     <div class="title">GET PASSWORD</div>
 <div class="content"></div>
@@ -124,8 +125,9 @@
     }
 
     .gradient-button {
-        top: 20px;
-        right: 20px;
+        position: absolute;
+        top: 10px;
+        left: 20px;
         text-decoration: none;
         color: #4907bb;
         display: inline-block;
@@ -137,8 +139,7 @@
         background-image: linear-gradient(to right, #428af6 0%, #fdd100 51%, rgb(80, 0, 241) 100%);
         background-size: 200% auto;
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.31);
-        transition: text-shadow 0.5s ease;
-        transition: .5s;
+        transition: all 0.5s ease;
     }
 
     .gradient-button:hover {
@@ -146,7 +147,6 @@
         color: rgb(0, 0, 0);
         box-shadow: 0 0 10px #f519f5;
     }
-
     * {
         box-sizing: border-box;
     }

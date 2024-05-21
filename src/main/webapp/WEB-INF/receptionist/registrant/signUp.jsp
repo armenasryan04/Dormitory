@@ -1,5 +1,4 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
-<%@ page import="dormitory.models.Student" %>
 <%@ page import="dormitory.models.Receptionist" %>
 <html>
 <%
