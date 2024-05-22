@@ -11,7 +11,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Room Info</title>
+    <title>Adder Info</title>
 </head>
 <%Receptionist receptionist = (Receptionist) request.getAttribute("adder");%>
 <body>

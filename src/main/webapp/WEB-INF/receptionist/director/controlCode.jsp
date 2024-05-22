@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Room Info</title>
+    <title>Receptionist Info</title>
     <%String controlCode = request.getAttribute("controlCode").toString();%>
 </head>
 <body>

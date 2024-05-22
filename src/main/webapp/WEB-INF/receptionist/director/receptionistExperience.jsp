@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Room Info</title>
+    <title>Receptionist Experience</title>
     <%String aboutExperience = request.getAttribute("aboutExperience").toString();%>
 </head>
 <body>

@@ -9,7 +9,7 @@
 <%Student student = (Student) request.getSession().getAttribute("student");%>
 <html>
 <head>
-    <title>make active</title>
+    <title>Make Active</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>

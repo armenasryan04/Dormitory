@@ -34,7 +34,7 @@
     }
 %>
 <head>
-    <title>List of Rooms</title>
+    <title>Student Data</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
