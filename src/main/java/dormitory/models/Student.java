@@ -13,7 +13,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class Student {
     private int id;
-    private int punishment;
+    private int remark;
     private String name;
     private String surname;
     private String email;

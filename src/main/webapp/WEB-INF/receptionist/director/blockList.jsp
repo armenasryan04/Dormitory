@@ -41,7 +41,7 @@
                 <th>PHONE</th>
                 <th>E-MAIL</th>
                 <th>BIRTHDAY</th>
-                <th>NUMBER OF PUNISHMENTS</th>
+                <th>NUMBER OF REMARKS</th>
                 <th>UNBLOCK</th>
             </tr>
             </thead>
@@ -73,7 +73,7 @@
                 <td>
                     <%=student.getBirthday()%>
                 </td>
-                <td style="padding-left: 2px "><%=student.getPunishment()%>
+                <td style="padding-left: 2px "><%=student.getRemark()%>
                 </td>
                 <td><a href='#' class="gradient-button" id='unblock<%=student.getId()%>'><i class='bx bxs-user-x'></i></a>
                 </td>

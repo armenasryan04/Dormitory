@@ -42,10 +42,10 @@
                 <th>NAME</th>
                 <th>SURNAME</th>
                 <th>INSPECTION BOOKLET NUMBER</th>
-                <th>PUNISHMENT NUMBER</th>
-                <th><%if (student != null && student.getPunishment() < 2) {%>
-                    ADD PUNISHMENT
-                    <%} else if (student != null && student.getPunishment() == 2) {%>
+                <th>NUMBER OF REMARKS</th>
+                <th><%if (student != null && student.getRemark() < 2) {%>
+                    ADD REMARK
+                    <%} else if (student != null && student.getRemark() == 2) {%>
                     BLOCK
                     <%}%></th>
             </tr>
@@ -55,15 +55,15 @@
             <tr>
                 <div id="requestContainer" class="request-container">
                     <div id="requestMessage" class="request-message">
-                        <%if (student.getPunishment() < 2) {%>
-                        you need to add punishment?
-                        <%} else if (student.getPunishment() == 2) {%>
+                        <%if (student.getRemark() < 2) {%>
+                        you need to add remark?
+                        <%} else if (student.getRemark() == 2) {%>
                         you need to block this student?
                         <%}%>
                         <br/>
-                        <a href="/updatePunishment?id=<%=student.getId()%>" style="color: red">YES</a> || <a id="cancel"
-                                                                                                             href="#"
-                                                                                                             style="color: orange">NO</a>
+                        <a href="/updateRemark?id=<%=student.getId()%>" style="color: red">YES</a> || <a id="cancel"
+                                                                                                         href="#"
+                                                                                                         style="color: orange">NO</a>
                     </div>
                 </div>
                 <td><%= student.getName() %>
@@ -72,12 +72,12 @@
                 </td>
                 <td><%=student.getId()%>
                 </td>
-                <td><%= student.getPunishment()%>
+                <td><%= student.getRemark()%>
                 </td>
-                <td><%if (student.getPunishment() < 2) {%>
-                    <a href='#' class="gradient-button" id='punishment'>+1</a>
-                    <%} else if (student.getPunishment() == 2) {%>
-                    <a href='#' class="gradient-button" id='punishment'><i class='bx bxs-user-x'></i></a>
+                <td><%if (student.getRemark() < 2) {%>
+                    <a href='#' class="gradient-button" id='remark'>+1</a>
+                    <%} else if (student.getRemark() == 2) {%>
+                    <a href='#' class="gradient-button" id='remark'><i class='bx bx-block'></i></a>
                     <%}%>
                 </td>
             </tr>
@@ -428,7 +428,7 @@
         window.location.replace('/directorControl');
     });
     var cancelElement = document.getElementById('cancel');
-    var punishmentElement = document.getElementById('punishment')
+    var remarkElement = document.getElementById('remark')
 
     function handleButtonClick() {
         var doneContainer = document.getElementById('doneContainer');
@@ -457,7 +457,7 @@
         document.getElementById('requestMessage').style.visibility = 'hidden';
         document.getElementById('requestContainer').style.visibility = 'hidden';
     })
-    punishmentElement.addEventListener('click', function () {
+    remarkElement.addEventListener('click', function () {
         document.getElementById('requestContainer').style.visibility = 'visible';
         document.getElementById('requestMessage').style.visibility = 'visible';
     });

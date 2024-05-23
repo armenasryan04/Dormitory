@@ -216,7 +216,7 @@ public class StudentManager {
 
 
     public Student addToDB(Student student) {
-        String sql = "insert  into student(name,surname,email,phone_num,birthday,register_date,register_deadline,room_id,receptionist_id,id,punishment_num) values (?,?,?,?,?,?,?,?,?,?,0)";
+        String sql = "insert  into student(name,surname,email,phone_num,birthday,register_date,register_deadline,room_id,receptionist_id,id,remark_num) values (?,?,?,?,?,?,?,?,?,?,0)";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, student.getName());
             preparedStatement.setString(2, student.getSurname());
@@ -244,7 +244,7 @@ public class StudentManager {
         }
     }
     public void statusToActive(int id, int roomId, String email, Date registerDeadline, Date registerDate, Receptionist receptionist) {
-        String updateSql = "UPDATE student SET status = 'ACTIVE' , room_id = ?, register_deadline = ? ,register_date = ?, receptionist_id = ?, email = ? ,punishment_num = ? WHERE id = ?";
+        String updateSql = "UPDATE student SET status = 'ACTIVE' , room_id = ?, register_deadline = ? ,register_date = ?, receptionist_id = ?, email = ? ,remark_num = ? WHERE id = ?";
         try (PreparedStatement updateStatement = connection.prepareStatement(updateSql)) {
             updateStatement.setInt(1, roomId);
             updateStatement.setDate(2, registerDeadline);
@@ -279,7 +279,7 @@ public class StudentManager {
         Receptionist receptionist = receptionistManager.getById(resultSet.getInt("receptionist_id"));
         Student student = Student.builder()
                 .id(resultSet.getInt("id"))
-                .punishment(resultSet.getInt("punishment_num"))
+                .remark(resultSet.getInt("remark_num"))
                 .name(resultSet.getString("name"))
                 .surname(resultSet.getString("surname"))
                 .phoneNum(resultSet.getString("phone_num"))
@@ -310,8 +310,8 @@ public class StudentManager {
     }
 
 
-    public  void updatePunishmentById(int id) {
-        String sql = "UPDATE student SET punishment_num = punishment_num + 1 WHERE id = ?";
+    public  void updateRemarkById(int id) {
+        String sql = "UPDATE student SET remark_num = remark_num + 1 WHERE id = ?";
         try (PreparedStatement preparedStatement =  connection.prepareStatement(sql)) {
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
@@ -321,7 +321,7 @@ public class StudentManager {
         }
 
     public void blockStudentById(int id) {
-        String sql = "UPDATE student SET punishment_num = 0 , status = 'BAN' WHERE id = ? and status = 'ACTIVE'";
+        String sql = "UPDATE student SET remark_num = 0 , status = 'BAN' WHERE id = ? and status = 'ACTIVE'";
         try (PreparedStatement preparedStatement =  connection.prepareStatement(sql)) {
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
@@ -330,7 +330,7 @@ public class StudentManager {
         }
     }
     public void unBlockStudentById(int id) {
-        String sql = "UPDATE student SET punishment_num = 0 , status = 'ARCHIVE' WHERE id = ?";
+        String sql = "UPDATE student SET remark_num = 0 , status = 'ARCHIVE' WHERE id = ?";
         try (PreparedStatement preparedStatement =  connection.prepareStatement(sql)) {
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();

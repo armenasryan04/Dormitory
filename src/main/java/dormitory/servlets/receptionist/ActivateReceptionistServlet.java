@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.Random;
 
 @WebServlet("/activateReceptionist")
 public class ActivateReceptionistServlet extends HttpServlet {
@@ -28,7 +29,9 @@ public class ActivateReceptionistServlet extends HttpServlet {
                     Date date = new Date(System.currentTimeMillis());
                     String today = sdf.format(date);
                     Date sqlEmploymentDay = Date.valueOf(today);
-                    receptionistManager.activateById(id, sqlEmploymentDay);
+                    Random rand = new Random();
+                    int randomNumber = rand.nextInt(900000) + 100000;
+                    receptionistManager.activateById(id, sqlEmploymentDay, randomNumber);
                     String subject = "Your Information";
                     String text = "you have been registered in our dormitory as an receptionist \n" +
                             "your id" + receptionist.getId() + "\n" +

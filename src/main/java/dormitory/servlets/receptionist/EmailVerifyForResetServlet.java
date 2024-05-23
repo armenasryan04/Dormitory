@@ -11,6 +11,7 @@ import java.io.IOException;
 public class EmailVerifyForResetServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("WEB-INF/receptionist/global/verifyEmail.jsp").forward(req, resp);
+
+        req.getRequestDispatcher("WEB-INF/receptionist/global/verifyEmailResetPass.jsp").forward(req, resp);
     }
 }

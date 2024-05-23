@@ -1017,7 +1017,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <schema id="293" parent="1" name="dormitory_student">
-      <LastIntrospectionLocalTimestamp>2024-05-01.10:04:28</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2024-05-23.11:28:35</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_bin</CollationName>
     </schema>
     <schema id="294" parent="1" name="book_shop">
@@ -24290,7 +24290,7 @@ VARIABLE_NAME</ColNames>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="4657" parent="680" name="id">
-      <AutoIncrement>5</AutoIncrement>
+      <AutoIncrement>11</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -24376,12 +24376,12 @@ VARIABLE_NAME</ColNames>
       <Position>2</Position>
     </column>
     <column id="4674" parent="682" name="id">
-      <AutoIncrement>654584141</AutoIncrement>
+      <AutoIncrement>654584142</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="4675" parent="682" name="punishment_num">
+    <column id="4675" parent="682" name="remark_num">
       <DasType>int|0s</DasType>
       <Position>2</Position>
     </column>

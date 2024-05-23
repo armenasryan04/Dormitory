@@ -26,17 +26,17 @@ public class EmailVerifyForResetFilter implements Filter {
           Receptionist receptionist = receptionistManager.getByEmail(req.getParameter("email"));
                 if (receptionist.getId() != 0 && !receptionist.getReceptionistRole().equals(ReceptionistRole.REGISTRANT) ) {
                     int randomNum = (int)req.getSession().getAttribute("verifyCode");
-                    req.getSession().setAttribute("email", req.getParameter("email"));
+                    req.getSession().setAttribute("email", receptionist.getEmail());
                     EmailSender emailSender = new EmailSender();
                     emailSender.sendMail(req.getParameter("email"),randomNum);
                     filterChain.doFilter(req, resp);
                 }else {
                     req.setAttribute("errMsg", "we dont have employee with this email");
-                    req.getRequestDispatcher("WEB-INF/receptionist/global/verifyEmail.jsp").forward(req, resp);
+                    req.getRequestDispatcher("WEB-INF/receptionist/global/verifyEmailResetPass.jsp").forward(req, resp);
                 }
             } else {
                     req.setAttribute("errMsg", "invalid email address");
-                    req.getRequestDispatcher("WEB-INF/receptionist/global/verifyEmail.jsp").forward(req, resp);
+                    req.getRequestDispatcher("WEB-INF/receptionist/global/verifyEmailResetPass.jsp").forward(req, resp);
                 }
         } catch (NullPointerException e) {
             e.printStackTrace();

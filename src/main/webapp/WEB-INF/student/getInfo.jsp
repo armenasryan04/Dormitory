@@ -41,7 +41,7 @@
             <th>REGISTER DATE </th>
             <th>REGISTER DEADLINE</th>
             <th>DAYS UNTIL</th>
-            <th>PUNISHMENT NUMBER</th>
+            <th>NUMBER OF REMARKS</th>
             <th>ROOM INFORMATION</th>
         </tr>
         </thead>
@@ -64,7 +64,7 @@
             </td>
             <td><%=student.getDaysUntil()%>
             </td>
-            <td><%=student.getPunishment()%>
+            <td><%=student.getRemark()%>
             </td>
             <td><a href="/roomsInfo?id=<%=student.getId()%>" class="gradient-button">Room</a><%}%>
             </td>

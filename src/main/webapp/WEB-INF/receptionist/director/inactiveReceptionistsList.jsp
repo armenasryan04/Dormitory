@@ -652,5 +652,31 @@
         });
     });
 
+    function handleButtonClick() {
+        var errorContainer = document.getElementById('errorContainer');
+        var errorMessage = document.getElementById('errorMessage');
+        if (errorContainer && errorContainer.contains(event.target) && !errorMessage.contains(event.target) ) {
+            errorContainer.style.display = 'none';
+            errorMessage.style.display = 'none'
+            location.replace('/changeEmailData')
+        }
+    };
+    function handleEnterKeyPress() {
+        if (event.key === 'Enter' || event.keyCode === 32 ) {
+
+            var errorContainer = document.getElementById('errorContainer');
+            var errorMessage = document.getElementById('errorMessage');
+            errorContainer.style.display = 'none';
+            errorMessage.style.display = 'none'
+            location.replace('/changeEmailData')
+        }
+    }
+    <% if (request.getAttribute("errMsg") != null) { %>
+    document.getElementById('errorMessage').style.display = 'flex';
+    document.getElementById('errorContainer').style.display = 'flex';
+    <% } %>
+    document.body.addEventListener('keypress',handleEnterKeyPress)
+    document.body.addEventListener('click', handleButtonClick);
+
 </script>
 </html>

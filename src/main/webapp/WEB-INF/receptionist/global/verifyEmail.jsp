@@ -24,16 +24,16 @@
 <br/>
 <a href="/login" class="gradient-button">Back</a>
 <div class="wrapper-data">
-    <div class="title">GET PASSWORD</div>
+    <div class="title">Change Email</div>
 <div class="content"></div>
-    <form action="/sendNewPassword" method="post">
+    <form action="/changeEmail" method="post">
         <div class="field">
             <input type="text" required name="code">
             <label class="input-box">Check your Gmail</label>
         </div>
         <div class="field" >
             <br/>
-            <input type="submit" value="get new password">
+            <input type="submit" value="Change">
         </div>
         <div class="content">
             <div class="pass-link">
@@ -487,7 +487,7 @@
         if (errorContainer && errorContainer.contains(event.target) && !errorMessage.contains(event.target) ) {
             errorContainer.style.display = 'none';
             errorMessage.style.display = 'none'
-           location.replace('/studentDataFilling')
+           location.replace('/changeEmailData')
         }
     };
     function handleEnterKeyPress() {
@@ -497,7 +497,7 @@
             var errorMessage = document.getElementById('errorMessage');
             errorContainer.style.display = 'none';
             errorMessage.style.display = 'none'
-            location.replace('/studentDataFilling')
+            location.replace('/changeEmailData')
         }
     }    var newCode = document.getElementById("newCode");
     newCode.addEventListener("click", function (event) {

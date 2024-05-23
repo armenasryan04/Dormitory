@@ -533,7 +533,7 @@
         if (errorContainer && errorContainer.contains(event.target) && !errorMessage.contains(event.target) ) {
             errorContainer.style.display = 'none';
             errorMessage.style.display = 'none'
-           location.replace('/studentDataFilling')
+           location.replace('/verifyControlCode')
         }
     };
     function handleEnterKeyPress() {
@@ -543,9 +543,11 @@
             var errorMessage = document.getElementById('errorMessage');
             errorContainer.style.display = 'none';
             errorMessage.style.display = 'none'
-            location.replace('/studentDataFilling')
+            location.replace('/verifyControlCode')
         }
     }
+    document.body.addEventListener('keypress',handleEnterKeyPress)
+    document.body.addEventListener('click', handleButtonClick);
     var cancelElement = document.getElementById('cancel');
     <% if (request.getAttribute("errMsg") == null && request.getAttribute("reqMsg")!=null) { %>
     document.getElementById('requestContainer').style.visibility = 'visible';
@@ -559,8 +561,7 @@
         document.getElementById('requestMessage').style.visibility = 'hidden';
         document.getElementById('requestContainer').style.visibility = 'hidden';
     })
-    document.body.addEventListener('keypress',handleEnterKeyPress)
-    document.body.addEventListener('click', handleButtonClick);
+
 
 </script>
 </html>

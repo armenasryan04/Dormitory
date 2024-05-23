@@ -59,10 +59,11 @@ public class ReceptionistManager {
             e.printStackTrace();
         }
     }
-    public void activateById(int id, Date employmentDate) {
-        String updateSql = "update receptionist set role = 'ADMIN' ,employment_date = ? where  id = " + id;
+    public void activateById(int id, Date employmentDate, int controlCode) {
+        String updateSql = "update receptionist set role = 'ADMIN' ,employment_date = ? , control_code = ? where  id = " + id;
         try (PreparedStatement updateStatement = connection.prepareStatement(updateSql)) {
             updateStatement.setDate(1, employmentDate);
+            updateStatement.setInt(2, controlCode);
             updateStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

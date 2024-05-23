@@ -43,7 +43,7 @@
                 <th>PHONE</th>
                 <th>E-MAIL</th>
                 <th>BIRTHDAY</th>
-                <th>NUMBER OF PUNISHMENTS</th>
+                <th>NUMBER OF REMARKS</th>
                 <th>MORE INFORMATION</th>
             </tr>
             </thead>
@@ -66,7 +66,7 @@
                 <td>
                     <%=student.getBirthday()%>
                 </td>
-                <td style="padding-left: 2px "><%=student.getPunishment()%>
+                <td style="padding-left: 2px "><%=student.getRemark()%>
                 </td>
                 <td><a href="/moreInfo?id=<%=student.getId()%>" class="gradient-button"><i style="font-size:20px"
                                                                                            class='bx bxs-info-circle'></i></a>

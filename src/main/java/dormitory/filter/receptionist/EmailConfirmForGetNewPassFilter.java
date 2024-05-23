@@ -17,11 +17,11 @@ public class EmailConfirmForGetNewPassFilter implements Filter {
         req.setCharacterEncoding("UTF-8");
         try {
             if (req.getSession().getAttribute("verifyCode").toString().equals(req.getParameter("code").trim())) {
-                filterChain.doFilter(req,resp);
-            }else {
-                    req.setAttribute("errMsg","not variable code try again!");
-                    req.getRequestDispatcher("WEB-INF/receptionist/global/login.jsp").forward(req, resp);
-                }
+                filterChain.doFilter(req, resp);
+            } else {
+                req.setAttribute("errMsg", "not variable code try again!");
+                req.getRequestDispatcher("WEB-INF/receptionist/global/verifyEmailResetPass.jsp").forward(req, resp);
+            }
         } catch (NullPointerException e) {
             e.printStackTrace();
             resp.sendRedirect("/login");
