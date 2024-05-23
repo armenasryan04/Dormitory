@@ -1,6 +1,3 @@
-
-<%@ page import="java.util.Date" %>
-<%@ page import="dormitory.models.Room" %>
 <%@ page import="dormitory.models.Student" %><%--
   Created by IntelliJ IDEA.
   User: User
@@ -34,11 +31,13 @@
         </thead>
         <tbody>
         <tr>
-            <td><a class="gradient-button" href="/adderInfo?id=<%=student.getId()%>"><i class='bx bxs-user-detail' >ADDER</i></a>
+            <td><a class="gradient-button" href="/adderInfo?id=<%=student.getId()%>"><i
+                    class='bx bxs-user-detail'>ADDER</i></a>
             </td>
-            <td> <a class="gradient-button" href="/dateInfo?id=<%=student.getId()%>"><i class="bx bxs-calendar">DATE</i> </a>
+            <td><a class="gradient-button" href="/dateInfo?id=<%=student.getId()%>"><i class="bx bxs-calendar">DATE</i>
+            </a>
             </td>
-            <td> <a class="gradient-button" href="/roomsInfo?id=<%=student.getId()%>"><i class='bx bxs-building-house'>ROOM</i></a>
+            <td><a class="gradient-button" href="/roomsInfo?id=<%=student.getId()%>"><i class='bx bxs-building-house'>ROOM</i></a>
             </td>
         </tr>
         </tbody>
@@ -166,6 +165,7 @@
             background-position: 0% 0%;
         }
     }
+
     .gradient-button {
         top: 20px;
         right: 20px;
@@ -188,6 +188,7 @@
         color: rgb(0, 0, 0);
         box-shadow: 0 0 10px #f519f5;
     }
+
     .gradient-button-back {
         position: absolute;
         top: 10px;

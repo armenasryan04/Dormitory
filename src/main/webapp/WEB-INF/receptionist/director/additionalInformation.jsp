@@ -1,7 +1,3 @@
-
-<%@ page import="java.util.Date" %>
-<%@ page import="dormitory.models.Room" %>
-<%@ page import="dormitory.models.Student" %>
 <%@ page import="dormitory.models.Receptionist" %><%--
   Created by IntelliJ IDEA.
   User: User
@@ -34,9 +30,11 @@
         </thead>
         <tbody>
         <tr>
-            <td><a class="gradient-button" href="/addHistory?id=<%=receptionist.getId()%>"><i class='bx bx-history' style="font-size: 25px"></i></a>
+            <td><a class="gradient-button" href="/addHistory?id=<%=receptionist.getId()%>"><i class='bx bx-history'
+                                                                                              style="font-size: 25px"></i></a>
             </td>
-            <td> <a class="gradient-button" href="/controlCode?id=<%=receptionist.getId()%>"><i class='bx bxs-key'  style="font-size: 25px"></i></a>
+            <td><a class="gradient-button" href="/controlCode?id=<%=receptionist.getId()%>"><i class='bx bxs-key'
+                                                                                               style="font-size: 25px"></i></a>
             </td>
         </tr>
         </tbody>
@@ -164,6 +162,7 @@
             background-position: 0% 0%;
         }
     }
+
     .gradient-button {
         top: 20px;
         right: 20px;
@@ -186,6 +185,7 @@
         color: rgb(0, 0, 0);
         box-shadow: 0 0 10px #f519f5;
     }
+
     .gradient-button-back {
         position: absolute;
         top: 10px;

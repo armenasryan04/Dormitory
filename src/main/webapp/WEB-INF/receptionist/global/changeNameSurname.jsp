@@ -39,11 +39,11 @@
 
     <form action="/saveNameSurname" method="post">
         <div class="field">
-            <input type="text"  name="name"  required>
+            <input type="text" name="name" required>
             <label class="input-box">Name</label>
         </div>
         <div class="field">
-            <input type="text"  name="surname" required>
+            <input type="text" name="surname" required>
             <label class="input-box" style=" float: right;">Surname</label>
         </div>
         <div class="field">
@@ -262,8 +262,9 @@
     .wrapper .overlay ul li {
         margin: 10px 0;
     }
-    .wrapper .overlay ul li:hover{
-        text-shadow:#f519f5 1px 0 10px;
+
+    .wrapper .overlay ul li:hover {
+        text-shadow: #f519f5 1px 0 10px;
     }
 
     .wrapper .overlay ul li a {
@@ -442,18 +443,20 @@
     form .signup-link a:hover {
         text-decoration: underline;
     }
+
     .error-container {
         display: none;
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
-        height:100%;
+        height: 100%;
         backdrop-filter: blur(5px);
         justify-content: center;
         align-items: center;
-        z-index:200000000000;
+        z-index: 200000000000;
     }
+
     .error-message {
         z-index: 200000000;
         color: white;
@@ -465,7 +468,8 @@
 
     }
 
-</style>   <script>
+</style>
+<script>
     $(document).ready(function () {
         $('.menu').click(function () {
             $('.overlay').toggleClass('anim');
@@ -485,14 +489,15 @@
     function handleButtonClick() {
         var errorContainer = document.getElementById('errorContainer');
         var errorMessage = document.getElementById('errorMessage');
-        if (errorContainer && errorContainer.contains(event.target) && !errorMessage.contains(event.target) ) {
+        if (errorContainer && errorContainer.contains(event.target) && !errorMessage.contains(event.target)) {
             errorContainer.style.display = 'none';
             errorMessage.style.display = 'none'
             window.history.back();
         }
     };
+
     function handleEnterKeyPress() {
-        if (event.key === 'Enter' || event.keyCode === 32 ) {
+        if (event.key === 'Enter' || event.keyCode === 32) {
 
             var errorContainer = document.getElementById('errorContainer');
             var errorMessage = document.getElementById('errorMessage');
@@ -501,11 +506,12 @@
             window.history.back();
         }
     }
+
     <% if (request.getAttribute("errMsg") != null) { %>
     document.getElementById('errorMessage').style.display = 'flex';
     document.getElementById('errorContainer').style.display = 'flex';
     <% } %>
-    document.body.addEventListener('keypress',handleEnterKeyPress)
+    document.body.addEventListener('keypress', handleEnterKeyPress)
     document.body.addEventListener('click', handleButtonClick);
 </script>
 </html>

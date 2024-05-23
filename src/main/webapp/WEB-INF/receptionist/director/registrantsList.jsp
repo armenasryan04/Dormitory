@@ -40,7 +40,7 @@
 
         <% if (request.getAttribute("doneMsg") != null) { %>
         <div id="doneContainer" class="done-container">
-            <div id="doneMessage"  class="done-message" >
+            <div id="doneMessage" class="done-message">
                 <%=request.getAttribute("doneMsg")%>
             </div>
         </div>
@@ -77,7 +77,8 @@
                 <div id="requestMessageForActivate<%=receptionist.getId()%>" class="request-message-for-activate">
                     you need to activate this employee?
                     <br/>
-                    <a href="/activateReceptionist?id=<%=receptionist.getId()%>" style="color: red">YES</a> || <a id="cancel1<%=receptionist.getId()%>" href="#" style="color: orange">NO</a>
+                    <a href="/activateReceptionist?id=<%=receptionist.getId()%>" style="color: red">YES</a> || <a
+                        id="cancel1<%=receptionist.getId()%>" href="#" style="color: orange">NO</a>
                 </div>
             </div>
             <tr>
@@ -633,13 +634,11 @@
         underline: none;
         border-radius: 7px;
     }
+
     .done-container {
-    <%if(request.getAttribute("doneMsg")==null){%>
-        display: none;
-    <%}else {%>
-        display: flex;
-    <%}%>
-        position: fixed;
+    <%if(request.getAttribute("doneMsg")==null){%> display: none;
+    <%}else {%> display: flex;
+    <%}%> position: fixed;
         top: 0;
         left: 0;
         width: 100%;
@@ -647,15 +646,13 @@
         backdrop-filter: blur(5px);
         justify-content: center;
         align-items: center;
-        z-index:200000000000;
+        z-index: 200000000000;
     }
+
     .done-message {
-    <%if(request.getAttribute("doneMsg")==null){%>
-        display: none;
-    <%}else {%>
-        display: flex;
-        <%}%>
-        z-index: 200000000;
+    <%if(request.getAttribute("doneMsg")==null){%> display: none;
+    <%}else {%> display: flex;
+    <%}%> z-index: 200000000;
         color: white;
         height: auto;
         width: auto;
@@ -689,17 +686,19 @@
     });
     var removeElement = document.getElementById('remove');
     var cancelElement = document.getElementById('cancel');
+
     function handleButtonClick() {
         var doneContainer = document.getElementById('doneContainer');
         var doneMessage = document.getElementById('doneMessage');
-        if (doneContainer && doneContainer.contains(event.target) && !doneMessage.contains(event.target) ) {
+        if (doneContainer && doneContainer.contains(event.target) && !doneMessage.contains(event.target)) {
             doneContainer.style.display = 'none';
             doneMessage.style.display = 'none'
             window.location.replace('/listOfRegistrants');
         }
     };
+
     function handleEnterKeyPress() {
-        if (event.key === 'Enter' || event.keyCode === 32 ) {
+        if (event.key === 'Enter' || event.keyCode === 32) {
             var doneContainer = document.getElementById('doneContainer');
             var doneMessage = document.getElementById('doneMessage');
             doneContainer.style.display = 'none';
@@ -707,7 +706,8 @@
             window.location.replace('/listOfRegistrants');
         }
     }
-    document.body.addEventListener('keypress',handleEnterKeyPress)
+
+    document.body.addEventListener('keypress', handleEnterKeyPress)
     document.body.addEventListener('click', handleButtonClick);
 
     removeElement.addEventListener('click', function () {
@@ -720,10 +720,10 @@
 
     })
 
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         <% if (receptionists != null && !receptionists.isEmpty()) { %>
         <% for (Receptionist receptionist : receptionists) { %>
-        (function(receptionistId) {
+        (function (receptionistId) {
             var cancelElement1 = document.getElementById('cancel1' + receptionistId);
             var activateElement = document.getElementById('activate' + receptionistId);
             cancelElement1.addEventListener('click', function (event) {

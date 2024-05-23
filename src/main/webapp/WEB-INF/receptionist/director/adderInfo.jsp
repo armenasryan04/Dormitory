@@ -1,4 +1,3 @@
-
 <%@ page import="java.util.Date" %>
 <%@ page import="dormitory.models.Room" %>
 <%@ page import="dormitory.models.Receptionist" %><%--
@@ -169,6 +168,7 @@
             background-position: 0% 0%;
         }
     }
+
     .gradient-button {
         position: absolute;
         top: 10px;

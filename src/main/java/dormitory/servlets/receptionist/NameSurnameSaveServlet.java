@@ -21,10 +21,10 @@ public class NameSurnameSaveServlet extends HttpServlet {
         HttpSession session = req.getSession();
         Receptionist receptionist = (Receptionist) session.getAttribute("receptionist");
         receptionistManager.changeNameSurnameById(receptionist.getId(), receptionist.getName(), receptionist.getSurname());
-        req.setAttribute("doneMsg","your name and surname has been changed!");
+        req.setAttribute("doneMsg", "your name and surname has been changed!");
         if (receptionist.getReceptionistRole().equals(ReceptionistRole.DIRECTOR)) {
             req.getRequestDispatcher("WEB-INF/receptionist/director/control.jsp").forward(req, resp);
-        } else if (receptionist.getReceptionistRole().equals(ReceptionistRole.ADMIN)){
+        } else if (receptionist.getReceptionistRole().equals(ReceptionistRole.ADMIN)) {
             req.getRequestDispatcher("WEB-INF/receptionist/admin/control.jsp").forward(req, resp);
         }
     }

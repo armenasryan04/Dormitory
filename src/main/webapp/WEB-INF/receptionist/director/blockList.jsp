@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.util.List" %>
 <%@ page import="dormitory.models.Student" %>
-<%@ page import="dormitory.models.Receptionist" %>
+
 <html>
 <head>
     <title>Block List</title>
@@ -53,9 +53,10 @@
                     <div id="requestMessage<%=student.getId()%>" class="request-message">
                         You need to unblock this student?
                         <br/>
-                        <a href="/unblockStudent?id=<%=student.getId()%>" style="color: red">YES</a> || <a id="cancel<%=student.getId()%>"
-                                                                                                           href="#"
-                                                                                                           style="color: orange">NO</a>
+                        <a href="/unblockStudent?id=<%=student.getId()%>" style="color: red">YES</a> || <a
+                            id="cancel<%=student.getId()%>"
+                            href="#"
+                            style="color: orange">NO</a>
                     </div>
                 </div>
                 <td>
@@ -75,7 +76,8 @@
                 </td>
                 <td style="padding-left: 2px "><%=student.getRemark()%>
                 </td>
-                <td><a href='#' class="gradient-button" id='unblock<%=student.getId()%>'><i class='bx bxs-user-x'></i></a>
+                <td><a href='#' class="gradient-button" id='unblock<%=student.getId()%>'><i
+                        class='bx bxs-user-x'></i></a>
                 </td>
 
             </tr>
@@ -690,10 +692,10 @@
 
     document.body.addEventListener('keypress', handleEnterKeyPressDone)
     document.body.addEventListener('click', handleButtonClickDone);
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         <% if (students != null && !students.isEmpty()) { %>
         <% for (Student student : students) { %>
-        (function(studentId) {
+        (function (studentId) {
             var cancelElement = document.getElementById('cancel' + studentId);
             var deactivateElement = document.getElementById('unblock' + studentId)
             cancelElement.addEventListener('click', function (event) {

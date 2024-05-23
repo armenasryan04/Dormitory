@@ -30,15 +30,15 @@ public class PasswordChangeValidationFilter implements Filter {
                     receptionist.setPassword(newPassword);
                     filterChain.doFilter(req, resp);
                 } else {
-                    req.setAttribute("errMsg","Password mismatch:-(");
+                    req.setAttribute("errMsg", "Password mismatch:-(");
                     req.getRequestDispatcher("WEB-INF/receptionist/global/changePassword.jsp").forward(req, resp);
                 }
-            }else {
-                req.setAttribute("errMsg","invalid password :-(");
+            } else {
+                req.setAttribute("errMsg", "invalid password :-(");
                 req.getRequestDispatcher("WEB-INF/receptionist/global/changePassword.jsp").forward(req, resp);
             }
-        } catch (NullPointerException e){
-            req.setAttribute("errMsg","Please create new password:-(");
+        } catch (NullPointerException e) {
+            req.setAttribute("errMsg", "Please create new password:-(");
             req.getRequestDispatcher("WEB-INF/receptionist/global/changePassword.jsp").forward(req, resp);
         }
 

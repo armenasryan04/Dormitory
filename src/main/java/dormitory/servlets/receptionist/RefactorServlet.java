@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/refactorMenu")
-public class RefactorServlet extends HttpServlet  {
+public class RefactorServlet extends HttpServlet {
     @Override
-    protected void service(HttpServletRequest req, HttpServletResponse resp)  throws ServletException, IOException {
+    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         RemoveFormSessionAttributes.remove(req);
-        req.getRequestDispatcher("WEB-INF/receptionist/admin/refactor.jsp").forward(req,resp);
+        req.getRequestDispatcher("WEB-INF/receptionist/admin/refactor.jsp").forward(req, resp);
     }
 }

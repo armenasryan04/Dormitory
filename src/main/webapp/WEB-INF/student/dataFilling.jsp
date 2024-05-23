@@ -22,7 +22,8 @@
             id = "";
         } else {
             id = String.valueOf(student.getId());
-        };
+        }
+        ;
     } else {
         name = "";
         surname = "";

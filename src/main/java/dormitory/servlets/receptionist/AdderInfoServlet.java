@@ -16,18 +16,18 @@ public class AdderInfoServlet extends HttpServlet {
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String id = req.getParameter("id");
         if (id != null && !id.isEmpty()) {
-        try {
-            StudentManager studentManager = new StudentManager();
-            Student student = studentManager.getById(Integer.parseInt(id));
-            if (student.getReceptionist()!=null){
-                req.setAttribute("adder", student.getReceptionist());
-                req.getRequestDispatcher("WEB-INF/receptionist/director/adderInfo.jsp").forward(req, resp);
-            }else {
+            try {
+                StudentManager studentManager = new StudentManager();
+                Student student = studentManager.getById(Integer.parseInt(id));
+                if (student.getReceptionist() != null) {
+                    req.setAttribute("adder", student.getReceptionist());
+                    req.getRequestDispatcher("WEB-INF/receptionist/director/adderInfo.jsp").forward(req, resp);
+                } else {
+                    resp.sendRedirect("/directorControl");
+                }
+            } catch (NumberFormatException e) {
                 resp.sendRedirect("/directorControl");
             }
-        }catch (NumberFormatException e) {
-            resp.sendRedirect("/directorControl");
-        }
         } else {
             resp.sendRedirect("/directorControl");
         }

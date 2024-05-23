@@ -15,7 +15,7 @@ public class RemoveRegistrantsListServlet extends HttpServlet {
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ReceptionistManager receptionistManager = new ReceptionistManager();
         receptionistManager.removeAllRegistrants();
-        req.setAttribute("doneMsg","List of registrants has been  removed");
+        req.setAttribute("doneMsg", "List of registrants has been  removed");
         req.getRequestDispatcher("WEB-INF/receptionist/director/registrantsList.jsp").forward(req, resp);
     }
 }

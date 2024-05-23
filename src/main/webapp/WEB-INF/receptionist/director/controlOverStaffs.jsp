@@ -106,7 +106,7 @@
     <div class="overlay">
         <a style="position: absolute;top:5px " class="gradient-button" href="/logout"><i class='bx bx-log-out'></i></a>
         <ul>
-            <li><a href="/directorControl" ><i class='bx bxs-home'></i></a></li>
+            <li><a href="/directorControl"><i class='bx bxs-home'></i></a></li>
             <li><a href="/listOfReceptionists">List Of Receptionists</a></li>
             <li><a href="/listOfInactiveReceptionists">Staffs Archive</a></li>
             <li><a href="/listOfRegistrants">Registrants</a></li>

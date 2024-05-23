@@ -17,6 +17,7 @@ import java.sql.Date;
 @WebServlet("/makeActive")
 public class MakeActiveServlet extends HttpServlet {
     StudentManager studentManager = new StudentManager();
+
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Student student = (Student) req.getSession().getAttribute("student");
@@ -31,13 +32,13 @@ public class MakeActiveServlet extends HttpServlet {
         Receptionist receptionist = (Receptionist) req.getSession().getAttribute("receptionist");
         Date endDate = (Date) student.getDeadline();
         Date registerDate = (Date) student.getRegisterDate();
-        studentManager.statusToActive(id, roomId,student.getEmail(),endDate,registerDate,receptionist);
+        studentManager.statusToActive(id, roomId, student.getEmail(), endDate, registerDate, receptionist);
         EmailSender emailSender = new EmailSender();
-        emailSender.sendInformantMail(student.getEmail(),subject,text);
-        req.setAttribute("doneMsg","the student has been registered again!");
+        emailSender.sendInformantMail(student.getEmail(), subject, text);
+        req.setAttribute("doneMsg", "the student has been registered again!");
         if (receptionist.getReceptionistRole().equals(ReceptionistRole.DIRECTOR)) {
             req.getRequestDispatcher("WEB-INF/receptionist/director/control.jsp").forward(req, resp);
-        } else if (receptionist.getReceptionistRole().equals(ReceptionistRole.ADMIN)){
+        } else if (receptionist.getReceptionistRole().equals(ReceptionistRole.ADMIN)) {
             req.getRequestDispatcher("WEB-INF/receptionist/admin/control.jsp").forward(req, resp);
         }
     }

@@ -21,62 +21,63 @@
 <div class="wave"></div>
 
 <div class="forming">
-    <div class="title">Receptionists </div>
-<div class="container">
-    <form id="searchForm" action="/listOfReceptionists" method="get">
-        <div class="search-box">
-            <div class="input-search-background">
-                <div class="btn-search">
-                    <input type="text" name="search" class="input-search animate" placeholder="🔍 search..."  id="searchInput" value="${not empty param.search ? param.search : ''}">
+    <div class="title">Receptionists</div>
+    <div class="container">
+        <form id="searchForm" action="/listOfReceptionists" method="get">
+            <div class="search-box">
+                <div class="input-search-background">
+                    <div class="btn-search">
+                        <input type="text" name="search" class="input-search animate" placeholder="🔍 search..."
+                               id="searchInput" value="${not empty param.search ? param.search : ''}">
+                    </div>
                 </div>
             </div>
-        </div>
-    </form>
+        </form>
 
 
-
-    <br/>
-    <table class="table">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>SURNAME</th>
-            <th>BIRTHDAY</th>
-            <th>PHONE NUMBER</th>
-            <th>EMAIL</th>
-            <th>EMPLOYMENT DATE</th>
-            <th>GENDER</th>
-            <th>ADDITIONAL INFORMATION</th>
-        </tr>
-        </thead>
-        <tbody>
-        <% if (receptionists != null && !receptionists.isEmpty()) { %>
-        <% for (Receptionist receptionist : receptionists) { %>
-        <tr>
-            <td><%= receptionist.getId()%>
-            </td>
-            <td><%= receptionist.getName() %>
-            </td>
-            <td><%= receptionist.getSurname() %>
-            </td>
-            <td><%=receptionist.getBirthday()%>
-            </td>
-            <td><%= receptionist.getPhone() %>
-            </td>
-            <td><%=receptionist.getEmail()%>
-            </td>
-            <td><%= receptionist.getEmploymentDate()%>
-            </td>
-            <td><%= receptionist.getGender()%>
-            </td>
-            <td><a class="gradient-button" href="/additionalInformation?id=<%=receptionist.getId()%>"><i class='bx bxs-info-circle' style="font-size: 20px"></i></a></td>
-        </tr>
-        <% } %>
-        <% } %>
-        </tbody>
-    </table>
-</div>
+        <br/>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>SURNAME</th>
+                <th>BIRTHDAY</th>
+                <th>PHONE NUMBER</th>
+                <th>EMAIL</th>
+                <th>EMPLOYMENT DATE</th>
+                <th>GENDER</th>
+                <th>ADDITIONAL INFORMATION</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% if (receptionists != null && !receptionists.isEmpty()) { %>
+            <% for (Receptionist receptionist : receptionists) { %>
+            <tr>
+                <td><%= receptionist.getId()%>
+                </td>
+                <td><%= receptionist.getName() %>
+                </td>
+                <td><%= receptionist.getSurname() %>
+                </td>
+                <td><%=receptionist.getBirthday()%>
+                </td>
+                <td><%= receptionist.getPhone() %>
+                </td>
+                <td><%=receptionist.getEmail()%>
+                </td>
+                <td><%= receptionist.getEmploymentDate()%>
+                </td>
+                <td><%= receptionist.getGender()%>
+                </td>
+                <td><a class="gradient-button" href="/additionalInformation?id=<%=receptionist.getId()%>"><i
+                        class='bx bxs-info-circle' style="font-size: 20px"></i></a></td>
+            </tr>
+            <% } %>
+            <% } %>
+            </tbody>
+        </table>
+    </div>
 </div>
 <div class="wrapper">
 
@@ -85,7 +86,7 @@
     <div class="overlay">
         <a style="position: absolute;top:5px " class="gradient-button" href="/logout"><i class='bx bx-log-out'></i></a>
         <ul>
-            <li><a href="/controlOverStaffs" >Back</a></li>
+            <li><a href="/controlOverStaffs">Back</a></li>
         </ul>
     </div>
     <div class="blurry-background"></div>
@@ -206,6 +207,7 @@
             transform: translateX(0%);
         }
     }
+
     .container {
         max-width: 1200px;
         width: auto;
@@ -473,6 +475,7 @@
     .input-search-background:hover {
         width: 300px;
     }
+
     * {
         padding: 0;
         margin: 0;
@@ -568,9 +571,11 @@
         margin: 10px 0;
         transition: all 1s;
     }
-    .wrapper .overlay ul li:hover{
-        text-shadow:#f519f5 1px 0 10px;
+
+    .wrapper .overlay ul li:hover {
+        text-shadow: #f519f5 1px 0 10px;
     }
+
     .wrapper .overlay ul li a {
         text-decoration: none;
         color: #000000;

@@ -48,12 +48,14 @@
                 <td>
                     <%=student.getEmail()%>
                 </td>
-               <td>
-                   <%=student.getBirthday()%>
-               </td>
+                <td>
+                    <%=student.getBirthday()%>
+                </td>
                 <td style="padding-left: 2px "><%=student.getRemark()%>
-            </td>
-                <td><a href="/moreInfo?id=<%=student.getId()%>" class="gradient-button"><i style="font-size:20px" class='bx bxs-info-circle'></i></a></td>
+                </td>
+                <td><a href="/moreInfo?id=<%=student.getId()%>" class="gradient-button"><i style="font-size:20px"
+                                                                                           class='bx bxs-info-circle'></i></a>
+                </td>
             </tr>
             <% } %>
             <% } %>
@@ -91,6 +93,7 @@
         backdrop-filter: blur(10);
         z-index: 100;
     }
+
     .gradient-button-back {
         position: absolute;
         top: 10px;
@@ -308,9 +311,11 @@
         margin: 10px 0;
         transition: all 1s;
     }
-.wrapper .overlay ul li:hover{
-    text-shadow:#f519f5 1px 0 10px;
-}
+
+    .wrapper .overlay ul li:hover {
+        text-shadow: #f519f5 1px 0 10px;
+    }
+
     .wrapper .overlay ul li a {
         text-decoration: none;
         color: #000000;
@@ -376,8 +381,9 @@
         backdrop-filter: blur(5px);
         justify-content: center;
         align-items: center;
-        z-index:200000000000;
+        z-index: 200000000000;
     }
+
     .error-message {
         z-index: 200000000;
         color: white;

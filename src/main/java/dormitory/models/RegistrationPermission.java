@@ -14,9 +14,10 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RegistrationPermission {
-   private boolean isAllowed;
-   private Date deadline;
-   public boolean isTimeLeft(){
+    private boolean isAllowed;
+    private Date deadline;
+
+    public boolean isTimeLeft() {
         try {
             Date deadline = this.deadline;
             long millisecondsPerHour = 1000 * 60 * 60;
@@ -32,6 +33,7 @@ public class RegistrationPermission {
             return false;
         }
     }
+
     public static String insertTimer() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Calendar calendar = Calendar.getInstance();

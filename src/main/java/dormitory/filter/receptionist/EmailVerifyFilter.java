@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebFilter(urlPatterns = {"/addReceptionist","/changeEmail"})
+@WebFilter(urlPatterns = {"/addReceptionist", "/changeEmail"})
 public class EmailVerifyFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
@@ -18,13 +18,13 @@ public class EmailVerifyFilter implements Filter {
         req.setCharacterEncoding("UTF-8");
         try {
             if (receptionist.getVerifyCode().equals(req.getParameter("code").trim())) {
-                filterChain.doFilter(req,resp);
-            }else {
-                if (receptionist.getReceptionistRole() != null){
-                    req.setAttribute("errMsg","not variable code try again!");
+                filterChain.doFilter(req, resp);
+            } else {
+                if (receptionist.getReceptionistRole() != null) {
+                    req.setAttribute("errMsg", "not variable code try again!");
                     req.getRequestDispatcher("WEB-INF/receptionist/global/verifyEmail.jsp").forward(req, resp);
                 } else {
-                    req.setAttribute("errMsg","not variable code try again!");
+                    req.setAttribute("errMsg", "not variable code try again!");
                     req.getRequestDispatcher("WEB-INF/receptionist/registrant/verifyEmail.jsp").forward(req, resp);
                 }
             }

@@ -14,15 +14,16 @@ import java.util.List;
 @WebServlet("/listOfInactiveReceptionists")
 public class InactiveReceptionistListServlet extends HttpServlet {
     ReceptionistManager receptionistManager = new ReceptionistManager();
+
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String search = req.getParameter("search");
         List<Receptionist> all;
-            if (search == null) {
-             all = receptionistManager.getAllInactives();
-            } else {
-                all = receptionistManager.getByNameOrSurnameInactive(search.trim());
-            }
+        if (search == null) {
+            all = receptionistManager.getAllInactives();
+        } else {
+            all = receptionistManager.getByNameOrSurnameInactive(search.trim());
+        }
         req.setAttribute("receptionists", all);
         req.getRequestDispatcher("WEB-INF/receptionist/director/inactiveReceptionistsList.jsp").forward(req, resp);
     }

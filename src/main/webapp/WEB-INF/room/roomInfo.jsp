@@ -1,4 +1,3 @@
-
 <%@ page import="java.util.Date" %>
 <%@ page import="dormitory.models.Room" %><%--
   Created by IntelliJ IDEA.
@@ -13,8 +12,10 @@
     <title>Room Info</title>
 </head>
 <% Room room = (Room) request.getAttribute("room"); %>
-<%Date releaseDate = (Date) request.getAttribute("date");
-String isFree = (String) request.getAttribute("timer");%>
+<%
+    Date releaseDate = (Date) request.getAttribute("date");
+    String isFree = (String) request.getAttribute("timer");
+%>
 <body>
 
 <div class="wave"></div>
@@ -33,16 +34,16 @@ String isFree = (String) request.getAttribute("timer");%>
         </tr>
         </thead>
         <tbody>
-        <% if (room != null && releaseDate != null){%>
+        <% if (room != null && releaseDate != null) {%>
         <tr>
             <td><%= room.getFloor() %>
             </td>
             <td><%= room.getRoomNum() %>
             </td>
-            <% if (isFree == 0 + "d " + 0 + "h" ){%>
+            <% if (isFree == 0 + "d " + 0 + "h") {%>
             <td style="color: #830505"><%= releaseDate %>
             </td>
-            <%}else {%>
+            <%} else {%>
             <td><%= releaseDate %>
             </td>
             <%}%>
@@ -174,6 +175,7 @@ String isFree = (String) request.getAttribute("timer");%>
             background-position: 0% 0%;
         }
     }
+
     .gradient-button {
         position: absolute;
         top: 10px;

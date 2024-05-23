@@ -19,7 +19,7 @@ public class AddServlet extends HttpServlet {
         Receptionist receptionist = (Receptionist) req.getSession().getAttribute("receptionist");
         receptionistManager.addToDb(receptionist);
         req.getSession().removeAttribute("receptionist");
-        req.setAttribute("doneMsg","thanks for registration :-) we call you soon!");
+        req.setAttribute("doneMsg", "thanks for registration :-) we call you soon!");
         req.getRequestDispatcher("WEB-INF/receptionist/global/login.jsp").forward(req, resp);
     }
 }

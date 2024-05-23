@@ -20,7 +20,7 @@ public class AddServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Student student = (Student) req.getSession().getAttribute("student");
-        String subject  = "Your Information";
+        String subject = "Your Information";
         String text = "you have been registered in our dormitory! \n" +
                 "registration deadline " + student.getDeadline() + "\n" +
                 "your room floor:" + student.getRoom().getFloor() + "   room number:" + student.getRoom().getRoomNum() + "\n" +
@@ -33,10 +33,10 @@ public class AddServlet extends HttpServlet {
         studentManager.addToDB(student);
         req.getSession().removeAttribute("room");
         req.getSession().removeAttribute("student");
-        req.setAttribute("doneMsg","the student has been registered!");
+        req.setAttribute("doneMsg", "the student has been registered!");
         if (receptionist.getReceptionistRole().equals(ReceptionistRole.DIRECTOR)) {
             req.getRequestDispatcher("WEB-INF/receptionist/director/control.jsp").forward(req, resp);
-        } else if (receptionist.getReceptionistRole().equals(ReceptionistRole.ADMIN)){
+        } else if (receptionist.getReceptionistRole().equals(ReceptionistRole.ADMIN)) {
             req.getRequestDispatcher("WEB-INF/receptionist/admin/control.jsp").forward(req, resp);
         }
     }

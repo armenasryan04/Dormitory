@@ -39,7 +39,7 @@ public class ActivateReceptionistServlet extends HttpServlet {
                             "http://localhost:8080/login \n";
                     EmailSender emailSender = new EmailSender();
                     emailSender.sendInformantMail(receptionist.getEmail(), subject, text);
-                    req.setAttribute("doneMsg","everything went well");
+                    req.setAttribute("doneMsg", "everything went well");
                     req.getRequestDispatcher("WEB-INF/receptionist/director/registrantsList.jsp").forward(req, resp);
 
                 } else {

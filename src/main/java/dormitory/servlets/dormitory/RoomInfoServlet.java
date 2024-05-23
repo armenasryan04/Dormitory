@@ -15,25 +15,26 @@ import java.util.Date;
 @WebServlet("/roomsInfo")
 public class RoomInfoServlet extends HttpServlet {
     StudentManager studentManager = new StudentManager();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-     try{
-         int id = Integer.parseInt(req.getParameter("id"));
-         Student student = studentManager.getById(id);
-         if (student.getId() != 0) {
-             Room room = student.getRoom();
-             Date releaseDay = student.getDeadline();
-             String timer = student.getDaysUntil();
-             req.setAttribute("timer",timer);
-             req.setAttribute("date",releaseDay);
-             req.setAttribute("room", room);
-             req.getRequestDispatcher("WEB-INF/room/roomInfo.jsp").forward(req,resp);
-         }else {
-             resp.sendRedirect("/loginConductor");
-         }
-     }catch (NumberFormatException e){
-         resp.sendRedirect("/loginConductor");
-     }
+        try {
+            int id = Integer.parseInt(req.getParameter("id"));
+            Student student = studentManager.getById(id);
+            if (student.getId() != 0) {
+                Room room = student.getRoom();
+                Date releaseDay = student.getDeadline();
+                String timer = student.getDaysUntil();
+                req.setAttribute("timer", timer);
+                req.setAttribute("date", releaseDay);
+                req.setAttribute("room", room);
+                req.getRequestDispatcher("WEB-INF/room/roomInfo.jsp").forward(req, resp);
+            } else {
+                resp.sendRedirect("/loginConductor");
+            }
+        } catch (NumberFormatException e) {
+            resp.sendRedirect("/loginConductor");
+        }
 
     }
 }

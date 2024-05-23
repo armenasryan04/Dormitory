@@ -17,7 +17,7 @@ public class EmailVerifyForActivateFilter implements Filter {
         HttpServletResponse resp = (HttpServletResponse) servletResponse;
         req.setCharacterEncoding("UTF-8");
         Student student = (Student) req.getSession().getAttribute("student");
-        if (student != null){
+        if (student != null) {
             if (student.getVerifyCode().equals(req.getParameter("code").trim())) {
                 filterChain.doFilter(req, resp);
             } else {
@@ -25,7 +25,7 @@ public class EmailVerifyForActivateFilter implements Filter {
                 req.getRequestDispatcher("WEB-INF/student/setDateAndEmail.jsp").forward(req, resp);
             }
         } else {
-            req.getSession().setAttribute("errMsg","true");
+            req.getSession().setAttribute("errMsg", "true");
             resp.sendRedirect("/control?status=archive");
         }
     }

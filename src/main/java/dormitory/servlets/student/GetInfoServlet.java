@@ -13,26 +13,27 @@ import java.io.IOException;
 
 @WebServlet("/getInfo")
 public class GetInfoServlet extends HttpServlet {
-   StudentManager studentManager = new StudentManager();
+    StudentManager studentManager = new StudentManager();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-     String search = req.getParameter("search");
+        String search = req.getParameter("search");
         Student student = null;
-    try {
-        if (search != null){
-            int id = Integer.parseInt(search);
-           student = studentManager.getById(id);
-            req.setAttribute("student",student);
-            req.getRequestDispatcher("WEB-INF/student/getInfo.jsp").forward(req,resp);
-        }else {
-            req.setAttribute("student",student);
-            req.getRequestDispatcher("WEB-INF/student/getInfo.jsp").forward(req,resp);
+        try {
+            if (search != null) {
+                int id = Integer.parseInt(search);
+                student = studentManager.getById(id);
+                req.setAttribute("student", student);
+                req.getRequestDispatcher("WEB-INF/student/getInfo.jsp").forward(req, resp);
+            } else {
+                req.setAttribute("student", student);
+                req.getRequestDispatcher("WEB-INF/student/getInfo.jsp").forward(req, resp);
+            }
+        } catch (NumberFormatException e) {
+            resp.sendRedirect("/getInfo");
+            e.printStackTrace();
         }
-    }catch (NumberFormatException e){
-        resp.sendRedirect("/getInfo");
-        e.printStackTrace();
-    }
 
 
     }

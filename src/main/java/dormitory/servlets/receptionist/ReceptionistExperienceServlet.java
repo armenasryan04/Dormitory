@@ -15,20 +15,20 @@ public class ReceptionistExperienceServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ReceptionistManager receptionistManager = new ReceptionistManager();
-    try {
-        if (req.getParameter("id") != null && receptionistManager.getById(Integer.parseInt(req.getParameter("id"))).getId() != 0 && receptionistManager.getById(Integer.parseInt(req.getParameter("id"))).getReceptionistRole().equals(ReceptionistRole.REGISTRANT)) {
-            int id = Integer.parseInt(req.getParameter("id"));
-            String aboutExperience = receptionistManager.getById(id).getExperienceInformation();
-            if (aboutExperience == null) {
-                aboutExperience = ":-(";
+        try {
+            if (req.getParameter("id") != null && receptionistManager.getById(Integer.parseInt(req.getParameter("id"))).getId() != 0 && receptionistManager.getById(Integer.parseInt(req.getParameter("id"))).getReceptionistRole().equals(ReceptionistRole.REGISTRANT)) {
+                int id = Integer.parseInt(req.getParameter("id"));
+                String aboutExperience = receptionistManager.getById(id).getExperienceInformation();
+                if (aboutExperience == null) {
+                    aboutExperience = ":-(";
+                }
+                req.setAttribute("aboutExperience", aboutExperience);
+                req.getRequestDispatcher("WEB-INF/receptionist/director/receptionistExperience.jsp").forward(req, resp);
+            } else {
+                resp.sendRedirect("/listOfRegistrants");
             }
-            req.setAttribute("aboutExperience", aboutExperience);
-            req.getRequestDispatcher("WEB-INF/receptionist/director/receptionistExperience.jsp").forward(req, resp);
-        }else {
+        } catch (NumberFormatException e) {
             resp.sendRedirect("/listOfRegistrants");
         }
-    }catch (NumberFormatException e ){
-        resp.sendRedirect("/listOfRegistrants");
-    }
     }
 }

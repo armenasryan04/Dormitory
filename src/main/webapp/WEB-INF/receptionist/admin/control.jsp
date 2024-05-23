@@ -48,7 +48,7 @@
                 <%if (request.getAttribute("inArchive") != null) { %>
                 <th>Activate</th>
                 <%
-                    }else {%>
+                } else {%>
                 <th>DEACTIVATE</th>
                 <%}%>
             </tr>
@@ -60,7 +60,8 @@
                 <div id="requestMessageForDeactivate<%=student.getId()%>" class="request-message-for-deactivate">
                     you need to activate this employee?
                     <br/>
-                    <a href="/deactivateStudent?id=<%=student.getId()%>" style="color: red">YES</a> || <a id="cancel<%=student.getId()%>" href="#" style="color: orange">NO</a>
+                    <a href="/deactivateStudent?id=<%=student.getId()%>" style="color: red">YES</a> || <a
+                        id="cancel<%=student.getId()%>" href="#" style="color: orange">NO</a>
                 </div>
             </div>
             <tr>
@@ -76,29 +77,33 @@
                 <td>
                     <%=student.getEmail()%>
                 </td>
-               <td>
-                   <%=student.getBirthday()%>
-               </td>
+                <td>
+                    <%=student.getBirthday()%>
+                </td>
 
-                <td><a href="/dateInfo?id=<%=student.getId()%>" class="gradient-button"><i class='bx bxs-calendar'>DATE</i></a></td>
-                <td> <a class="gradient-button" href="/roomsInfo?id=<%=student.getId()%>"><i class='bx bxs-building-house'>ROOM</i></a>
+                <td><a href="/dateInfo?id=<%=student.getId()%>" class="gradient-button"><i
+                        class='bx bxs-calendar'>DATE</i></a></td>
+                <td><a class="gradient-button" href="/roomsInfo?id=<%=student.getId()%>"><i
+                        class='bx bxs-building-house'>ROOM</i></a>
                 </td>
 
                 <%if (request.getAttribute("inArchive") != null) {%>
                 <td style="padding-left: 2px "><a href="/freeRooms?id=<%=student.getId()%>" class="gradient-button"><i
                         style="font-size: 20px" class='bx bx-refresh'></i></a>
                 </td>
-                <%}else {%>
-                <td><a href="#" class="gradient-button" id = "deactivate<%=student.getId()%>"><i class='bx bxs-user-x'></i></a> </td><%}%>
+                <%} else {%>
+                <td><a href="#" class="gradient-button" id="deactivate<%=student.getId()%>"><i
+                        class='bx bxs-user-x'></i></a></td>
+                <%}%>
             </tr>
             <% } %>
             <% } %>
             </tbody>
         </table>
     </div>
-    <% if (request.getAttribute("doneMsg") != null && request.getAttribute("errMsg")==null) { %>
+    <% if (request.getAttribute("doneMsg") != null && request.getAttribute("errMsg") == null) { %>
     <div id="doneContainer" class="done-container">
-        <div id="doneMessage"  class="done-message" >
+        <div id="doneMessage" class="done-message">
             <%=request.getAttribute("doneMsg")%>
         </div>
     </div>
@@ -121,13 +126,17 @@
         <ul>
             <%if (request.getAttribute("inArchive") == null) { %>
 
-            <li><a href="/refactorMenu" class="icon" ><i class='bx bxs-user-circle'><%=receptionist.getName()%></i></a></li>
-            <li><a href="/freeRooms" >ADD STUDENT</a></li>
+            <li><a href="/refactorMenu" class="icon"><i class='bx bxs-user-circle'><%=receptionist.getName()%>
+            </i></a></li>
+            <li><a href="/freeRooms">ADD STUDENT</a></li>
             <li><a href="/control?status=archive">STUDENTS ARCHIVE</a></li>
             <%} else {%>
             <li><a href="/control">Back</a></li>
             <li><a href="/freeRooms">ADD STUDENT</a></li>
-            <%};%>
+            <%
+                }
+                ;
+            %>
         </ul>
     </div>
     <div class="blurry-background"></div>
@@ -495,9 +504,11 @@
         margin: 10px 0;
         transition: all 1s;
     }
-.wrapper .overlay ul li:hover{
-    text-shadow:#f519f5 1px 0 10px;
-}
+
+    .wrapper .overlay ul li:hover {
+        text-shadow: #f519f5 1px 0 10px;
+    }
+
     .wrapper .overlay ul li a {
         text-decoration: none;
         color: #000000;
@@ -552,31 +563,33 @@
             transform: translateX(0);
         }
     }
-    .icon{
+
+    .icon {
         width: 45px;
-        background:transparent;
-        text-shadow: 0 0 20px rgba(0, 0, 0, 0); ;
+        background: transparent;
+        text-shadow: 0 0 20px rgba(0, 0, 0, 0);;
         overflow-x: hidden;
         z-index: 100;
         white-space: nowrap;
         transition: all 2.5s ease;
     }
 
-    .icon i{
+    .icon i {
         font-size: 50px;
         color: rgba(0, 0, 0, 0.99);
         text-shadow: 0 0 20px rgba(0, 0, 0, 0);
         transition: all 0.5s ease;
     }
 
-    .icon:hover{
+    .icon:hover {
         width: 370px;
     }
 
-    .icon i:hover{
+    .icon i:hover {
         color: #000000;
         text-shadow: #f519f5 1px 0 20px;
     }
+
     .error-container {
         display: none;
         position: fixed;
@@ -587,8 +600,9 @@
         backdrop-filter: blur(5px);
         justify-content: center;
         align-items: center;
-        z-index:200000000000;
+        z-index: 200000000000;
     }
+
     .error-message {
         z-index: 200000000;
         color: white;
@@ -599,6 +613,7 @@
         border-radius: 7px;
 
     }
+
     .request-container-for-deactivate {
         visibility: hidden;
         position: fixed;
@@ -623,13 +638,11 @@
         underline: none;
         border-radius: 7px;
     }
+
     .done-container {
-    <%if(request.getAttribute("doneMsg")==null && request.getAttribute("errMsg")!=null){%>
-        display: none;
-    <%}else {%>
-        display: flex;
-    <%}%>
-        position: fixed;
+    <%if(request.getAttribute("doneMsg")==null && request.getAttribute("errMsg")!=null){%> display: none;
+    <%}else {%> display: flex;
+    <%}%> position: fixed;
         top: 0;
         left: 0;
         width: 100%;
@@ -637,15 +650,13 @@
         backdrop-filter: blur(5px);
         justify-content: center;
         align-items: center;
-        z-index:200000000000;
+        z-index: 200000000000;
     }
+
     .done-message {
-    <%if(request.getAttribute("doneMsg")==null && request.getAttribute("errMsg")!=null){%>
-        display: none;
-    <%}else {%>
-        display: flex;
-    <%}%>
-        z-index: 200000000;
+    <%if(request.getAttribute("doneMsg")==null && request.getAttribute("errMsg")!=null){%> display: none;
+    <%}else {%> display: flex;
+    <%}%> z-index: 200000000;
         color: white;
         height: auto;
         width: auto;
@@ -680,14 +691,15 @@
     function handleButtonClick() {
         var errorContainer = document.getElementById('errorContainer');
         var errorMessage = document.getElementById('errorMessage');
-        if (errorContainer && errorContainer.contains(event.target) && !errorMessage.contains(event.target) ) {
+        if (errorContainer && errorContainer.contains(event.target) && !errorMessage.contains(event.target)) {
             errorContainer.style.display = 'none';
             errorMessage.style.display = 'none'
             window.location.replace('/control');
         }
     };
+
     function handleEnterKeyPress() {
-        if (event.key === 'Enter' || event.keyCode === 32 ) {
+        if (event.key === 'Enter' || event.keyCode === 32) {
             var errorContainer = document.getElementById('errorContainer');
             var errorMessage = document.getElementById('errorMessage');
             errorContainer.style.display = 'none';
@@ -695,23 +707,26 @@
             window.location.replace('/control');
         }
     }
+
     <% if (request.getAttribute("errMsg") != null) { %>
     document.getElementById('errorMessage').style.display = 'flex';
     document.getElementById('errorContainer').style.display = 'flex';
     <% } %>
-    document.body.addEventListener('keypress',handleEnterKeyPress)
+    document.body.addEventListener('keypress', handleEnterKeyPress)
     document.body.addEventListener('click', handleButtonClick);
+
     function handleButtonClickDone() {
         var doneContainer = document.getElementById('doneContainer');
         var doneMessage = document.getElementById('doneMessage');
-        if (doneContainer && doneContainer.contains(event.target) && !doneMessage.contains(event.target) ) {
+        if (doneContainer && doneContainer.contains(event.target) && !doneMessage.contains(event.target)) {
             doneContainer.style.display = 'none';
             doneMessage.style.display = 'none'
             window.location.replace('/control');
         }
     };
+
     function handleEnterKeyPressDone() {
-        if (event.key === 'Enter' || event.keyCode === 32 ) {
+        if (event.key === 'Enter' || event.keyCode === 32) {
             var doneContainer = document.getElementById('doneContainer');
             var doneMessage = document.getElementById('doneMessage');
             doneContainer.style.display = 'none';
@@ -719,13 +734,14 @@
             window.location.replace('/control');
         }
     }
-    document.body.addEventListener('keypress',handleEnterKeyPressDone)
+
+    document.body.addEventListener('keypress', handleEnterKeyPressDone)
     document.body.addEventListener('click', handleButtonClickDone);
 
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         <% if (students != null && !students.isEmpty()) { %>
         <% for (Student student : students) { %>
-        (function(studentId) {
+        (function (studentId) {
             var cancelElement = document.getElementById('cancel' + studentId);
             var deactivateElement = document.getElementById('deactivate' + studentId)
             cancelElement.addEventListener('click', function (event) {

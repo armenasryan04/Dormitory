@@ -18,9 +18,9 @@ public class DeactivationFilter implements Filter {
         req.setCharacterEncoding("UTF-8");
         try {
             if (receptionist.getControlCode().equals(req.getParameter("code").trim())) {
-                filterChain.doFilter(req,resp);
-            }else {
-                req.setAttribute("errMsg","not variable code try again!");
+                filterChain.doFilter(req, resp);
+            } else {
+                req.setAttribute("errMsg", "not variable code try again!");
                 req.getRequestDispatcher("WEB-INF/receptionist/admin/verifyControlCode.jsp").forward(req, resp);
             }
         } catch (NullPointerException e) {

@@ -11,7 +11,7 @@ import java.io.IOException;
 public class VerifyControlCodeServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("reqMsg","do you want to quit your job?");
+        req.setAttribute("reqMsg", "do you want to quit your job?");
         req.getRequestDispatcher("WEB-INF/receptionist/admin/verifyControlCode.jsp").forward(req, resp);
     }
 }

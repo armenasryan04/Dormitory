@@ -21,16 +21,16 @@ public class FreeRoomsServlet extends HttpServlet {
         String search = req.getParameter("search");
         String id = req.getParameter("id");
         List<Room> all;
-        if (id == null || id.equals("null")){
+        if (id == null || id.equals("null")) {
             if (search != null && search != "") {
                 String[] room = search.split("-");
                 all = roomManager.getOnlyFreeRoomsByFloorOrRoom(Integer.parseInt(room[0]), Integer.parseInt(room[1]));
-            }else {
+            } else {
                 all = roomManager.getOnlyFreeRooms();
 
             }
-        }else {
-            req.setAttribute("id",id);
+        } else {
+            req.setAttribute("id", id);
             all = roomManager.getOnlyFreeRooms();
             if (search != null && search != "") {
                 String[] room = search.split("-");
@@ -40,7 +40,7 @@ public class FreeRoomsServlet extends HttpServlet {
 
         if (req.getSession().getAttribute("errMsg") != null) {
             req.getSession().removeAttribute("errMsg");
-            req.setAttribute("errMsg","Choose room!");
+            req.setAttribute("errMsg", "Choose room!");
         }
         req.setAttribute("room", all);
         req.getRequestDispatcher("WEB-INF/room/freeRoms.jsp").forward(req, resp);

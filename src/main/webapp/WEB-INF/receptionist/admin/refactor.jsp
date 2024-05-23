@@ -87,7 +87,10 @@
                 <td style="padding-left: 2px "><a href="/freeRooms?id=<%=student.getId()%>" class="gradient-button"><i
                         style="font-size: 20px" class='bx bx-refresh'></i></a>
                 </td>
-                <%};%>
+                <%
+                    }
+                    ;
+                %>
 
             </tr>
             <% } %>
@@ -103,8 +106,9 @@
     <div class="overlay">
         <a style="position: absolute;top:5px " class="gradient-button" href="/logout"><i class='bx bx-log-out'></i></a>
         <ul>
-          <div class="icon" > <i class='bx bxs-user-circle'><%=receptionist.getName()%> <%=receptionist.getSurname()%></i></div>
-            <li><a href="#" id = 'backLink'>Back</a></li>
+            <div class="icon"><i class='bx bxs-user-circle'><%=receptionist.getName()%> <%=receptionist.getSurname()%>
+            </i></div>
+            <li><a href="#" id='backLink'>Back</a></li>
             <li><a href="/changeNameSurname">Name and Surname</a></li>
             <li><a href="/changeEmailData">Email</a></li>
             <li><a href="/changePassword">Password</a></li>
@@ -309,6 +313,7 @@
         margin: 0;
         box-sizing: border-box;
     }
+
     body {
         margin: 0;
         padding: 0;
@@ -458,9 +463,11 @@
         margin: 10px 0;
         transition: all 1s;
     }
-    .wrapper .overlay ul li:hover{
-        text-shadow:#f519f5 1px 0 10px;
+
+    .wrapper .overlay ul li:hover {
+        text-shadow: #f519f5 1px 0 10px;
     }
+
     .wrapper .overlay ul li a {
         text-decoration: none;
         color: #000000;
@@ -503,11 +510,12 @@
             transform: translateX(0);
         }
     }
-    .icon{
+
+    .icon {
         width: 38px;
         height: 46px;
-        background:transparent;
-        text-shadow: 0 0 20px rgba(0, 0, 0, 0); ;
+        background: transparent;
+        text-shadow: 0 0 20px rgba(0, 0, 0, 0);;
         z-index: 100;
         white-space: nowrap;
         text-decoration: none;
@@ -519,18 +527,18 @@
         transition: all 2.5s ease;
     }
 
-    .icon i{
+    .icon i {
         font-size: 40px;
         color: rgba(0, 0, 0, 0.99);
         text-shadow: 0 0 20px rgba(0, 0, 0, 0);
         transition: all 0.5s ease;
     }
 
-    .icon:hover{
+    .icon:hover {
         width: 370px;
     }
 
-    .icon i:hover{
+    .icon i:hover {
         color: #000000;
         text-shadow: #f519f5 1px 0 20px;
     }

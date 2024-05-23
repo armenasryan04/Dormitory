@@ -466,7 +466,7 @@
         top: 0;
         left: 0;
         width: 100%;
-        height:100%;
+        height: 100%;
         backdrop-filter: blur(5px);
         justify-content: center;
         align-items: center;

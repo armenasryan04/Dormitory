@@ -38,8 +38,9 @@
             <label>Choose Date</label>
         </div>
         <div class="field">
-            <input type="email"  name="email" value="<%=student.getEmail()%>">
-            <label>New Email </label> <p style="color: #6e0025;">if necessary!</p>
+            <input type="email" name="email" value="<%=student.getEmail()%>">
+            <label>New Email </label>
+            <p style="color: #6e0025;">if necessary!</p>
         </div>
         <div class="field">
             <br/> <input type="submit" value="add">
@@ -493,7 +494,7 @@
         if (errorContainer && errorContainer.contains(event.target) && !errorMessage.contains(event.target)) {
             errorContainer.style.display = 'none';
             errorMessage.style.display = 'none'
-                location.replace('/studentDateChange')
+            location.replace('/studentDateChange')
         }
     };
 
@@ -504,7 +505,7 @@
             var errorMessage = document.getElementById('errorMessage');
             errorContainer.style.display = 'none';
             errorMessage.style.display = 'none'
-        location.replace('/studentDateChange')
+            location.replace('/studentDateChange')
         }
     }
 

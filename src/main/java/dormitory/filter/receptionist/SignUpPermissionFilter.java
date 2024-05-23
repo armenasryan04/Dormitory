@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(urlPatterns = {"/signUp","/createPassword","/registrantEmailVerify","/addReceptionist"})
+@WebFilter(urlPatterns = {"/signUp", "/createPassword", "/registrantEmailVerify", "/addReceptionist"})
 public class SignUpPermissionFilter implements Filter {
 
     @Override
@@ -20,9 +20,9 @@ public class SignUpPermissionFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         HttpServletResponse resp = (HttpServletResponse) servletResponse;
         PermissionManager permissionManager = new PermissionManager();
-        if(permissionManager.getPermission()){
+        if (permissionManager.getPermission()) {
             filterChain.doFilter(req, resp);
-        }else {
+        } else {
             resp.sendRedirect("/login");
         }
     }

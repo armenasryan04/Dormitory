@@ -14,9 +14,9 @@ public class AllowRegistrationServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         PermissionManager pm = new PermissionManager();
-        if (pm.getPermission()){
+        if (pm.getPermission()) {
             pm.deactivate();
-        }else {
+        } else {
             pm.activate();
         }
         resp.sendRedirect("/controlOverStaffs");

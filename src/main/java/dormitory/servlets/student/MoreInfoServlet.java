@@ -14,23 +14,23 @@ import java.io.IOException;
 public class MoreInfoServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-       String id =  req.getParameter("id");
-       if (id != null && !id.isEmpty()) {
-           StudentManager studentManager = new StudentManager();
-           try{
-               Student student = studentManager.getById(Integer.parseInt(id));
-               if (student.getId() != 0 ){
-                   req.setAttribute("student", student);
-                   req.getRequestDispatcher("WEB-INF/receptionist/director/moreInfo.jsp").forward(req, resp);
-               }else {
-                   resp.sendRedirect("/directorControl");
-               }
-           }catch (NumberFormatException e){
-               resp.sendRedirect("/directorControl");
-           }
+        String id = req.getParameter("id");
+        if (id != null && !id.isEmpty()) {
+            StudentManager studentManager = new StudentManager();
+            try {
+                Student student = studentManager.getById(Integer.parseInt(id));
+                if (student.getId() != 0) {
+                    req.setAttribute("student", student);
+                    req.getRequestDispatcher("WEB-INF/receptionist/director/moreInfo.jsp").forward(req, resp);
+                } else {
+                    resp.sendRedirect("/directorControl");
+                }
+            } catch (NumberFormatException e) {
+                resp.sendRedirect("/directorControl");
+            }
 
-       }else {
-           resp.sendRedirect("/directorControl");
-       }
+        } else {
+            resp.sendRedirect("/directorControl");
+        }
     }
 }

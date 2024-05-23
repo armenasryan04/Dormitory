@@ -1,4 +1,3 @@
-<%@ page import="java.util.List" %>
 <%@ page import="dormitory.models.Student" %>
 <%--
   Created by IntelliJ IDEA.

@@ -19,21 +19,21 @@ public class LoginConductorServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        if (req.getSession().getAttribute("receptionist") != null ) {
+        if (req.getSession().getAttribute("receptionist") != null) {
 
             HttpSession session = req.getSession();
             Receptionist receptionist = (Receptionist) session.getAttribute("receptionist");
-                switch (receptionist.getReceptionistRole()) {
-                    case ADMIN:
-                        session.setAttribute("receptionist", receptionist);
-                        resp.sendRedirect("/control");
-                        break;
-                    case DIRECTOR:
-                        session.setAttribute("receptionist", receptionist);
-                        resp.sendRedirect("/directorControl");
-                        break;
-                    case REGISTRANT:
-                }
+            switch (receptionist.getReceptionistRole()) {
+                case ADMIN:
+                    session.setAttribute("receptionist", receptionist);
+                    resp.sendRedirect("/control");
+                    break;
+                case DIRECTOR:
+                    session.setAttribute("receptionist", receptionist);
+                    resp.sendRedirect("/directorControl");
+                    break;
+                case REGISTRANT:
+            }
         } else {
             try {
                 String email = req.getParameter("email").trim();
@@ -52,7 +52,7 @@ public class LoginConductorServlet extends HttpServlet {
                             resp.sendRedirect("/directorControl");
                             break;
                         case REGISTRANT:
-                            req.setAttribute("doneMsg","we call you later!");
+                            req.setAttribute("doneMsg", "we call you later!");
                             req.getRequestDispatcher("WEB-INF/receptionist/global/login.jsp").forward(req, resp);
                             break;
                     }

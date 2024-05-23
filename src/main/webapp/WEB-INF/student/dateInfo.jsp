@@ -1,6 +1,3 @@
-
-<%@ page import="java.util.Date" %>
-<%@ page import="dormitory.models.Room" %>
 <%@ page import="dormitory.models.Student" %><%--
   Created by IntelliJ IDEA.
   User: User
@@ -21,27 +18,28 @@
 <div class="wave"></div>
 <a href="#" class="gradient-button" id="backLink">BACK</a>
 <div class="container">
-    <h1><%=student.getName()%> <%=student.getSurname()%></h1>
+    <h1><%=student.getName()%> <%=student.getSurname()%>
+    </h1>
     <br/>
     <table class="table">
         <thead>
         <tr>
             <th>REGISTRATION DATE</th>
             <th>REGISTRATION DEADLINE</th>
-            <th>UNTIL THE END OF REGISTRATION </th>
+            <th>UNTIL THE END OF REGISTRATION</th>
         </tr>
         </thead>
         <tbody>
-        <% if (student!= null){%>
+        <% if (student != null) {%>
         <tr>
             <td><%= student.getRegisterDate() %>
             </td>
             <td><%= student.getDeadline() %>
             </td>
-            <% if (student.getDaysUntil() == 0 + "d " + 0 + "h" ){%>
+            <% if (student.getDaysUntil() == 0 + "d " + 0 + "h") {%>
             <td style="color: #830505"><%= student.getDaysUntil() %>
             </td>
-            <%}else {%>
+            <%} else {%>
             <td><%= student.getDaysUntil() %>
             </td>
             <%}%>
@@ -173,6 +171,7 @@
             background-position: 0% 0%;
         }
     }
+
     .gradient-button {
         position: absolute;
         top: 10px;

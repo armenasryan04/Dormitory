@@ -14,21 +14,22 @@ import java.util.List;
 
 @WebServlet("/studentsBlockList")
 public class StudentsBlockListServlet extends HttpServlet {
-   StudentManager studentManager = new StudentManager();
+    StudentManager studentManager = new StudentManager();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-     String search = req.getParameter("search");
+        String search = req.getParameter("search");
         studentManager.checkStatusToChange();
         List<Student> all;
-        if (search == null){
+        if (search == null) {
             all = studentManager.getAllBan();
-        }else{
+        } else {
             all = studentManager.getByNameOrSurnameBan(search);
         }
         int numberOfStudents = studentManager.getBanStudentsNumber();
         req.setAttribute("numberOfStudents", numberOfStudents);
-        req.setAttribute("students",all);
-        req.getRequestDispatcher("WEB-INF/receptionist/director/blockList.jsp").forward(req,resp);
+        req.setAttribute("students", all);
+        req.getRequestDispatcher("WEB-INF/receptionist/director/blockList.jsp").forward(req, resp);
 
     }
 }

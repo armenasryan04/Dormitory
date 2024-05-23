@@ -18,10 +18,12 @@
 <div class="wave"></div>
 <div class="wave"></div>
 <div class="wave"></div>
-<%String email = "";
-if (request.getSession().getAttribute("email") != null){
-  email = (String) request.getSession().getAttribute("email");
-}%>
+<%
+    String email = "";
+    if (request.getSession().getAttribute("email") != null) {
+        email = (String) request.getSession().getAttribute("email");
+    }
+%>
 
 <br/>
 <a href="/login" class="gradient-button">Back</a>
@@ -436,7 +438,7 @@ if (request.getSession().getAttribute("email") != null){
         top: 0;
         left: 0;
         width: 100%;
-        height:100%;
+        height: 100%;
         backdrop-filter: blur(5px);
         justify-content: center;
         align-items: center;

@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="dormitory.models.Student" %>
+
 <html>
 <head>
     <title>Deactivate</title>
@@ -20,12 +20,11 @@
 <div class="wave"></div>
 
 
-
 <br/>
 <div class="wrapper">
     <span class="menu"><i style="font-size:44px; " class='bx bx-menu'></i></span>
     <div class="overlay">
-        <a style="position: absolute;top:5px " class="gradient-button" href="/logout" ><i class='bx bx-log-out'></i></a>
+        <a style="position: absolute;top:5px " class="gradient-button" href="/logout"><i class='bx bx-log-out'></i></a>
         <ul>
             <li><a href="/control"><i class='bx bxs-home'></i></a></li>
             <li><a href="/refactorMenu" id="backLink">Back</a></li>
@@ -35,37 +34,38 @@
 </div>
 <div class="wrapper-data">
     <div class="title">Deactivation</div>
-<div class="content"></div>
+    <div class="content"></div>
     <form action="/deactivation" method="post">
         <div class="field">
             <input type="text" required name="code">
             <label class="input-box">Your Control Code</label>
         </div>
         <br/>
-        <p style="color: orange;font-size: 10px" >ask the director
+        <p style="color: orange;font-size: 10px">ask the director
         </p>
-        <div class="field" >
+        <div class="field">
             <br/>
             <input type="submit" value="confirm">
         </div>
 
     </form>
 
-    <% if (request.getAttribute("errMsg") != null) { %>
+        <% if (request.getAttribute("errMsg") != null) { %>
     <div id="errorContainer" class="error-container">
         <div id="errorMessage" class="error-message">
             <p><%= request.getAttribute("errMsg") %>
             </p>
         </div>
-        <% } %>
+            <% } %>
             <% if (request.getAttribute("reqMsg") != null && (request.getAttribute("errMsg") == null)  ) { %>
         <div id="requestContainer" class="request-container">
-            <div id="requestMessage"  class="request-message" >
+            <div id="requestMessage" class="request-message">
                 <%=request.getAttribute("reqMsg")%>
                 <br/>
-                <a id="cancel" href="#" style="color: red">YES</a> || <a href="/refactorMenu" style="color: orange">NO</a>
+                <a id="cancel" href="#" style="color: red">YES</a> || <a href="/refactorMenu"
+                                                                         style="color: orange">NO</a>
             </div>
-    </div>
+        </div>
 
 </body>
 
@@ -119,6 +119,7 @@
             transform: translateX(0%);
         }
     }
+
     body {
         font-family: -apple-system, BlinkMacSystemFont, sans-serif;
         overflow: auto;
@@ -227,7 +228,6 @@
     }
 
 
-
     .wrapper .overlay {
         position: absolute;
         bottom: -100%;
@@ -250,6 +250,7 @@
         opacity: 0;
         transition: opacity 0.5s ease;
     }
+
     .blurry {
         z-index: 100;
         opacity: 1;
@@ -289,9 +290,11 @@
         padding: 20px 0;
         overflow: hidden;
     }
-    .wrapper .overlay ul li:hover{
-        text-shadow:#f519f5 1px 0 10px;
+
+    .wrapper .overlay ul li:hover {
+        text-shadow: #f519f5 1px 0 10px;
     }
+
     .wrapper .overlay ul li a:after {
         display: block;
         border-radius: 2px;
@@ -337,6 +340,7 @@
             transform: translateX(0);
         }
     }
+
     ::selection {
         background: #4158d0;
         color: #ffffff;
@@ -344,7 +348,7 @@
 
     .wrapper-data {
         width: 380px;
-        background:  linear-gradient(135deg, rgba(165, 54, 239, 0.44), #00878c);
+        background: linear-gradient(135deg, rgba(165, 54, 239, 0.44), #00878c);
         border-radius: 15px;
         box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.1);
         z-index: 99;
@@ -358,7 +362,8 @@
         color: #fff;
         user-select: none;
         border-radius: 15px 15px 0 0;
-        background:linear-gradient(135deg, #a436ed, #36b7ef); );
+        background: linear-gradient(135deg, #a436ed, #36b7ef);
+    );
     }
 
     .wrapper-data form {
@@ -406,7 +411,7 @@
         top: 0%;
         font-size: 14px;
         color: rgba(30, 2, 166, 0.4);
-        background:linear-gradient(135deg, #a436ed, #36b7ef);
+        background: linear-gradient(135deg, #a436ed, #36b7ef);
         border-radius: 7px;
         transform: translateY(-50%);
     }
@@ -421,7 +426,6 @@
     }
 
 
-
     form .content input {
         width: 15px;
         height: 15px;
@@ -433,18 +437,21 @@
         user-select: none;
         padding-left: 5px;
     }
+
     form .pass-link a,
     form .signup-link a {
         color: rgba(0, 59, 150, 0.76);
         text-decoration: none;
         transition: all 0.5s ease;
     }
+
     form .pass-link a:hover,
     form .signup-link a:hover {
         text-decoration: underline;
         color: black;
-        text-shadow:#f519f5 1px 0 10px;
+        text-shadow: #f519f5 1px 0 10px;
     }
+
     form .field input[type="submit"] {
         color: #4907bb;
         border: none;
@@ -454,10 +461,11 @@
         font-weight: 500;
         cursor: pointer;
         background-image: linear-gradient(to right, #6ee547, #4158d0);
-        background-size:200% auto;
+        background-size: 200% auto;
         transition: all 0.5s ease;
     }
-    form .field input[type =  "submit"]:hover{
+
+    form .field input[type =  "submit"]:hover {
         background-position: right center;
         color: #6ee547;
     }
@@ -477,6 +485,7 @@
         justify-content: center;
         align-items: center;
     }
+
     .error-message {
         color: white;
         height: auto;
@@ -485,6 +494,7 @@
         padding: 20px;
         border-radius: 7px;
     }
+
     .request-container {
         visibility: hidden;
         position: fixed;
@@ -530,14 +540,15 @@
     function handleButtonClick() {
         var errorContainer = document.getElementById('errorContainer');
         var errorMessage = document.getElementById('errorMessage');
-        if (errorContainer && errorContainer.contains(event.target) && !errorMessage.contains(event.target) ) {
+        if (errorContainer && errorContainer.contains(event.target) && !errorMessage.contains(event.target)) {
             errorContainer.style.display = 'none';
             errorMessage.style.display = 'none'
-           location.replace('/verifyControlCode')
+            location.replace('/verifyControlCode')
         }
     };
+
     function handleEnterKeyPress() {
-        if (event.key === 'Enter' || event.keyCode === 32 ) {
+        if (event.key === 'Enter' || event.keyCode === 32) {
 
             var errorContainer = document.getElementById('errorContainer');
             var errorMessage = document.getElementById('errorMessage');
@@ -546,7 +557,8 @@
             location.replace('/verifyControlCode')
         }
     }
-    document.body.addEventListener('keypress',handleEnterKeyPress)
+
+    document.body.addEventListener('keypress', handleEnterKeyPress)
     document.body.addEventListener('click', handleButtonClick);
     var cancelElement = document.getElementById('cancel');
     <% if (request.getAttribute("errMsg") == null && request.getAttribute("reqMsg")!=null) { %>

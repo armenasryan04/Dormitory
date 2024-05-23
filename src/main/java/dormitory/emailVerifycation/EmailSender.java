@@ -41,6 +41,7 @@ public class EmailSender {
             return false;
         }
     }
+
     public boolean sendNewPassword(String to, String newPassword) {
 
         final String username = "dormitory374@gmail.com";
@@ -67,7 +68,7 @@ public class EmailSender {
             message.setFrom(new InternetAddress(username));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
             message.setSubject("Gmail Verification");
-            message.setText("your new password! "+ newPassword+" \n you can change it in your personal account!");
+            message.setText("your new password! " + newPassword + " \n you can change it in your personal account!");
             Transport.send(message);
             System.out.println("sms is sent to user " + to + " successfully!");
             return true;
@@ -77,7 +78,8 @@ public class EmailSender {
             return false;
         }
     }
-    public boolean sendInformantMail(String to,String subject,String text) {
+
+    public boolean sendInformantMail(String to, String subject, String text) {
 
         final String username = "dormitory374@gmail.com";
         final String password = "ctjt jgpf ucfi epec";

@@ -82,7 +82,7 @@ public class Validation {
             validation = "Incorrect Email try again!";
             return validation;
         }
-        if(receptionistManager.getByEmail(receptionist.getEmail()).getId() != 0 && !receptionistManager.getByEmail(receptionist.getEmail()).getReceptionistRole().equals(ReceptionistRole.INACTIVE)) {
+        if (receptionistManager.getByEmail(receptionist.getEmail()).getId() != 0 && !receptionistManager.getByEmail(receptionist.getEmail()).getReceptionistRole().equals(ReceptionistRole.INACTIVE)) {
             validation = "this email is already in use! \n please choose another one!";
             return validation;
         }
@@ -102,12 +102,13 @@ public class Validation {
             validation = "Sorry but we need to employees aged 18 to 45 years old";
             return validation;
         }
-        if (receptionist.getExperienceInformation().length() > 285){
+        if (receptionist.getExperienceInformation().length() > 285) {
             validation = "your experience is incorrect";
             return validation;
         }
         return null;
     }
+
     public static Student removeInvalidData(Student student, StudentManager studentManager) {
         if (!isEmailAddressValid(student.getEmail()) || student.getEmail() == null || student.getEmail().isEmpty()) {
             student.setEmail("");

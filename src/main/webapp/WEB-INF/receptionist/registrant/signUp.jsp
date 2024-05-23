@@ -60,7 +60,7 @@
         </div>
         <br>
         <div class="gender">
-            <label >Gender</label>
+            <label>Gender</label>
             <select name="gender">
                 <option style=" color: white;" value="null">Choose</option>
                 <option value="MALE" style="background:#36b7ef;">MALE</option>
@@ -248,6 +248,7 @@
         transform: translateY(-50%);
         transition: all 0.3s ease;
     }
+
     .gender {
         display: inline-block;
     }
@@ -262,16 +263,18 @@
         border: 0;
         outline: 0;
         border-radius: 40px;
-        background:linear-gradient(135deg, #36b7ef, #a436ed);
+        background: linear-gradient(135deg, #36b7ef, #a436ed);
         font-size: 15px;
         color: black;
-        padding: 0 15px ;
-        transition: 0.2s all ;
+        padding: 0 15px;
+        transition: 0.2s all;
     }
-    .gender option{
+
+    .gender option {
         background: rgb(3, 83, 204);
     }
-    .gender select:hover{
+
+    .gender select:hover {
         box-shadow: 0 0 10px #f519f5;
     }
 

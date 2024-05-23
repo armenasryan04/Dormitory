@@ -53,7 +53,7 @@
             </td>
             <%if (request.getAttribute("id") == null) {%>
             <td style="padding-left: 2px "><a href="/studentDataFilling?roomId=<%=room.getId()%>"
-                                              class="gradient-button"><i class='bx bx-plus' >ADD</i></a>
+                                              class="gradient-button"><i class='bx bx-plus'>ADD</i></a>
             </td>
             <%} else {%>
             <td style="padding-left: 2px "><a
@@ -74,7 +74,7 @@
         <a style="position: absolute;top:5px " class="gradient-button" href="/logout"><i class='bx bx-log-out'></i></a>
         <ul>
             <li><a href="/control"><i class='bx bxs-home'></i></a></li>
-            <li><a href="/control" >BACK</a></li>
+            <li><a href="/control">BACK</a></li>
         </ul>
     </div>
     <div class="blurry-background"></div>
@@ -455,8 +455,9 @@
         margin: 10px 0;
         transition: all 0.5s ease;
     }
-    .wrapper .overlay ul li:hover{
-        text-shadow:#f519f5 1px 0 10px;
+
+    .wrapper .overlay ul li:hover {
+        text-shadow: #f519f5 1px 0 10px;
     }
 
     .wrapper .overlay ul li a {
@@ -556,16 +557,18 @@
             }
         });
     });
+
     function handleButtonClick() {
         var errorContainer = document.getElementById('errorContainer');
         var errorMessage = document.getElementById('errorMessage');
-        if (errorContainer && errorContainer.contains(event.target) && !errorMessage.contains(event.target) ) {
+        if (errorContainer && errorContainer.contains(event.target) && !errorMessage.contains(event.target)) {
             errorContainer.style.display = 'none';
             errorMessage.style.display = 'none'
         }
     };
+
     function handleEnterKeyPress() {
-        if (event.key === 'Enter' || event.keyCode === 32 ) {
+        if (event.key === 'Enter' || event.keyCode === 32) {
 
             var errorContainer = document.getElementById('errorContainer');
             var errorMessage = document.getElementById('errorMessage');
@@ -573,11 +576,12 @@
             errorMessage.style.display = 'none'
         }
     }
+
     <% if (request.getAttribute("errMsg") != null) { %>
     document.getElementById('errorMessage').style.display = 'flex';
     document.getElementById('errorContainer').style.display = 'flex';
     <% } %>
-    document.body.addEventListener('keypress',handleEnterKeyPress)
+    document.body.addEventListener('keypress', handleEnterKeyPress)
     document.body.addEventListener('click', handleButtonClick);
 </script>
 </html>

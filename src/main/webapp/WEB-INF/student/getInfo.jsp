@@ -19,59 +19,60 @@
 <div class="wave"></div>
 <div class="forming">
     <div class="title">INFO</div>
-<div class="container">
-    <form id="searchForm" action="/getInfo" method="get">
-        <div class="search-box">
-            <div class="input-search-background">
-                <div class="btn-search">
-                    <input type="text" name="search" class="input-search animate" placeholder="🔍 search..."  id="searchInput" value="${not empty param.search ? param.search : ''}">
+    <div class="container">
+        <form id="searchForm" action="/getInfo" method="get">
+            <div class="search-box">
+                <div class="input-search-background">
+                    <div class="btn-search">
+                        <input type="text" name="search" class="input-search animate" placeholder="🔍 search..."
+                               id="searchInput" value="${not empty param.search ? param.search : ''}">
+                    </div>
                 </div>
             </div>
-        </div>
-    </form>
-    <br/>
-    <table class="table">
-        <thead>
-        <tr>
-            <th>NAME</th>
-            <th>SURNAME</th>
-            <th>PHONE</th>
-            <th>E-MAIL</th>
-            <th>BIRTHDAY</th>
-            <th>REGISTER DATE </th>
-            <th>REGISTER DEADLINE</th>
-            <th>DAYS UNTIL</th>
-            <th>NUMBER OF REMARKS</th>
-            <th>ROOM INFORMATION</th>
-        </tr>
-        </thead>
-        <tbody>
-        <% if (student != null && student.getId() != 0) { %>
-        <tr>
-            <td><%= student.getName() %>
-            </td>
-            <td><%= student.getSurname() %>
-            </td>
-            <td><%= student.getPhoneNum()%>
-            </td>
-            <td><%=student.getEmail()%>
-            </td>
-            <td><%= student.getBirthday()%>
-            </td>
-            <td><%=student.getRegisterDate()%>
-            </td>
-            <td><%=student.getDeadline()%>
-            </td>
-            <td><%=student.getDaysUntil()%>
-            </td>
-            <td><%=student.getRemark()%>
-            </td>
-            <td><a href="/roomsInfo?id=<%=student.getId()%>" class="gradient-button">Room</a><%}%>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-</div>
+        </form>
+        <br/>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>NAME</th>
+                <th>SURNAME</th>
+                <th>PHONE</th>
+                <th>E-MAIL</th>
+                <th>BIRTHDAY</th>
+                <th>REGISTER DATE</th>
+                <th>REGISTER DEADLINE</th>
+                <th>DAYS UNTIL</th>
+                <th>NUMBER OF REMARKS</th>
+                <th>ROOM INFORMATION</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% if (student != null && student.getId() != 0) { %>
+            <tr>
+                <td><%= student.getName() %>
+                </td>
+                <td><%= student.getSurname() %>
+                </td>
+                <td><%= student.getPhoneNum()%>
+                </td>
+                <td><%=student.getEmail()%>
+                </td>
+                <td><%= student.getBirthday()%>
+                </td>
+                <td><%=student.getRegisterDate()%>
+                </td>
+                <td><%=student.getDeadline()%>
+                </td>
+                <td><%=student.getDaysUntil()%>
+                </td>
+                <td><%=student.getRemark()%>
+                </td>
+                <td><a href="/roomsInfo?id=<%=student.getId()%>" class="gradient-button">Room</a><%}%>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 </body>
 <style>

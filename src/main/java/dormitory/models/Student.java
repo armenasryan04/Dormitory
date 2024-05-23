@@ -25,6 +25,7 @@ public class Student {
     private Receptionist receptionist;
     private StudentStatus studentStatus;
     private String verifyCode;
+
     public String getDaysUntil() {
         try {
             Date deadline = this.deadline;
@@ -35,12 +36,10 @@ public class Student {
             long timeDiff = endDateTime - currentTime;
             long days = timeDiff / millisecondsPerDay;
             long hours = (timeDiff % millisecondsPerDay) / millisecondsPerHour;
-
             if (days <= 0 && hours <= 0) {
 
                 return 0 + "d " + 0 + "h";
             }
-
             if (hours >= 12) {
                 days++;
                 hours = 0;
@@ -49,7 +48,7 @@ public class Student {
         } catch (NullPointerException e) {
             return null + " d " + null + " h ";
         }
-        }
+    }
 
 
 }

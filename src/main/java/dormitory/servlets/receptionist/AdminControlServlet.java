@@ -36,12 +36,12 @@ public class AdminControlServlet extends HttpServlet {
             req.setAttribute("inArchive", "archive");
             all = studentManager.getAllArchive();
 
-            if (search !=null){
+            if (search != null) {
                 all = studentManager.getByNameOrSurnameArchive(search.trim());
             }
-            if (req.getSession().getAttribute("errMsg")!=null){
+            if (req.getSession().getAttribute("errMsg") != null) {
                 req.getSession().removeAttribute("errMsg");
-                req.setAttribute("errMsg","Choose Student for Activate!");
+                req.setAttribute("errMsg", "Choose Student for Activate!");
             }
             numberOfStudents = studentManager.getArchiveStudentsNumber();
         }

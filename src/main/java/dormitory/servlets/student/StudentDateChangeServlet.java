@@ -18,20 +18,20 @@ public class StudentDateChangeServlet extends HttpServlet {
     RoomManager roomManager = new RoomManager();
 
     @Override
-    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException,RuntimeException {
- try{
-     if (req.getSession().getAttribute("student")==null){
-         Student student = studentManager.getById(Integer.parseInt(req.getParameter("id")));
-         Room room = roomManager.getById(Integer.parseInt(req.getParameter("roomId")));
-         student.setRoom(room);
-         req.getSession().setAttribute("student", student);
-         req.getRequestDispatcher("WEB-INF/student/setDateAndEmail.jsp").forward(req, resp);
-     }else {
-         req.getRequestDispatcher("WEB-INF/student/setDateAndEmail.jsp").forward(req, resp);
-     }
- }catch (NumberFormatException e){
-     resp.sendRedirect("/control?status=archive");
- }
+    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, RuntimeException {
+        try {
+            if (req.getSession().getAttribute("student") == null) {
+                Student student = studentManager.getById(Integer.parseInt(req.getParameter("id")));
+                Room room = roomManager.getById(Integer.parseInt(req.getParameter("roomId")));
+                student.setRoom(room);
+                req.getSession().setAttribute("student", student);
+                req.getRequestDispatcher("WEB-INF/student/setDateAndEmail.jsp").forward(req, resp);
+            } else {
+                req.getRequestDispatcher("WEB-INF/student/setDateAndEmail.jsp").forward(req, resp);
+            }
+        } catch (NumberFormatException e) {
+            resp.sendRedirect("/control?status=archive");
+        }
 
     }
 }

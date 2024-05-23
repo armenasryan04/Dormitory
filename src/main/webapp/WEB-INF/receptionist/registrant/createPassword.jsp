@@ -8,10 +8,10 @@
 </head>
 <%
     Receptionist receptionist = (Receptionist) request.getSession().getAttribute("receptionist");
-String password = receptionist.getPassword();
-if (password == null) {
-    password = "";
-}
+    String password = receptionist.getPassword();
+    if (password == null) {
+        password = "";
+    }
 %>
 <body>
 <% if (request.getAttribute("errMsg") != null) { %>
@@ -110,6 +110,7 @@ if (password == null) {
         align-items: center;
         margin: 0;
     }
+
     .gradient-button {
         position: absolute;
         top: 10px;
@@ -133,6 +134,7 @@ if (password == null) {
         color: rgb(0, 0, 0);
         box-shadow: 0 0 10px #f519f5;
     }
+
     @keyframes gradient {
         0% {
             background-position: 0% 0%;
@@ -268,7 +270,7 @@ if (password == null) {
         top: 0;
         left: 0;
         width: 100%;
-        height:100%;
+        height: 100%;
         backdrop-filter: blur(5px);
         justify-content: center;
         align-items: center;

@@ -69,7 +69,7 @@ public class RegistrantDataValidationFilter implements Filter {
                 e.printStackTrace();
                 resp.sendRedirect("/login");
             }
-        }else {
+        } else {
             filterChain.doFilter(req, resp);
         }
     }

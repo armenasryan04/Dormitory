@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(urlPatterns = {"/","/login","/signUp","/createPassword","/addReceptionist","/getInfo"})
+@WebFilter(urlPatterns = {"/", "/login", "/signUp", "/createPassword", "/addReceptionist", "/getInfo"})
 public class LoginFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
@@ -18,10 +18,10 @@ public class LoginFilter implements Filter {
         HttpServletResponse resp = (HttpServletResponse) servletResponse;
         HttpSession session = req.getSession();
         Receptionist receptionist = (Receptionist) session.getAttribute("receptionist");
-        if (receptionist == null || receptionist.getReceptionistRole() == null || receptionist.getReceptionistRole().equals(ReceptionistRole.INACTIVE)){
-            filterChain.doFilter(req,resp);
-        }else {
+        if (receptionist == null || receptionist.getReceptionistRole() == null || receptionist.getReceptionistRole().equals(ReceptionistRole.INACTIVE)) {
+            filterChain.doFilter(req, resp);
+        } else {
             resp.sendRedirect("/loginConductor");
         }
-     }
+    }
 }

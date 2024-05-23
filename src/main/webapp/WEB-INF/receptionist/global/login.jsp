@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
@@ -43,14 +42,14 @@
         <%boolean can = (boolean) request.getAttribute("canReg");%>
         <%if (can) {%>
         <div class="signup-link">
-            Sign Up  For Work <a href="/signUp">Sign Up</a>
+            Sign Up For Work <a href="/signUp">Sign Up</a>
         </div>
         <%}%>
         <%}%>
     </form>
-    <% if (request.getAttribute("doneMsg") != null && request.getAttribute("errMsg")==null) { %>
+    <% if (request.getAttribute("doneMsg") != null && request.getAttribute("errMsg") == null) { %>
     <div id="doneContainer" class="done-container">
-        <div id="doneMessage"  class="done-message" >
+        <div id="doneMessage" class="done-message">
             <%=request.getAttribute("doneMsg")%>
         </div>
     </div>
@@ -304,13 +303,11 @@
     form .signup-link a:hover {
         text-decoration: underline;
     }
+
     .done-container {
-    <%if(request.getAttribute("doneMsg")==null && request.getAttribute("errMsg")!=null){%>
-        display: none;
-    <%}else {%>
-        display: flex;
-    <%}%>
-        position: fixed;
+    <%if(request.getAttribute("doneMsg")==null && request.getAttribute("errMsg")!=null){%> display: none;
+    <%}else {%> display: flex;
+    <%}%> position: fixed;
         top: 0;
         left: 0;
         width: 100%;
@@ -318,15 +315,13 @@
         backdrop-filter: blur(5px);
         justify-content: center;
         align-items: center;
-        z-index:200000000000;
+        z-index: 200000000000;
     }
+
     .done-message {
-    <%if(request.getAttribute("doneMsg")==null && request.getAttribute("errMsg")!=null){%>
-        display: none;
-    <%}else {%>
-        display: flex;
-    <%}%>
-        z-index: 200000000;
+    <%if(request.getAttribute("doneMsg")==null && request.getAttribute("errMsg")!=null){%> display: none;
+    <%}else {%> display: flex;
+    <%}%> z-index: 200000000;
         color: white;
         height: auto;
         width: auto;
@@ -364,17 +359,19 @@
     <% } %>
     document.body.addEventListener('keypress', handleEnterKeyPress)
     document.body.addEventListener('click', handleButtonClick);
+
     function handleButtonClickDone() {
         var doneContainer = document.getElementById('doneContainer');
         var doneMessage = document.getElementById('doneMessage');
-        if (doneContainer && doneContainer.contains(event.target) && !doneMessage.contains(event.target) ) {
+        if (doneContainer && doneContainer.contains(event.target) && !doneMessage.contains(event.target)) {
             doneContainer.style.display = 'none';
             doneMessage.style.display = 'none'
             window.location.replace('/login');
         }
     };
+
     function handleEnterKeyPressDone() {
-        if (event.key === 'Enter' || event.keyCode === 32 ) {
+        if (event.key === 'Enter' || event.keyCode === 32) {
             var doneContainer = document.getElementById('doneContainer');
             var doneMessage = document.getElementById('doneMessage');
             doneContainer.style.display = 'none';
@@ -382,7 +379,8 @@
             window.location.replace('/login');
         }
     }
-    document.body.addEventListener('keypress',handleEnterKeyPressDone)
+
+    document.body.addEventListener('keypress', handleEnterKeyPressDone)
     document.body.addEventListener('click', handleButtonClickDone);
 
 </script>
