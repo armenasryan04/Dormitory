@@ -58,7 +58,7 @@
             <% for (Student student : students) { %>
             <div id="requestContainerForDeactivate<%=student.getId()%>" class="request-container-for-deactivate">
                 <div id="requestMessageForDeactivate<%=student.getId()%>" class="request-message-for-deactivate">
-                    you need to activate this employee?
+                    you need to add this student?
                     <br/>
                     <a href="/deactivateStudent?id=<%=student.getId()%>" style="color: red">YES</a> || <a
                         id="cancel<%=student.getId()%>" href="#" style="color: orange">NO</a>
