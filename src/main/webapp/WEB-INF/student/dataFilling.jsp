@@ -569,6 +569,11 @@
     <% } %>
     document.body.addEventListener('keypress', handleEnterKeyPress)
     document.body.addEventListener('click', handleButtonClick);
+    var tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    var tomorrowString = tomorrow.toISOString().slice(0, 10);
+    var inputElement = document.getElementById("min");
+    inputElement.min = tomorrowString;
 </script>
 
 </html>
