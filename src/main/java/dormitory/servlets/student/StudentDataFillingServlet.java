@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/studentDataFilling")
-public class StudentAddFormServlet extends HttpServlet {
+public class StudentDataFillingServlet extends HttpServlet {
     RoomManager roomManager = new RoomManager();
 
     @Override
