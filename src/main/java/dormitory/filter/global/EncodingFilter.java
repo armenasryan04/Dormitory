@@ -15,6 +15,4 @@ public class EncodingFilter implements Filter {
         req.setCharacterEncoding("UTF-8");
         filterChain.doFilter(req, resp);
     }
-
-
 }
